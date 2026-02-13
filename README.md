@@ -1,0 +1,6 @@
+# Nchos's Dotfiles...
+
+Other languages is here:
+[Japanese](./README.ja.md)
+
+> English ver. is Under construction...
