@@ -78,7 +78,6 @@ return {
     { key = 'U', mods = 'SHIFT|CTRL', action = act.CharSelect{ copy_on_select = true, copy_to =  'ClipboardAndPrimarySelection' } },
     { key = 'V', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
     { key = 'V', mods = 'SHIFT|CTRL', action = act.PasteFrom 'Clipboard' },
-    { key = 'W', mods = 'CTRL', action = act.CloseCurrentTab{ confirm = true } },
     { key = 'X', mods = 'CTRL', action = act.ActivateCopyMode },
     { key = 'X', mods = 'SHIFT|CTRL', action = act.ActivateCopyMode },
     { key = 'Z', mods = 'CTRL', action = act.TogglePaneZoomState },
@@ -102,7 +101,7 @@ return {
       action = wezterm.action.ShowLauncherArgs {
         flags = 'LAUNCH_MENU_ITEMS' 
       },
-    }, 
+    },
     { key = 'm', mods = 'SHIFT|CTRL', action = act.Hide },
     { key = 'm', mods = 'SUPER', action = act.Hide },
     { key = 'n', mods = 'SHIFT|CTRL', action = act.SpawnWindow },
@@ -118,7 +117,6 @@ return {
     { key = 'v', mods = 'SHIFT|CTRL', action = act.PasteFrom 'Clipboard' },
     { key = 'v', mods = 'SUPER', action = act.PasteFrom 'Clipboard' },
     { key = 'w', mods = 'SUPER', action = act.CloseCurrentTab{ confirm = true } },
-    { key = 'w', mods = 'CTRL', action = act.CloseCurrentTab{ confirm = true } },
     { key = 'x', mods = 'SHIFT|CTRL', action = act.ActivateCopyMode },
     { key = 'z', mods = 'SHIFT|CTRL', action = act.TogglePaneZoomState },
     { key = '{', mods = 'SUPER', action = act.ActivateTabRelative(-1) },
@@ -151,6 +149,8 @@ return {
     { key = 'DownArrow',  mods = 'SHIFT|CTRL', action = act.ActivatePaneDirection 'Down' },
     { key = 'UpArrow',    mods = 'SHIFT|CTRL', action = act.ActivatePaneDirection 'Up' },
     { key = 'RightArrow', mods = 'SHIFT|CTRL', action = act.ActivatePaneDirection 'Right' },
+    { key = 'w', mods = 'SHIFT|CTRL', action = act.CloseCurrentTab{ confirm = true } },
+    { key = 'w', mods = 'CTRL', action = act.CloseCurrentPane{ confirm = true } },
   },
 
   key_tables = {
