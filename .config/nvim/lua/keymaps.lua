@@ -70,7 +70,8 @@ vim.keymap.set("n", "<leader>w<Down>",  "<C-w>j", { desc = "Window down" })
 
 -- toggleterm
 vim.keymap.set("n", "<leader>t", ":ToggleTerm<cr>", { silent = true, desc = "Toggle Terminal" })
-vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
+--vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
+vim.keymap.set("t", "<C-n>", [[<C-\><C-n>]])
 
 
 -- setup usual environment
