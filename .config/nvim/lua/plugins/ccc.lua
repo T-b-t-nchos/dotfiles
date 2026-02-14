@@ -1,6 +1,6 @@
 return {
     "uga-rosa/ccc.nvim",
-    event = "VeryLazy",
+    -- event = "UIEnter",
     config = function()
         local ccc = require("ccc")
 
