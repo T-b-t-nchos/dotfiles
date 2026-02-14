@@ -152,6 +152,10 @@ vim.keymap.set("n", "<leader>opb", ":Octo pr browser<cr>", { silent = true, desc
 vim.keymap.set("n", "<leader>opn", ":Octo pr create<cr>", { silent = true, desc = "gh PR create" })
 
 
+-- ccc
+vim.keymap.set("n", "<leader>cp", ":CccPick", { silent = true, desc = "Color CccPick"})
+
+
 -- which-key integration 
 local ok, wk = pcall(require, "which-key")
 if ok then
