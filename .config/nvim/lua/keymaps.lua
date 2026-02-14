@@ -153,7 +153,7 @@ vim.keymap.set("n", "<leader>opn", ":Octo pr create<cr>", { silent = true, desc 
 
 
 -- ccc
-vim.keymap.set("n", "<leader>cp", ":CccPick", { silent = true, desc = "Color CccPick"})
+vim.keymap.set("n", "<leader>cp", ":CccPick<cr>", { silent = true, desc = "Color CccPick"})
 
 
 -- which-key integration 
