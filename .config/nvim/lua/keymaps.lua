@@ -40,7 +40,7 @@ vim.keymap.set("n", "<leader>t", ":terminal<cr>", { silent = true, desc = "termi
 
 
 -- Outline (aerial.nvim)
-vim.keymap.set("n", "<leader>o", "<cmd>AerialToggle<CR>", { desc = "Outline Window" })
+vim.keymap.set("n", "<leader>l", "<cmd>AerialToggle<CR>", { desc = "Outline Window" })
 vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>")
 vim.keymap.set("n", "}", "<cmd>AerialNext<CR>")
 
@@ -133,6 +133,22 @@ vim.keymap.set("n", "<leader>gl", function() require("gitgraph").draw({}, { all 
 
 -- markdown preview
 vim.keymap.set("n", "<leader>mp", ":MarkdownPreview<cr>", { silent = true, desc = "Start Markdown preview" })
+
+
+-- Octo
+vim.keymap.set("n", "<leader>oo", ":Octo<cr>", { silent = true, desc = "Octo list" })
+
+vim.keymap.set("n", "<leader>oil", ":Octo issue list<cr>", { silent = true, desc = "gh Issue list" })
+vim.keymap.set("n", "<leader>oie", ":Octo issue edit<cr>", { silent = true, desc = "gh Issue edit" })
+vim.keymap.set("n", "<leader>oic", ":Octo issue close<cr>", { silent = true, desc = "gh Issue close" })
+vim.keymap.set("n", "<leader>oib", ":Octo issue browser<cr>", { silent = true, desc = "gh Issue browser" })
+vim.keymap.set("n", "<leader>oin", ":Octo issue create<cr>", { silent = true, desc = "gh Issue create" })
+
+vim.keymap.set("n", "<leader>opl", ":Octo pr list<cr>", { silent = true, desc = "gh PR list" })
+vim.keymap.set("n", "<leader>ope", ":Octo pr edit<cr>", { silent = true, desc = "gh PR edit" })
+vim.keymap.set("n", "<leader>opc", ":Octo pr close<cr>", { silent = true, desc = "gh PR close" })
+vim.keymap.set("n", "<leader>opb", ":Octo pr browser<cr>", { silent = true, desc = "gh PR browser" })
+vim.keymap.set("n", "<leader>opn", ":Octo pr create<cr>", { silent = true, desc = "gh PR create" })
 
 
 -- which-key integration 
