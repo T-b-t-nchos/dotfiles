@@ -37,27 +37,44 @@ return {
     -- end
 
     {
-        "cpea2506/one_monokai.nvim",
-        name = "one_monokai",
+        "https://github.com/T-b-t-nchos/Aquavium.nvim",
+        lazy = false,
         priority = 1000,
-        config = function ()
-            require("one_monokai").setup({
-                transparent = true,
-                colors = { -- optimize for transparent-background.
-                    fg = "#cdd5e5",
-                    gray = "#a1abbf",
-                    dark_gray = "#687287"
-                },
-                highlights = function(colors)
-                    return {}
-                end,
-                bold = true,
-                italics = true,
+        config = function()
+            local aquavium = require("Aquavium")
+
+            aquavium.setup({
+                -- bold = true,
+                -- italic = true,
+                -- transparent = true,
             })
-            vim.cmd.colorscheme("one_monokai")
-            vim.o.winborder = "single"
-        end
-    }
+
+            vim.cmd("colorscheme Aquavium")
+        end,
+    },
+
+    -- {
+    --     "cpea2506/one_monokai.nvim",
+    --     name = "one_monokai",
+    --     priority = 1000,
+    --     config = function ()
+    --         require("one_monokai").setup({
+    --             transparent = true,
+    --             colors = { -- optimize for transparent-background.
+    --                 fg = "#cdd5e5",
+    --                 gray = "#a1abbf",
+    --                 dark_gray = "#687287"
+    --             },
+    --             highlights = function(colors)
+    --                 return {}
+    --             end,
+    --             bold = true,
+    --             italics = true,
+    --         })
+    --         vim.cmd.colorscheme("one_monokai")
+    --         vim.o.winborder = "single"
+    --     end
+    -- }
 
     -- "FrenzyExists/aquarium-vim",
     -- name = "aquarium-vim",
