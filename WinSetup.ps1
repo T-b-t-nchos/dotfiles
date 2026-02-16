@@ -94,6 +94,11 @@ function Main-Function {
         -RelativeSource ".config\ohmyposh" `
         -Destination ("~\.config\ohmyposh") `
         -Force:$Force
+
+    New-RelativeSymlink `
+        -RelativeSource ".config\lazygit" `
+        -Destination (Join-Path $env:LOCALAPPDATA "lazygit") `
+        -Force:$Force
     
 
     Write-Host
