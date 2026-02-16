@@ -400,6 +400,12 @@ function New-RelativeSymlink {
     }
 }
 
+function Run-command($Cmd) {
+    Info($Cmd)
+    iex $Cmd
+    Write-Host
+}
+
 function Color-func-Test{
     clear
     Confirm-Execution
