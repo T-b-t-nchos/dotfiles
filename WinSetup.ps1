@@ -198,11 +198,24 @@ function Download-Font {
 
     $fontDir = "$env:WINDIR\Fonts"
 
-    if (-not $Force) {
-        if (Get-ChildItem $fontDir -Filter "*Moralerspace*HW*" -ErrorAction SilentlyContinue) {
-            Warn "Font already exists (use -Force)."
-            return
+    $fontDirs = @(
+        "$env:WINDIR\Fonts",
+        "$env:LOCALAPPDATA\Microsoft\Windows\Fonts"
+    )
+
+    $exists = $false
+
+    foreach ($dir in $fontDirs) {
+        if (Test-Path $fontDirs) {
+            if (Get-ChildItem $dir -Filter "*Moralerspace*HW*" -ErrorAction SilentlyContinue) {
+                $exists = $true
+            }
         }
+    }
+
+    if ($exists) {
+        Done "Fonts is already installed"
+        return
     }
 
     $base = "https://github.com/yuru7/moralerspace/releases/download/v2.0.0/"
