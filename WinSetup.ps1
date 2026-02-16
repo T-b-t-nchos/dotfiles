@@ -97,7 +97,7 @@ function Main-Function {
 
     New-RelativeSymlink `
         -RelativeSource ".config\lazygit" `
-        -Destination (Join-Path $env:LOCALAPPDATA "lazygit") `
+        -Destination (Join-Path $env:APPDATA "jesseduffield\lazygit") `
         -Force:$Force
     
 
