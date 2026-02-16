@@ -1,6 +1,7 @@
 return {
     "uga-rosa/ccc.nvim",
-    -- event = "UIEnter",
+    event = { "BufReadPost", "BufNewFile" },
+
     config = function()
         local ccc = require("ccc")
 
