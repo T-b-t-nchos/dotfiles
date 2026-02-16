@@ -104,6 +104,13 @@ function Main-Function {
     Write-Host
 
     #-------------------------------------------------------
+    # Other commands
+    
+    Run-command("gh extension install yusukebe/gh-markdown-preview") 
+
+    Write-Host
+
+    #-------------------------------------------------------
 
     Info "Done."
     Write-Host "Press Enter to exit...."
