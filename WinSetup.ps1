@@ -57,6 +57,7 @@ function Main-Function {
     
     Install-WingetPackage Git.Git
     Install-WingetPackage GitHub.cli
+    Install-WingetPackage JesseDuffield.lazygit
     Install-WIngetPackage Python.Python.3.14
     Install-WingetPackage Microsoft.PowerShell
     Install-WingetPackage Neovim.Neovim
