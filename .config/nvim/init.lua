@@ -24,5 +24,8 @@ require("lazy").setup({
 })
 
 
-
-
+vim.api.nvim_create_autocmd('BufRead', {
+    callback = function()
+        vim.treesitter.start()
+    end,
+})
