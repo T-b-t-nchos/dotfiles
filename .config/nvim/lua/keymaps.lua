@@ -159,7 +159,22 @@ vim.keymap.set("n", "<leader>cp", ":CccPick<cr>", { silent = true, desc = "Color
 -- Neo-Img
 vim.keymap.set("n", "<leader>ip", ":NeoImg DisplayImage<cr>", { silent = true, desc = "Preview Image" })
 
--- which-key integration 
+
+-- Ddx.vim
+vim.keymap.set("n", "<leader>h", function()
+    vim.fn["ddx#start"]({
+        name = "default",
+        path = vim.fn.expand("%:p"),
+        ui = "hex",
+    })
+end, {
+    noremap = true,
+    silent = true,
+    desc = "Open file in ddx hex editor"
+})
+
+
+-- which-key integration
 local ok, wk = pcall(require, "which-key")
 if ok then
     wk.register({
