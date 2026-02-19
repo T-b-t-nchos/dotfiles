@@ -76,36 +76,36 @@ vim.keymap.set("t", "<C-n>", [[<C-\><C-n>]])
 
 -- setup usual environment
 vim.keymap.set("n", "<leader>s", function()
-  vim.cmd("ToggleTerm direction=horizontal focus=false")
-  vim.cmd("normal! L")
-  vim.cmd("wincmd k")
-  vim.cmd("cd %:p:h")
-  vim.cmd("Neotree filesystem reveal toggle left")
-  vim.cmd("wincmd l")
-  vim.cmd("AerialToggle")
-  vim.cmd("wincmd h")
-  vim.cmd("wincmd k")
+    vim.cmd("ToggleTerm direction=horizontal focus=false")
+    vim.cmd("normal! L")
+    vim.cmd("wincmd k")
+    vim.cmd("cd %:p:h")
+    vim.cmd("Neotree filesystem reveal toggle left")
+    vim.cmd("wincmd l")
+    vim.cmd("AerialToggle")
+    vim.cmd("wincmd h")
+    vim.cmd("wincmd k")
 end, { desc = "Setup usual environment" })
 
 
 -- Trouble keymaps
 vim.keymap.set("n", "<leader>xx", function()
-  vim.cmd("Trouble diagnostics toggle")
+    vim.cmd("Trouble diagnostics toggle")
 end, { desc = "Diagnostics (Trouble)" })
 vim.keymap.set("n", "<leader>xX", function()
-  vim.cmd("Trouble diagnostics toggle filter.buf=0")
+    vim.cmd("Trouble diagnostics toggle filter.buf=0")
 end, { desc = "Buffer Diagnostics (Trouble)" })
 vim.keymap.set("n", "<leader>xs", function()
-  vim.cmd("Trouble symbols toggle focus=false")
+    vim.cmd("Trouble symbols toggle focus=false")
 end, { desc = "Symbols (Trouble)" })
 vim.keymap.set("n", "<leader>xl", function()
-  vim.cmd("Trouble lsp toggle focus=false win.position=right")
+    vim.cmd("Trouble lsp toggle focus=false win.position=right")
 end, { desc = "LSP Definitions / references / ... (Trouble)" })
 vim.keymap.set("n", "<leader>xL", function()
-  vim.cmd("Trouble loclist toggle")
+    vim.cmd("Trouble loclist toggle")
 end, { desc = "Location List (Trouble)" })
 vim.keymap.set("n", "<leader>xQ", function()
-  vim.cmd("Trouble qflist toggle")
+    vim.cmd("Trouble qflist toggle")
 end, { desc = "Quickfix List (Trouble)" })
 
 
@@ -168,9 +168,9 @@ vim.keymap.set("n", "<leader>h", function()
         ui = "hex",
     })
 end, {
-    noremap = true,
-    silent = true,
-    desc = "Open file in ddx hex editor"
+noremap = true,
+silent = true,
+desc = "Open file in ddx hex editor"
 })
 
 

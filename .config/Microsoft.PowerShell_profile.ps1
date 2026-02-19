@@ -12,6 +12,6 @@ function prompt {
         Write-Host ""
     }
     $script:__firstPrompt = $false
-    & $originalPrompt
+        & $originalPrompt
 }
 

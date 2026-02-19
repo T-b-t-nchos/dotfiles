@@ -37,18 +37,18 @@ config.cursor_blink_rate = 480
 
 config.launch_menu = {
     {
-    label = 'PowerShell',
-    args = {'pwsh.exe'},
-    set_environment_variables = {
+        label = 'PowerShell',
+        args = {'pwsh.exe'},
+        set_environment_variables = {
             MSYSTEM = nil,
             MSYS = nil,
             MSYS2_PATH_TYPE = nil
         }
     },
-  {label = 'Cmd', args = {'cmd.exe', ''}},
-  {label = 'Git Bash', args = {'C:/Program Files/git/bin/bash.exe'}},
-  {label = 'WSL Bash', args = {'bash', '-l'}},
-  {label = 'NeoVim (native)', args = {'nvim'}},
+    {label = 'Cmd', args = {'cmd.exe', ''}},
+    {label = 'Git Bash', args = {'C:/Program Files/git/bin/bash.exe'}},
+    {label = 'WSL Bash', args = {'bash', '-l'}},
+    {label = 'NeoVim (native)', args = {'nvim'}},
 }
 
 config.window_background_gradient = {colors = {'#000000'}}
@@ -59,32 +59,32 @@ config.window_frame = {
 }
 config.color_scheme = 'Custom Dimidium'
 config.color_schemes = {
-  ['Custom Dimidium'] = {
-    foreground = "#ccc",
-    background = "#141414",
+    ['Custom Dimidium'] = {
+        foreground = "#ccc",
+        background = "#141414",
 
-    ansi = {
-      "#000000", -- black
-      "#cf494c", -- red
-      "#60b442", -- green
-      "#db9c11", -- yellow
-      "#0575d8", -- blue
-      "#af5ed2", -- magenta
-      "#1db6bb", -- cyan
-      "#bab7b6", -- white
-    },
+        ansi = {
+            "#000000", -- black
+            "#cf494c", -- red
+            "#60b442", -- green
+            "#db9c11", -- yellow
+            "#0575d8", -- blue
+            "#af5ed2", -- magenta
+            "#1db6bb", -- cyan
+            "#bab7b6", -- white
+        },
 
-    brights = {
-      "#817e7e", -- bright black
-      "#ff643b", -- bright red
-      "#37e57b", -- bright green
-      "#fccd1a", -- bright yellow
-      "#688dfd", -- bright blue
-      "#ed6fe9", -- bright magenta
-      "#32e0fb", -- bright cyan
-      "#dee3e4", -- bright white
+        brights = {
+            "#817e7e", -- bright black
+            "#ff643b", -- bright red
+            "#37e57b", -- bright green
+            "#fccd1a", -- bright yellow
+            "#688dfd", -- bright blue
+            "#ed6fe9", -- bright magenta
+            "#32e0fb", -- bright cyan
+            "#dee3e4", -- bright white
+        },
     },
-  },
 }
 
 
@@ -99,7 +99,7 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
     local edge_background = 'none'
     if tab.is_active then
         background = '#1b1b1b'
-	      --background = '#079202'
+        --background = '#079202'
         foreground = '#FFFFFF'
     end
     local edge_foreground = background
@@ -116,16 +116,16 @@ end)
 
 -- switch opacity
 wezterm.on("toggle-opacity", function(window, pane)
-  local overrides = window:get_config_overrides() or {}
+    local overrides = window:get_config_overrides() or {}
 
-  if opacity_state == 1.0 then
-    opacity_state = 0.7
-  else
-    opacity_state = 1.0
-  end
+    if opacity_state == 1.0 then
+        opacity_state = 0.7
+    else
+        opacity_state = 1.0
+    end
 
-  overrides.window_background_opacity = opacity_state
-  window:set_config_overrides(overrides)
+    overrides.window_background_opacity = opacity_state
+    window:set_config_overrides(overrides)
 end)
 
 return config
