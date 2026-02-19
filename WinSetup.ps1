@@ -58,6 +58,7 @@ function Main-Function {
     Install-WingetPackage Git.Git
     Install-WingetPackage GitHub.cli
     Install-WingetPackage JesseDuffield.lazygit
+    Install-WingetPackage CoreyButler.NVMforWindows
     Install-WIngetPackage Python.Python.3.14
     Install-WingetPackage Microsoft.PowerShell
     Install-WingetPackage Neovim.Neovim
@@ -66,7 +67,7 @@ function Main-Function {
         -Url "https://github.com/wezterm/wezterm/releases/download/nightly/WezTerm-nightly-setup.exe" `
         -InstallDir "C:\Program files\WezTerm"
     Install-WingetPackage JanDeDobbeleer.OhMyPosh
-    Install-WingetPackage CoreyButler.NVMforWindows
+    Install-WingetPackage MSYS2.MSYS2
     
     Write-Host
 
