@@ -110,6 +110,8 @@ function Main-Function {
     Run-command("gh extension install yusukebe/gh-markdown-preview")
 
     Run-command("nvm install latest")
+    Run-command("npm install -g @antfu/ni mdpv tree-sitter-cli")
+
 
     Write-Host
 
