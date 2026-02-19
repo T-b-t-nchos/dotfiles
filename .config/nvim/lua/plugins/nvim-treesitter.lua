@@ -5,10 +5,8 @@ return {
     lazy = false,
     build = ':TSUpdate',
     config = function()
-        -- ...
-    end,
-    opts = {
-        ensure_installed = {
+        local ts = require("nvim-treesitter")
+        ts.install({
             -- Desktop-App
             "bash",
             "c_sharp",
@@ -42,6 +40,10 @@ return {
             -- Other
             "json",
             "json5",
+        })
+    end,
+    opts = {
+        ensure_installed = {
         },
     },
   },
