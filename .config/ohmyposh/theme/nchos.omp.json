@@ -5,20 +5,6 @@
       "alignment": "left",
       "segments": [
         {
-          "type": "prompt",
-          "newline": true,
-          "shell": [
-            "pwsh"
-          ],
-          "segments": []
-        }
-      ],
-      "type": "prompt"
-    },
-    {
-      "alignment": "left",
-      "segments": [
-        {
           "style": "diamond",
           "leading_diamond": "\ue0b6",
           "foreground": "#ffffff",
