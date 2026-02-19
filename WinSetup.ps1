@@ -66,6 +66,7 @@ function Main-Function {
         -Url "https://github.com/wezterm/wezterm/releases/download/nightly/WezTerm-nightly-setup.exe" `
         -InstallDir "C:\Program files\WezTerm"
     Install-WingetPackage JanDeDobbeleer.OhMyPosh
+    Install-WingetPackage CoreyButler.NVMforWindows
     
     Write-Host
 
@@ -106,7 +107,9 @@ function Main-Function {
     #-------------------------------------------------------
     # Other commands
     
-    Run-command("gh extension install yusukebe/gh-markdown-preview") 
+    Run-command("gh extension install yusukebe/gh-markdown-preview")
+
+    Run-command("nvm install latest")
 
     Write-Host
 
