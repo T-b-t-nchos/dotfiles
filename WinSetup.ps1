@@ -60,6 +60,7 @@ function Main-Function {
     Install-WingetPackage JesseDuffield.lazygit
     Install-WingetPackage CoreyButler.NVMforWindows
     Install-WIngetPackage Python.Python.3.14
+    Install-WingetPackage DenoLand.Deno
     Install-WingetPackage Microsoft.PowerShell
     Install-WingetPackage Neovim.Neovim
     Install-DirectPackage `
