@@ -156,6 +156,9 @@ vim.keymap.set("n", "<leader>opn", ":Octo pr create<cr>", { silent = true, desc 
 vim.keymap.set("n", "<leader>cp", ":CccPick<cr>", { silent = true, desc = "Color CccPick"})
 
 
+-- Neo-Img
+vim.keymap.set("n", "<leader>ip", ":NeoImg DisplayImage<cr>", { silent = true, desc = "Preview Image" })
+
 -- which-key integration 
 local ok, wk = pcall(require, "which-key")
 if ok then
