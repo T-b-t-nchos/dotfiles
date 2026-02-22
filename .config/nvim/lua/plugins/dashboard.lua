@@ -24,9 +24,9 @@ return{
                 --packages = { enable = false },
 
                 shortcut = {
-                    { desc = ' New File', group = '@variable', action = 'enew', key = 'n'},
-                    { desc = ' Recent Files', group = '@property', action = 'Telescope oldfiles', key = 'r' },
-                    { desc = '󰊳 Lazy-nvim Update', group = 'DiagnosticHint', action = 'Lazy update', key = 'u' },
+                    { desc = ' New File', group = 'String', action = 'enew', key = 'n'},
+                    { desc = ' Recent Files', group = 'Keyword', action = 'Telescope oldfiles', key = 'r' },
+                    { desc = '󰊳 Lazy-nvim Update', group = 'Character', action = 'Lazy update', key = 'u' },
                 },
 
                 mru = { enable = false },
