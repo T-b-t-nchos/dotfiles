@@ -18,6 +18,25 @@ return {
                     inc_rename = false,
                     lsp_doc_border = false,
                 },
+
+                views = {
+                    cmdline_popup = {
+                        position = {
+                            row = "40%",
+                            col = "50%",
+                        },
+                        size = {
+                            width = 60,
+                            height = "auto",
+                        },
+                        border = {
+                            style = "rounded",
+                        },
+                        win_options = {
+                            winblend = 0,
+                        },
+                    },
+                },
             })
         end,
         dependencies = {
