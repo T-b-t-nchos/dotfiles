@@ -17,7 +17,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    { import = "colors.init" }, -- priority=1000 前提
+    { import = "colors.init" },
     { import = "plugins.lsp" }, -- LSPは遅延されやすい
     { import = "plugins.git" },
     { import = "plugins" },
