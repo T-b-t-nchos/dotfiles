@@ -132,6 +132,10 @@ vim.keymap.set("n", "<leader>gg", ":LazyGit<cr>", { silent = true, desc = "Open 
 vim.keymap.set("n", "<leader>gl", function() require("gitgraph").draw({}, { all = true, max_count = 5000 }) end, { silent = true, desc = "Open GitGraph" })
 
 
+-- diffview
+vim.keymap.set("n", "<leader>gd", ":DiffviewOpen<cr>", { silent = true, desc = "Open Diffview" })
+
+
 -- markdown preview
 vim.keymap.set("n", "<leader>mp", ":MarkdownPreview<cr>", { silent = true, desc = "Start Markdown preview" })
 
