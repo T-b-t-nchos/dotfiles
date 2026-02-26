@@ -1,6 +1,6 @@
 return{
     {
         "machakann/vim-sandwich",
-        event = "VeryLazy",
+        event = { "BufReadPost", "BufNewFile" },
     },
 }

@@ -1,7 +1,8 @@
 return{
     {
         'isakbm/gitgraph.nvim',
-        event = "VeryLazy",
+        module = "gitgraph",
+        cmd = "GitGraph",
         opts = {
             git_cmd = "git",
             symbols = {

@@ -1,7 +1,7 @@
 return{
     {
         "kana/vim-operator-replace",
-        event = "VeryLazy",
+        event = { "BufReadPost", "BufNewFile" },
         dependencies = { "kana/vim-operator-user" },
     }
 }

@@ -7,7 +7,8 @@ return{
         "nvim-tree/nvim-web-devicons",
     },
 
-    event = "UIEnter",
+    module = "neo-tree",
+    cmd = "Neotree",
 
     config = function()
         require("neo-tree").setup({

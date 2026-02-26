@@ -1,7 +1,7 @@
 return{
     {
         "stevearc/aerial.nvim",
-        event = "VeryLazy",
+        cmd = { "AerialToggle", "AerialOpen", "AerialOpenAll", "AerialInfo", },
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons",

@@ -1,6 +1,7 @@
 return {
     "danymat/neogen",
-    event = "VeryLazy",
+    module = "neogen",
+    cmd = "Neogen",
     dependencies = "nvim-treesitter/nvim-treesitter",
     opts = {
         snippet_engine = "luasnip",
