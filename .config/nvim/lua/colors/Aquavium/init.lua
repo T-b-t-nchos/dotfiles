@@ -1,4 +1,4 @@
-return {
+return{
     {
         "T-b-t-nchos/Aquavium.nvim",
         name = "Aquavium",
@@ -16,3 +16,4 @@ return {
         lazy = true,
     },
 }
+

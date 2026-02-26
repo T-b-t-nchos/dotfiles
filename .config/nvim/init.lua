@@ -17,7 +17,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    { import = "colors.init" },
+    { import = "colors.Aquavium.init" },
+    { import = "colors" },
     { import = "plugins.lsp" }, -- LSPは遅延されやすい
     { import = "plugins.git" },
     { import = "plugins" },
