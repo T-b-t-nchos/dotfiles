@@ -10,6 +10,14 @@ vim.keymap.set("n", "<leader>wqa", function()
 end, { desc = "Save All & Quit All", silent = true })
 
 
+-- Style
+vim.keymap.set("n", "<leader>=", function()
+    local view = vim.fn.winsaveview()
+    vim.cmd("normal! gg=G")
+    vim.fn.winrestview(view)
+end, { desc = "Reindent buffer (keep cursor)" })
+
+
 -- move buffers
 vim.keymap.set("n", "<leader>bj", ":bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
 vim.keymap.set("n", "<leader>bk", ":bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
