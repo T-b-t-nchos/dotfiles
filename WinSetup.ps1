@@ -68,7 +68,6 @@ function Main-Function {
         -Url "https://github.com/wezterm/wezterm/releases/download/nightly/WezTerm-nightly-setup.exe" `
         -InstallDir "C:\Program files\WezTerm"
     Install-WingetPackage JanDeDobbeleer.OhMyPosh
-    Install-WingetPackage MSYS2.MSYS2
     Install-WingetPackage GnuPG.Gpg4win
     
     Write-Host
