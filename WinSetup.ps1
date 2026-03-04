@@ -69,6 +69,8 @@ function Main-Function {
         -InstallDir "C:\Program files\WezTerm"
     Install-WingetPackage JanDeDobbeleer.OhMyPosh
     Install-WingetPackage GnuPG.Gpg4win
+
+    Reload-Env
     
     Write-Host
 
@@ -103,6 +105,7 @@ function Main-Function {
         -Destination (Join-Path $env:APPDATA "jesseduffield\lazygit") `
         -Force:$Force
     
+    Reload-Env
 
     Write-Host
 
@@ -114,6 +117,7 @@ function Main-Function {
     Run-command("nvm install latest")
     Run-command("npm install -g @antfu/ni mdpv tree-sitter-cli")
 
+    Reload-Env
 
     Write-Host
 
@@ -418,6 +422,10 @@ function Run-command($Cmd) {
     Info($Cmd)
     iex $Cmd
     Write-Host
+}
+
+function Reload-Env() {
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 }
 
 function Color-func-Test{
