@@ -21,7 +21,13 @@ config.automatically_reload_config = true
 config.initial_cols = 120
 config.initial_rows = 28
 
-config.front_end = 'OpenGL'
+local front_end = "WebGpu"
+
+if os.getenv("WEZTERM_OPENGL") == "1" then
+    front_end = "OpenGL"
+end
+
+config.front_end = front_end
 --config.window_background_opacity = 0.50
 --config.macos_window_background_blur = 20
 config.window_background_opacity = opacity_state
