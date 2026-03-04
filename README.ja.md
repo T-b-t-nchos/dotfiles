@@ -13,7 +13,7 @@
 ## セットアップ
 ### Windows
 #### 依存関係
-- None.
+- Git on Windows
 #### 実行方法
 ```pwsh
 cd ~
