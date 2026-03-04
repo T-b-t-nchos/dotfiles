@@ -7,6 +7,10 @@ param(
 
 $ProgressPreference = 'SilentlyContinue'
 
+
+$Destination = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Destination)
+$parentDir = Split-Path -Parent $Destination
+
 #-----------------------------------------------------------------------------------------------#
 
 function Main-Function {
@@ -61,6 +65,12 @@ function Main-Function {
     Install-WingetPackage CoreyButler.NVMforWindows
     Install-WIngetPackage Python.Python.3.14
     Install-WingetPackage DenoLand.Deno
+    Install-WingetPackage `
+        -PackageId "Microsoft.VisualStudio.BuildTools" `
+        -AdditionalArgs @(
+            "--override"
+            "--passive --config $parentDir\.config\.vsconfig"
+        )
     Install-WingetPackage Microsoft.PowerShell
     Install-WingetPackage Neovim.Neovim
     Install-DirectPackage `
@@ -402,10 +412,6 @@ function New-RelativeSymlink {
         Error "Source not found: $sourcePath"
         return
     }
-
-    $Destination = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Destination)
-
-    $parentDir = Split-Path -Parent $Destination
 
     if (-not (Test-Path $parentDir)) {
         New-Item -ItemType Directory -Path $parentDir -Force | Out-Null
