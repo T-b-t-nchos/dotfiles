@@ -3,11 +3,14 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "SupermavenUseFree", "SupermavenStart", "SupermavenToggle" },
 
-    build = function()
-        vim.cmd("SupermavenUseFree")
-    end,
-
     config = function()
         require("supermaven-nvim").setup({})
+
+        if not vim.g.supermaven_free_done then
+            vim.schedule(function()
+                pcall(vim.cmd, "SuperMavenUseFree")
+            end)
+            vim.g.supermaven_free_done = true
+        end
     end,
 }
