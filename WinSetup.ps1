@@ -285,9 +285,11 @@ function Download-Font {
 function Install-WingetPackage {
     param(
         [Parameter(Mandatory)]
-        [string]$PackageId
+        [string]$PackageId,
+
+        [string[]]$AdditionalArgs
     )
-    
+
     winget list --id $PackageId -e 1>$null 2>$null
     if ($LASTEXITCODE -eq 0) {
         Done "Already installed: $PackageId"
@@ -296,9 +298,19 @@ function Install-WingetPackage {
 
     Info "Installing $PackageId ..."
 
-    winget install $PackageId -e `
-        --accept-package-agreements `
-        --accept-source-agreements
+    $baseArgs = @(
+        "install"
+        $PackageId
+        "-e"
+        "--accept-package-agreements"
+        "--accept-source-agreements"
+    )
+
+    if ($AdditionalArgs) {
+        $baseArgs += $AdditionalArgs
+    }
+
+    winget @baseArgs
 
     if ($LASTEXITCODE -ne 0) {
         Error "Installation failed: $PackageId"
