@@ -3,7 +3,7 @@ return {
     event = { "BufReadPost", "BufNewFile" },
 
     build = function()
-        vim.cmd("SuperMavenUseFree")
+        vim.cmd("SupermavenUseFree")
     end,
 
     config = function()
