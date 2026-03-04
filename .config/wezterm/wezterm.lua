@@ -21,7 +21,7 @@ config.automatically_reload_config = true
 config.initial_cols = 120
 config.initial_rows = 28
 
-config.front_end = 'WebGpu'
+config.front_end = 'OpenGL'
 --config.window_background_opacity = 0.50
 --config.macos_window_background_blur = 20
 config.window_background_opacity = opacity_state
