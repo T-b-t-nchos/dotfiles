@@ -1,3 +1,13 @@
+-- +--------------------------------------------- --- -- - -  -
+-- | WezTerm config File 
+-- +--------------------------------------------- -- - - --  -  -
+--
+-- USER-CONFIG LIST
+-- |
+-- | - "$env:WEZTERM_OPENGL" ... Use OpenGL
+-- | 
+-- +----
+
 local wezterm = require 'wezterm'
 
 local config = wezterm.config_builder()
