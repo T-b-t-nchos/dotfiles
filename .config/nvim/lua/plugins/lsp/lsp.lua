@@ -3,15 +3,8 @@ return {
     dependencies = {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
-        "hrsh7th/nvim-cmp",
         "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "L3MON4D3/LuaSnip",
-        "saadparwaiz1/cmp_luasnip",
-
         "Hoffs/omnisharp-extended-lsp.nvim",
-
     },
     event = { "BufReadPre", "BufNewFile" },
     cmd = { "Mason" },
@@ -19,7 +12,7 @@ return {
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
         vim.lsp.handlers["textDocument/semanticTokens/full"] =
-        vim.lsp.with(vim.lsp.semantic_tokens.full, {})
+            vim.lsp.with(vim.lsp.semantic_tokens.full, {})
 
         vim.api.nvim_create_autocmd("LspAttach", {
             callback = function(args)
@@ -50,7 +43,6 @@ return {
             },
         })
 
-        -- mason 管理の LSP
         local servers = {
             lua_ls = {
                 settings = {
@@ -76,10 +68,9 @@ return {
                     },
                 },
 
-
                 handlers = {
                     ["textDocument/definition"] =
-                    require("omnisharp_extended").handler,
+                        require("omnisharp_extended").handler,
                 },
 
                 enable_import_completion = true,
@@ -122,31 +113,8 @@ return {
             vim.lsp.config(name, vim.tbl_extend("force", {
                 capabilities = capabilities,
             }, config))
+
             vim.lsp.enable(name)
         end
-
-        -- nvim-cmp
-        local cmp = require("cmp")
-        local luasnip = require("luasnip")
-
-        cmp.setup({
-            snippet = {
-                expand = function(args)
-                    luasnip.lsp_expand(args.body)
-                end,
-            },
-            mapping = cmp.mapping.preset.insert({
-                ["<C-Space>"] = cmp.mapping.complete(),
-                ["<CR>"] = cmp.mapping.confirm({ select = true }),
-                ["<Tab>"] = cmp.mapping.select_next_item(),
-                ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-            }),
-            sources = {
-                { name = "nvim_lsp" },
-                { name = "luasnip" },
-                { name = "buffer" },
-                { name = "path" },
-            },
-        })
     end,
 }
