@@ -8,7 +8,7 @@ return {
             keymaps = {
                 accept_suggestion = nil,
                 accept_word = nil,
-                clear_suggestion = nil,
+                clear_suggestion = "<C-e>",
             },
         })
 
