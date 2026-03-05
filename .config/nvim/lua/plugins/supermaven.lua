@@ -4,7 +4,13 @@ return {
     cmd = { "SupermavenUseFree", "SupermavenStart", "SupermavenToggle" },
 
     config = function()
-        require("supermaven-nvim").setup({})
+        require("supermaven-nvim").setup({
+            keymaps = {
+                accept_suggestion = nil,
+                accept_word = nil,
+                clear_suggestion = nil,
+            },
+        })
 
         if not vim.g.supermaven_free_done then
             vim.schedule(function()
