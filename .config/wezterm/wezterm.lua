@@ -105,7 +105,7 @@ config.color_schemes = {
 
 
 config.show_new_tab_button_in_tab_bar = false
-config.show_close_tab_button_in_tabs = true
+config.show_close_tab_button_in_tabs = false
 config.colors = {tab_bar = {inactive_tab_edge = 'none'}}
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
 local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
