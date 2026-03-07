@@ -40,6 +40,7 @@ return {
                 "ts_ls",
                 "phpactor",
                 "yamlls",
+                "bashls",
             },
         })
 
