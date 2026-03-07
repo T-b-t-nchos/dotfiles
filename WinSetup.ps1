@@ -59,6 +59,8 @@ function Main-Function {
     #-------------------------------------------------------
     # Install...
     
+    Install-WingetPackage Google.JapaneseIME
+
     Install-WingetPackage Git.Git
     Install-WingetPackage GitHub.cli
     Install-WingetPackage JesseDuffield.lazygit
