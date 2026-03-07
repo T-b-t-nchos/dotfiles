@@ -90,6 +90,11 @@ function Main-Function {
     # dot-config...
     
     $DocumentsPath = [Environment]::GetFolderPath("MyDocuments")
+    
+    New-RelativeSymlink `
+        -RelativeSource ".config\Google Japanese Input\config1.db" `
+        -Destination (Join-Path $HOME "\AppData\LocalLow\Google\Google Japanese Input\config1.db") `
+        -Force:$Force
 
     New-RelativeSymlink `
         -RelativeSource ".config\Microsoft.PowerShell_profile.ps1" `
