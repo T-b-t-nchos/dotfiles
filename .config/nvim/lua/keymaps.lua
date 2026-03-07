@@ -145,7 +145,7 @@ vim.keymap.set("n", "<leader>gd", ":DiffviewOpen<cr>", { silent = true, desc = "
 
 
 -- markdown preview
-vim.keymap.set("n", "<leader>mp", ":MarkdownPreview<cr>", { silent = true, desc = "Start Markdown preview" })
+vim.keymap.set("n", "<leader>mp", ":terminal mdpv %:p<cr>", { silent = true, desc = "Start Markdown preview" })
 
 
 -- Octo
