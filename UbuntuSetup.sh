@@ -31,6 +31,7 @@ Main-Function() {
     #-------------------------------------------------------
     # Download Font
     Install-AptPackage curl
+    Install-AptPackage unzip
     Download-font
     echo
 
