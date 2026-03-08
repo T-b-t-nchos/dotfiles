@@ -32,6 +32,7 @@ Main-Function() {
     # Download Font
     Install-AptPackage curl
     Install-AptPackage unzip
+    Install-AptPackage gpg
     Download-font
     echo
 
@@ -91,8 +92,6 @@ Main-Function() {
     Info "Installing ohmyposh..."
     Run-command "curl -s https://ohmyposh.dev/install.sh | bash -s"
     export PATH="$PATH:$USER_HOME/.local/bin"
-
-    Install-AptPackage gpg
 
     Reload-Env
 
