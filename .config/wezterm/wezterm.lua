@@ -51,21 +51,29 @@ config.use_ime = true
 config.default_cursor_style = 'BlinkingBar'
 config.cursor_blink_rate = 480
 
-config.launch_menu = {
-    {
-        label = 'PowerShell',
-        args = {'pwsh.exe'},
-        set_environment_variables = {
-            MSYSTEM = nil,
-            MSYS = nil,
-            MSYS2_PATH_TYPE = nil
-        }
-    },
-    {label = 'Cmd', args = {'cmd.exe', ''}},
-    {label = 'Git Bash', args = {'C:/Program Files/git/bin/bash.exe'}},
-    {label = 'WSL Bash', args = {'bash', '-l'}},
-    {label = 'NeoVim (native)', args = {'nvim'}},
-}
+if wezterm.target_triple:find("windows") then
+    config.launch_menu = {
+        {
+            label = "PowerShell",
+            args = { "pwsh.exe" },
+            set_environment_variables = {
+                MSYSTEM = nil,
+                MSYS = nil,
+                MSYS2_PATH_TYPE = nil,
+            },
+        },
+        { label = "Cmd", args = { "cmd.exe" } },
+        { label = "Git Bash", args = { "C:/Program Files/git/bin/bash.exe" } },
+        { label = "WSL Bash", args = { "bash", "-l" } },
+        { label = "NeoVim (native)", args = { "nvim" } },
+    }
+else
+    -- Linux / Ubuntu
+    config.launch_menu = {
+        { label = "Bash", args = { "bash", "-l" } },
+        { label = "NeoVim", args = { "nvim" } },
+    }
+end
 
 config.window_background_gradient = {colors = {'#000000'}}
 
