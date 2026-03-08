@@ -12,7 +12,7 @@ local wezterm = require 'wezterm'
 
 local config = wezterm.config_builder()
 
-local IS_WINDOWS = wezterm.target_triple:match('x86_64-pc-windows')
+local IS_WINDOWS = wezterm.target_triple:find('windows', 1, true) ~= nil
 
 -----------------------------------------------
 --- settings value
