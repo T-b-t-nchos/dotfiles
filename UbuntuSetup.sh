@@ -74,7 +74,7 @@ Main-Function() {
     sudo apt-get update
     sudo apt-get install -y wget
     wget https://github.com/PowerShell/PowerShell/releases/download/v7.5.4/powershell_7.5.4-1.deb_amd64.deb
-    sudo dpkg -i powershell_7.5.4-1.deb_amd64.deb
+    sudo apt install -y powershell_7.5.4-1.deb_amd64.deb
     sudo apt-get install -f
     rm powershell_7.5.4-1.deb_amd64.deb
 
