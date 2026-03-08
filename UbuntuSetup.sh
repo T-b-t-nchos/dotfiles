@@ -30,6 +30,7 @@ Main-Function() {
 
     #-------------------------------------------------------
     # Download Font
+    Install-AptPackage curl
     Download-font
     echo
 
