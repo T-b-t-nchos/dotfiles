@@ -51,7 +51,7 @@ config.use_ime = true
 config.default_cursor_style = 'BlinkingBar'
 config.cursor_blink_rate = 480
 
-if wezterm.target_triple:find("windows") then
+if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     config.launch_menu = {
         {
             label = "PowerShell",
