@@ -132,6 +132,8 @@ Main-Function() {
 
     echo
 
+    trap "kill $SUDO_KEEPALIVE_PID 2>/dev/null" EXIT
+
     #-------------------------------------------------------
 
     Info "Done."
@@ -148,7 +150,7 @@ Ensure-Administrator() {
     fi
 
     Warn "This script is not running with administrator privileges."
-    read -p "Restart as administrator? (Y/N) " choice
+    read -p "Allow to run sudo -v ? (Y/N) " choice
 
     if [[ ! "$choice" =~ ^[Yy]$ ]]; then
         Info "Continuing without elevation."
@@ -162,11 +164,9 @@ Ensure-Administrator() {
         exit 1
     fi
 
-    Info "Restarting with administrator privileges..."
-
-    sudo -E bash "$scriptPath" "$@"
-
-    exit
+    Run-command "sudo -v"
+    (while true; do sudo -n true; sleep 60; done) &
+    SUDO_KEEPALIVE_PID=$!
 }
 
 function Confirm-Execution {
