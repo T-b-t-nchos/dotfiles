@@ -69,14 +69,6 @@ Main-Function() {
     Install-AptPackage python3-pip
     # DenoLand.Deno ... npm
     Install-AptPackage build-essential
-    
-    Info "Installing PowerShell..."
-    sudo apt-get update
-    sudo apt-get install -y wget
-    wget https://github.com/PowerShell/PowerShell/releases/download/v7.5.4/powershell_7.5.4-1.deb_amd64.deb
-    sudo apt install -y powershell_7.5.4-1.deb_amd64.deb
-    sudo apt-get install -f
-    rm powershell_7.5.4-1.deb_amd64.deb
 
     Install-AptPackage neovim
     
