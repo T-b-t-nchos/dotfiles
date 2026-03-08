@@ -70,7 +70,11 @@ Main-Function() {
     # DenoLand.Deno ... npm
     Install-AptPackage build-essential
 
-    Install-AptPackage neovim
+    Info "Installing neovim..."
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+    sudo rm -rf /opt/nvim-linux-x86_64
+    sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+    echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' >> ~/.profile
     
     Info "Installing wezterm..."
     curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
