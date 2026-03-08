@@ -87,7 +87,7 @@ Main-Function() {
     echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
     sudo chmod 644 /usr/share/keyrings/wezterm-fury.gpg
     sudo apt update
-    sudo apt install wezterm-nightly
+    sudo apt install -y wezterm-nightly
 
     Info "Installing ohmyposh..."
     Run-command "curl -s https://ohmyposh.dev/install.sh | bash -s"
