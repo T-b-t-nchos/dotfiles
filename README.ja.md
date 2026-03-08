@@ -22,6 +22,20 @@ cd dotfiles
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\WinSetup.ps1
 ``` 
+### Ubuntu(Debian)
+#### 依存関係
+- Git
+- sudo
+- apt
+#### 実行方法
+```bash
+sudo apt update
+sudo apt install git
+git clone https://github.com/T-b-t-nchos/dotfiles
+cd dotfiles
+chmod +x UbuntuSetup.sh
+./UbuntuSetup.sh
+```
 
 ## 使用コンポーネント
 - 準備中...

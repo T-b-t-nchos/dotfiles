@@ -12,6 +12,8 @@ local wezterm = require 'wezterm'
 
 local config = wezterm.config_builder()
 
+local IS_WINDOWS = wezterm.target_triple:find('windows', 1, true) ~= nil
+
 -----------------------------------------------
 --- settings value
 local opacity_state = 0.7
@@ -24,7 +26,11 @@ config.keys = require('keybinds').keys
 config.key_tables = require('keybinds').key_tables
 config.disable_default_key_bindings = true
 
-config.default_prog = {'pwsh'}
+if IS_WINDOWS then
+    config.default_prog = { "pwsh.exe" }
+else
+    config.default_prog = { "bash", "-l" }
+end
 
 config.automatically_reload_config = true
 
@@ -51,21 +57,29 @@ config.use_ime = true
 config.default_cursor_style = 'BlinkingBar'
 config.cursor_blink_rate = 480
 
-config.launch_menu = {
-    {
-        label = 'PowerShell',
-        args = {'pwsh.exe'},
-        set_environment_variables = {
-            MSYSTEM = nil,
-            MSYS = nil,
-            MSYS2_PATH_TYPE = nil
-        }
-    },
-    {label = 'Cmd', args = {'cmd.exe', ''}},
-    {label = 'Git Bash', args = {'C:/Program Files/git/bin/bash.exe'}},
-    {label = 'WSL Bash', args = {'bash', '-l'}},
-    {label = 'NeoVim (native)', args = {'nvim'}},
-}
+if IS_WINDOWS then
+    config.launch_menu = {
+        {
+            label = "PowerShell",
+            args = { "pwsh.exe" },
+            set_environment_variables = {
+                MSYSTEM = nil,
+                MSYS = nil,
+                MSYS2_PATH_TYPE = nil,
+            },
+        },
+        { label = "Cmd", args = { "cmd.exe" } },
+        { label = "Git Bash", args = { "C:/Program Files/git/bin/bash.exe" } },
+        { label = "WSL Bash", args = { "bash", "-l" } },
+        { label = "NeoVim (native)", args = { "nvim" } },
+    }
+else
+    -- Linux / Ubuntu
+    config.launch_menu = {
+        { label = "Bash", args = { "bash", "-l" } },
+        { label = "NeoVim", args = { "nvim" } },
+    }
+end
 
 config.window_background_gradient = {colors = {'#000000'}}
 
