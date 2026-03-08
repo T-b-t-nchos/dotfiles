@@ -78,9 +78,6 @@ Main-Function() {
     sudo mkdir -p /opt
     sudo rm -rf /opt/nvim-linux-x86_64
     sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-    grep -qxF 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' $USER_HOME/.profile || \
-    echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' >> $USER_HOME/.profile
-    source $USER_HOME/.profile
     
     Info "Installing wezterm..."
     curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
@@ -91,7 +88,6 @@ Main-Function() {
 
     Info "Installing ohmyposh..."
     Run-command "curl -s https://ohmyposh.dev/install.sh | bash -s"
-    export PATH="$PATH:$USER_HOME/.local/bin"
 
     Reload-Env
 
@@ -106,6 +102,7 @@ Main-Function() {
     New-RelativeSymlink ".config/wezterm" "$USER_HOME/.config/wezterm"
     New-RelativeSymlink ".config/ohmyposh" "$USER_HOME/.config/ohmyposh"
     New-RelativeSymlink ".config/lazygit" "$USER_HOME/.config/lazygit"
+    New-RelativeSymlink ".config/.bashrc" "$USER_HOME/.bashrc"
 
     # Windows only paths
 
@@ -298,6 +295,7 @@ Run-command() {
 
 Reload-Env() {
     export PATH="$PATH:$USER_HOME/.local/bin"
+    source ~/.bashrc
 }
 
 #-----------------------------------------------------------------------------------------------#
