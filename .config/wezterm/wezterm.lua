@@ -12,6 +12,8 @@ local wezterm = require 'wezterm'
 
 local config = wezterm.config_builder()
 
+local IS_WINDOWS = wezterm.target_triple:match('x86_64-pc-windows')
+
 -----------------------------------------------
 --- settings value
 local opacity_state = 0.7
@@ -24,7 +26,11 @@ config.keys = require('keybinds').keys
 config.key_tables = require('keybinds').key_tables
 config.disable_default_key_bindings = true
 
-config.default_prog = {'pwsh'}
+if IS_WINDOWS then
+    config.default_prog = { "pwsh.exe" }
+else
+    config.default_prog = { "bash", "-l" }
+end
 
 config.automatically_reload_config = true
 
@@ -51,7 +57,7 @@ config.use_ime = true
 config.default_cursor_style = 'BlinkingBar'
 config.cursor_blink_rate = 480
 
-if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+if IS_WINDOWS then
     config.launch_menu = {
         {
             label = "PowerShell",
