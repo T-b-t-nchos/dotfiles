@@ -143,7 +143,8 @@ Main-Function() {
 Ensure-Administrator() {
 
     if [ "$EUID" -eq 0 ]; then
-        return
+        Error "This script is not running with administrator privileges."
+        exit 1
     fi
 
     Warn "This script is not running with administrator privileges."
