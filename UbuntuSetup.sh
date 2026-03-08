@@ -71,13 +71,12 @@ Main-Function() {
     Install-AptPackage build-essential
     
     Info "Installing PowerShell..."
-    sudo apt-get install -y wget apt-transport-https software-properties-common
-    source /etc/os-release
-    wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
-    sudo dpkg -i packages-microsoft-prod.deb
-    rm packages-microsoft-prod.deb
     sudo apt-get update
-    sudo apt-get install -y powershell
+    sudo apt-get install -y wget
+    wget https://github.com/PowerShell/PowerShell/releases/download/v7.5.4/powershell_7.5.4-1.deb_amd64.deb
+    sudo dpkg -i powershell_7.5.4-1.deb_amd64.deb
+    sudo apt-get install -f
+    rm powershell_7.5.4-1.deb_amd64.deb
 
     Install-AptPackage neovim
     
