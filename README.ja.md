@@ -27,6 +27,7 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 - Git
 #### 実行方法
 ```bash
+sudo apt update
 sudo apt install git
 git clone https://github.com/T-b-t-nchos/dotfiles
 cd dotfiles
