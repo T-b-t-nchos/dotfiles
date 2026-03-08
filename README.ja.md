@@ -25,6 +25,8 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ### Ubuntu(Debian)
 #### 依存関係
 - Git
+- sudo
+- apt
 #### 実行方法
 ```bash
 sudo apt update
