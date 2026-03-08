@@ -58,10 +58,12 @@ Main-Function() {
     Install-AptPackage git
     Install-AptPackage gh
     
+    Info "Installing lazygit..."
     export LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[0-35.]+')
     curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
     tar xf lazygit.tar.gz lazygit ; sudo install lazygit /usr/local/bin
     
+    Info "Installing nvm..."
     Run-command "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash"
     Install-AptPackage python3
     Install-AptPackage python3-pip
@@ -69,13 +71,15 @@ Main-Function() {
     Install-AptPackage build-essential
     # Microsoft.PowerShell
     Install-AptPackage neovim
-
+    
+    Info "Installing wezterm..."
     curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
     echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
     sudo chmod 644 /usr/share/keyrings/wezterm-fury.gpg
     sudo apt update
     sudo apt install wezterm-nightly
 
+    Info "Installing ohmyposh..."
     Run-command "curl -s https://ohmyposh.dev/install.sh | bash -s"
     export PATH="$PATH:$USER_HOME/.local/bin"
 
