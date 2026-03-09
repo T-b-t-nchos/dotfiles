@@ -102,7 +102,7 @@ Main-Function() {
     New-RelativeSymlink ".config/wezterm" "$USER_HOME/.config/wezterm"
     New-RelativeSymlink ".config/ohmyposh" "$USER_HOME/.config/ohmyposh"
     New-RelativeSymlink ".config/lazygit" "$USER_HOME/.config/lazygit"
-    New-RelativeSymlink ".config/.profile" "$USER_HOME/.profile"
+    New-RelativeSymlink ".config/.dotfiles_profile" "$USER_HOME/.dotfiles_profile"
 
     # Windows only paths
 
@@ -128,8 +128,8 @@ Main-Function() {
         echo '[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"' >> "$PROFILE"
     Run-command "nvm install node"
     Run-command "npm install -g @antfu/ni mdpv tree-sitter-cli deno"
-    grep -qxF '[ -f "$HOME/.profile" ] && . "$HOME/.profile"' "$USER_HOME/.bashrc" || \
-    echo '[ -f "$HOME/.profile" ] && . "$HOME/.profile"' >> "$USER_HOME/.bashrc"
+    grep -qxF '[ -f "$HOME/.dotfiles_profile" ] && . "$HOME/.dotfiles_profile"' "$USER_HOME/.bashrc" || \
+    echo '[ -f "$HOME/.dotfiles_profile" ] && . "$HOME/.dotfiles_profile"' >> "$USER_HOME/.bashrc"
 
     Reload-Env
 
