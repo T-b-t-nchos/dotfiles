@@ -126,6 +126,8 @@ Main-Function() {
     Run-command "gh extension install yusukebe/gh-markdown-preview"
 
     Info "Setup node.js..."
+    export NVM_DIR="$USER_HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
     Run-command "nvm install node"
     Run-command "npm install -g @antfu/ni mdpv tree-sitter-cli deno"
 
