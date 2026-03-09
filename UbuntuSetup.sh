@@ -139,7 +139,7 @@ Main-Function() {
 
     #-------------------------------------------------------
 
-    Info "Done."
+    Info "Done. Please reboot your system."
     echo "Press Enter to exit...."
     read
 }
