@@ -47,8 +47,14 @@ config.front_end = front_end
 --config.window_background_opacity = 0.50
 --config.macos_window_background_blur = 20
 config.window_background_opacity = opacity_state
---config.win32_system_backdrop = 'Acrylic'
-config.window_decorations = 'INTEGRATED_BUTTONS'
+
+if IS_WINDOWS then
+    --config.win32_system_backdrop = 'Acrylic'
+    config.window_decorations = 'INTEGRATED_BUTTONS'
+else
+    config.window_decorations = 'NONE'
+    config.enable_wayland = false
+end
 
 config.font_size = 11.0
 config.font = wezterm.font('Moralerspace Radon HW')
