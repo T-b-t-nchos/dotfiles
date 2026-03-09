@@ -29,6 +29,14 @@ Main-Function() {
     echo
 
     #-------------------------------------------------------
+    # Add .dotfiles_profile to source and .bashrc
+    [ -f "$HOME/.dotfiles_profile" ] && . "$HOME/.dotfiles_profile"
+
+    grep -qxF '[ -f "$HOME/.dotfiles_profile" ] && . "$HOME/.dotfiles_profile"' "$USER_HOME/.bashrc" || \
+    echo '[ -f "$HOME/.dotfiles_profile" ] && . "$HOME/.dotfiles_profile"' >> "$USER_HOME/.bashrc"
+
+
+    #-------------------------------------------------------
     # Download Font
     Install-AptPackage curl
     Install-AptPackage unzip
