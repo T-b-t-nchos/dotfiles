@@ -49,8 +49,8 @@ vim.keymap.set("n", "<leader>t", ":terminal<cr>", { silent = true, desc = "termi
 
 -- Outline (aerial.nvim)
 vim.keymap.set("n", "<leader>l", "<cmd>AerialToggle<CR>", { desc = "Outline Window" })
-vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>")
-vim.keymap.set("n", "}", "<cmd>AerialNext<CR>")
+vim.keymap.set("n", "<C-{>", "<cmd>AerialPrev<CR>")
+vim.keymap.set("n", "<C-}>", "<cmd>AerialNext<CR>")
 
 
 -- sprit
