@@ -120,16 +120,8 @@ Main-Function() {
     Run-command "gh extension install yusukebe/gh-markdown-preview"
 
     Info "Setup node.js..."
-    grep -qxF 'export NVM_DIR="$USER_HOME/.nvm"' "$PROFILE" || \
-        echo 'export NVM_DIR="$USER_HOME/.nvm"' >> "$PROFILE"
-    grep -qxF '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"' "$PROFILE" || \
-        echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"' >> "$PROFILE"
-    grep -qxF '[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"' "$PROFILE" || \
-        echo '[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"' >> "$PROFILE"
     Run-command "nvm install node"
     Run-command "npm install -g @antfu/ni mdpv tree-sitter-cli deno"
-    grep -qxF '[ -f "$HOME/.dotfiles_profile" ] && . "$HOME/.dotfiles_profile"' "$USER_HOME/.bashrc" || \
-    echo '[ -f "$HOME/.dotfiles_profile" ] && . "$HOME/.dotfiles_profile"' >> "$USER_HOME/.bashrc"
 
     Reload-Env
 
