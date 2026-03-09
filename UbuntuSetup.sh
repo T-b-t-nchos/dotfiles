@@ -303,6 +303,7 @@ Run-command() {
 Reload-Env() {
     export PATH="$PATH:$USER_HOME/.local/bin"
     source ~/.bashrc
+    source ~/.dotfiles_profile
 }
 
 #-----------------------------------------------------------------------------------------------#
