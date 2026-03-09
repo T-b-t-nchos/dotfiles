@@ -97,8 +97,6 @@ Main-Function() {
     Info "Installing ohmyposh..."
     Run-command "curl -s https://ohmyposh.dev/install.sh | bash -s"
 
-    Reload-Env
-
     echo
 
     #-------------------------------------------------------
