@@ -23,6 +23,8 @@ vim.keymap.set("n", "<leader>bj", ":bprev<CR>", { silent = true, desc = "Move Bu
 vim.keymap.set("n", "<leader>bk", ":bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
 vim.keymap.set("n", "<leader>b<Left>", ":bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
 vim.keymap.set("n", "<leader>b<Right>", ":bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
+vim.keymap.set("n", "<leader>bh", ":bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
+vim.keymap.set("n", "<leader>bl", ":bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
 
 
 -- neotree
@@ -63,6 +65,10 @@ vim.keymap.set("n", "<leader>w<Left>",  "<C-w>h", { desc = "Window left" })
 vim.keymap.set("n", "<leader>w<Right>", "<C-w>l", { desc = "Window right" })
 vim.keymap.set("n", "<leader>w<Up>",    "<C-w>k", { desc = "Window up" })
 vim.keymap.set("n", "<leader>w<Down>",  "<C-w>j", { desc = "Window down" })
+vim.keymap.set("n", "<leader>wh",  "<C-w>h", { desc = "Window left" })
+vim.keymap.set("n", "<leader>wl", "<C-w>l", { desc = "Window right" })
+vim.keymap.set("n", "<leader>wk",    "<C-w>k", { desc = "Window up" })
+vim.keymap.set("n", "<leader>wj",  "<C-w>j", { desc = "Window down" })
 
 -- vim.keymap.set("n", "<leader>wa",  "<C-w>h", { desc = "Window left" })
 -- vim.keymap.set("n", "<leader>wd", "<C-w>l", { desc = "Window right" })
@@ -226,6 +232,10 @@ if ok then
             d = "Move Right",
             w = "Move Up",
             s = "Move Down",
+            h = "Move Left",
+            l = "Move Right",
+            k = "Move Up",
+            j = "Move Down",
         },
         ["<leader>wq"] = {
             name = "Quit/Save",
