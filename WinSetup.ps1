@@ -97,6 +97,8 @@ function Main-Function {
     Install-WingetPackage JanDeDobbeleer.OhMyPosh
     Install-WingetPackage GnuPG.Gpg4win
 
+    Install-ChocoPackage make
+
     Reload-Env
     
     Write-Host
