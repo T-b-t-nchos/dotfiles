@@ -99,7 +99,11 @@ function Main-Function {
 
     Install-ChocoPackage make
 
+    
     Run-command "wsl --install"
+
+    Info "Installing Coderabbit CLI..."
+    wsl.exe bash -c "curl -fsSL https://cli.coderabbit.ai/install.sh | sh"
 
     Reload-Env
     

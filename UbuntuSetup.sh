@@ -97,6 +97,11 @@ Main-Function() {
     Info "Installing ohmyposh..."
     Run-command "curl -s https://ohmyposh.dev/install.sh | bash -s"
 
+
+    Info "Installing Coderabbit CLI..."
+    curl -fsSL https://cli.coderabbit.ai/install.sh | bash
+
+
     echo
 
     #-------------------------------------------------------
