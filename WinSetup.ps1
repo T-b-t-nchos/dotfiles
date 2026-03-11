@@ -57,6 +57,21 @@ function Main-Function {
     Write-Host
 
     #-------------------------------------------------------
+    # Download chocolatey
+    if (Get-Command choco -ErrorAction SilentlyContinue) {
+        Done "Chocolatey already installed"
+        choco --version
+    }
+    else {
+        Info "Download chocolatey..."
+        Set-ExecutionPolicy Bypass -Scope Process -Force
+        [System.Net.ServicePointManager]::SecurityProtocol = 3072
+        iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+    }
+
+    Write-Host
+
+    #-------------------------------------------------------
     # Install...
     
     Install-WingetPackage Google.JapaneseIME
@@ -337,6 +352,41 @@ function Install-WingetPackage {
     }
 }
 
+function Install-ChocoPackage {
+    param(
+        [Parameter(Mandatory)]
+        [string]$PackageId,
+
+        [string[]]$AdditionalArgs
+    )
+
+    choco list --local-only --exact $PackageId 1>$null 2>$null
+    if ($LASTEXITCODE -eq 0) {
+        Done "Already installed: $PackageId"
+        return
+    }
+
+    Info "Installing $PackageId ..."
+
+    $baseArgs = @(
+        "install"
+        $PackageId
+        "-y"
+    )
+
+    if ($AdditionalArgs) {
+        $baseArgs += $AdditionalArgs
+    }
+
+    choco @baseArgs
+
+    if ($LASTEXITCODE -ne 0) {
+        Error "Installation failed: $PackageId"
+    }
+    else {
+        Done "Installed $PackageId"
+    }
+}
 
 function Install-DirectPackage {
     param(
