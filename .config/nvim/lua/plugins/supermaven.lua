@@ -10,6 +10,11 @@ return {
                 accept_word = nil,
                 clear_suggestion = "<C-e>",
             },
+            ignore_filetypes = {
+                "neo-tree",
+                "TelescopePrompt",
+                "lazy",
+            },
         })
 
         if not vim.g.supermaven_free_done then
