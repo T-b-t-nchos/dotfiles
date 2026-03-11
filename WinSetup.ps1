@@ -99,6 +99,8 @@ function Main-Function {
 
     Install-ChocoPackage make
 
+    Run-command "wsl --install"
+
     Reload-Env
     
     Write-Host
