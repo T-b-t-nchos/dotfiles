@@ -21,11 +21,12 @@ return {
                     "node_modules/.*",
                     "target/.*",
                     ".git/.*",
+                    ".vs/.*",
 
                     "node_modules%\\.*",
                     "target%\\.*",
                     ".git\\.*",
-
+                    ".vs\\.*",
                 },
             },
         })
