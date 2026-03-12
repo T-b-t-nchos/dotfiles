@@ -12,14 +12,20 @@ return {
         require('telescope').setup({
             defaults = {
                 file_ignore_patterns = {
-                    "node_modules/.*",
                     "%.env",
                     "yarn.lock",
                     "package%-lock.json",
                     "lazy%-lock.json",
                     "init.sql",
+
+                    "node_modules/.*",
                     "target/.*",
                     ".git/.*",
+
+                    "node_modules%\\.*",
+                    "target%\\.*",
+                    ".git\\.*",
+
                 },
             },
         })
