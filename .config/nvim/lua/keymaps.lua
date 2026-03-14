@@ -167,7 +167,8 @@ vim.keymap.set("n", "<leader>opl", ":Octo pr list<cr>", { silent = true, desc = 
 vim.keymap.set("n", "<leader>ope", ":Octo pr edit<cr>", { silent = true, desc = "gh PR edit" })
 vim.keymap.set("n", "<leader>opc", ":Octo pr close<cr>", { silent = true, desc = "gh PR close" })
 vim.keymap.set("n", "<leader>opb", ":Octo pr browser<cr>", { silent = true, desc = "gh PR browser" })
-vim.keymap.set("n", "<leader>opn", ":Octo pr create<cr>", { silent = true, desc = "gh PR create" })
+vim.keymap.set("n", "<leader>opc", ":Octo pr create<cr>", { silent = true, desc = "gh PR create" })
+vim.keymap.set("n", "<leader>opn", ":Octo pr create<cr> <BAR>:Octo pr draft<cr>", { silent = true, desc = "gh PR new draft" })
 
 
 -- ccc
