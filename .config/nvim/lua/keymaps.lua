@@ -18,6 +18,11 @@ vim.keymap.set("n", "<leader>=", function()
 end, { desc = "Reindent buffer (keep cursor)" })
 
 
+-- Indent
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+
+
 -- move buffers
 vim.keymap.set("n", "<leader>bj", ":bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
 vim.keymap.set("n", "<leader>bk", ":bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
