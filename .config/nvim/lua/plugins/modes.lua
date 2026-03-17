@@ -1,6 +1,6 @@
 return {
     "mvllow/modes.nvim",
-    lazy = false,
+    event = "BufRead",
     config = function()
         require('modes').setup({
                 ignore = { "neo-tree", "TelescopePrompt", "!minifiles" }
