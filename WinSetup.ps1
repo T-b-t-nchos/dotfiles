@@ -57,6 +57,20 @@ function Main-Function {
     Write-Host
 
     #-------------------------------------------------------
+    # Download scoop
+    if (Get-Command scoop -ErrorAction SilentlyContinue) {
+        Done "scoop is installed"
+        scoop --version
+    } 
+    else {
+        Info "Download scoop..."
+        Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+        iex "& {$(irm https://get.scoop.sh)} -RunAsAdmin"
+    }
+    
+    Write-Host
+
+    #-------------------------------------------------------
     # Download chocolatey
     if (Get-Command choco -ErrorAction SilentlyContinue) {
         Done "Chocolatey already installed"
@@ -357,6 +371,42 @@ function Install-WingetPackage {
     }
     else {
         Done "Installed $PackageId"
+    }
+}
+
+function Install-ScoopPackage {
+    param(
+        [Parameter(Mandatory)]
+        [string]$PackageName,
+
+        [string[]]$AdditionalArgs
+    )
+
+    $listOutput = scoop list $PackageName 2>$null
+
+    if ($listOutput -match "^\s*$PackageName\s") {
+        Done "Already installed: $PackageName"
+        return
+    }
+
+    Info "Installing $PackageName ..."
+
+    $baseArgs = @(
+        "install"
+        $PackageName
+    )
+
+    if ($AdditionalArgs) {
+        $baseArgs += $AdditionalArgs
+    }
+
+    scoop @baseArgs
+
+    if ($LASTEXITCODE -ne 0) {
+        Error "Installation failed: $PackageName"
+    }
+    else {
+        Done "Installed $PackageName"
     }
 }
 
