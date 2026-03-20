@@ -111,6 +111,8 @@ function Main-Function {
     Install-WingetPackage JanDeDobbeleer.OhMyPosh
     Install-WingetPackage GnuPG.Gpg4win
 
+    Install-ScoopPackage zenhan
+
     Install-ChocoPackage make
 
     
