@@ -15,7 +15,7 @@ return{
         name = "Aquavium-dev",
         lazy = true,
         cond = function()
-            local path = vim.fn.stdpath("config") .. "/colors/Aquavium"
+            local path = vim.loop.os_homedir() .. "/source/repos/Aquavium.nvim"
             return vim.loop.fs_stat(path) ~= nil
         end,
     },
