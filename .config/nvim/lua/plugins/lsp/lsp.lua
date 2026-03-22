@@ -41,6 +41,7 @@ return {
                 "phpactor",
                 "yamlls",
                 "bashls",
+                "powershell_es",
             },
         })
 
