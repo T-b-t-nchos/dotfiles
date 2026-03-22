@@ -21,7 +21,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     spec = {
-        { import = "colors.Aquavium.init" },
         { import = "colors" },
         { import = "plugins.funny" },
         { import = "plugins.treesitter" },
@@ -36,6 +35,9 @@ require("lazy").setup({
         version = false,
     },
     checker = { enabled = true },
+    dev = {
+        path = "~/source/repos/",
+    },
 })
 
 
