@@ -103,6 +103,7 @@ function Main-Function {
             "--override"
             "--passive --config $parentDir\.config\.vsconfig"
         )
+    Install-WIngetPackage Kitware.CMake
     Install-WingetPackage Microsoft.PowerShell
     Install-WingetPackage Neovim.Neovim
     Install-DirectPackage `
