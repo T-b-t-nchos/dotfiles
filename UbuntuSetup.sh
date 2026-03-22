@@ -73,10 +73,12 @@ Main-Function() {
     curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
     tar xf lazygit.tar.gz lazygit
     sudo install lazygit -D -t /usr/local/bin/
+
     Install-AptPackage fzf
 
     Info "Installing nvm..."
     Run-command "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash"
+
     Install-AptPackage python3
     Install-AptPackage python3-pip
     # DenoLand.Deno ... npm
