@@ -1,5 +1,5 @@
 return {
     'nvim-telescope/telescope-fzf-native.nvim',
     lazy = true,
-    build = vim.fn.executable("make") == 1 and "make" or nil,
+    build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install"
 }
