@@ -26,6 +26,12 @@ return {
                     ".vs\\.*",
                 },
             },
+            pickers = {
+                find_files = {
+                    hidden = true,
+                    no_ignore = true,
+                },
+            },
             extensions = {
                 fzf = {
                     fuzzy = true,                    -- false will only do exact matching
