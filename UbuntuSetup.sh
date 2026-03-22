@@ -75,6 +75,10 @@ Main-Function() {
     sudo install lazygit -D -t /usr/local/bin/
 
     Install-AptPackage fzf
+    Install-AptPackage ripgrep
+    Install-AptPackage fd-find
+    mkdir -p ~/.local/bin
+    ln -s "$(which fdfind)" ~/.local/bin/fd
 
     Info "Installing nvm..."
     Run-command "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash"

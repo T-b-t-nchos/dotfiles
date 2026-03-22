@@ -94,6 +94,8 @@ function Main-Function {
     Install-WingetPackage GitHub.cli
     Install-WingetPackage JesseDuffield.lazygit
     Install-WingetPackage junegunn.fzf
+    Install-WingetPackage BurntSushi.ripgrep.MSVC
+    Install-WingetPackage sharkdp.fd
     Install-WingetPackage CoreyButler.NVMforWindows
     Install-WIngetPackage Python.Python.3.14
     Install-WingetPackage DenoLand.Deno
