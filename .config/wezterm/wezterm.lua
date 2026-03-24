@@ -17,6 +17,18 @@ local IS_WINDOWS = wezterm.target_triple:find('windows', 1, true) ~= nil
 -----------------------------------------------
 --- settings value
 local opacity_state = 0.7
+local opacity_file = os.getenv("TEMP") or os.getenv("TMP")
+if opacity_file then
+    opacity_file = opacity_file .. "\\wezterm_opacity.tmp"
+end
+
+-- 保存されたファイルから透明度を読み込む
+if opacity_file and io.open(opacity_file, "r") then
+    local f = io.open(opacity_file, "r")
+    local content = f:read("*a")
+    f:close()
+    opacity_state = tonumber(content) or 0.7
+end
 -----------------------------------------------
 
 config.check_for_updates = true
@@ -151,7 +163,7 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
 end)
 
 -- switch opacity
-wezterm.on("toggle-opacity", function(window, pane)
+wezterm.on("toggle-opacity", function(window, _)
     local overrides = window:get_config_overrides() or {}
 
     if opacity_state == 1.0 then
@@ -162,6 +174,21 @@ wezterm.on("toggle-opacity", function(window, pane)
 
     overrides.window_background_opacity = opacity_state
     window:set_config_overrides(overrides)
+
+    if opacity_file then
+        local f = io.open(opacity_file, "w")
+        if f then
+            f:write(tostring(opacity_state))
+            f:close()
+        end
+    end
+end)
+
+wezterm.on("window_close_requested", function(_, _)
+    if opacity_file then
+        os.remove(opacity_file)
+    end
+    return true
 end)
 
 return config
