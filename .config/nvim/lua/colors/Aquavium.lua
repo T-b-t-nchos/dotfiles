@@ -1,4 +1,4 @@
-return{
+return {
     {
         "T-b-t-nchos/Aquavium.nvim",
         dev = false,
@@ -6,16 +6,18 @@ return{
         lazy = false,
         priority = 1000,
         config = function()
-            local temp_dir = vim.fn.getenv("TEMP") or vim.fn.getenv("TMP") or "/tmp"
-            local opacity_file = temp_dir .. "\\wezterm_opacity.tmp"
-            local opacity
+            local temp_dir = vim.env.TEMP or vim.env.TMP or "/tmp"
+
+            local sep = package.config:sub(1, 1)
+            local opacity_file = temp_dir .. sep .. "wezterm_opacity.tmp"
+
+            local opacity = nil
             local file = io.open(opacity_file, "r")
+
             if file then
-                opacity = file:read("*a")
+                local content = file:read("*a")
                 file:close()
-                opacity = tonumber(opacity)
-            else
-                opacity = nil
+                opacity = tonumber(content)
             end
 
             local aquavium = require("Aquavium")
