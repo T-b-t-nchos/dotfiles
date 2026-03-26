@@ -6,7 +6,7 @@ return {
         lazy = false,
         priority = 1000,
         config = function()
-            local temp_dir = vim.env.TEMP or vim.env.TMP or "/tmp"
+            local temp_dir = vim.env.TEMP or vim.env.TMP or vim.env.TEMPDIR or "/tmp"
 
             local sep = package.config:sub(1, 1)
             local opacity_file = temp_dir .. sep .. "wezterm_opacity.tmp"
