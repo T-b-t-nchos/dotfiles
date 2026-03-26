@@ -17,17 +17,26 @@ local IS_WINDOWS = wezterm.target_triple:find('windows', 1, true) ~= nil
 -----------------------------------------------
 --- settings value
 local opacity_state = 0.7
-local opacity_file = os.getenv("TEMP") or os.getenv("TMP")
-if opacity_file then
-    opacity_file = opacity_file .. "\\wezterm_opacity.tmp"
+local function get_temp_dir()
+    if IS_WINDOWS then
+        return os.getenv("TEMP") or os.getenv("TMP")
+    else
+        return os.getenv("TMPDIR") or "/tmp"
+    end
 end
-
--- 保存されたファイルから透明度を読み込む
-if opacity_file and io.open(opacity_file, "r") then
+local temp_dir = get_temp_dir()
+local opacity_file = nil
+if temp_dir then
+    local sep = IS_WINDOWS and "\\" or "/"
+    opacity_file = temp_dir .. sep .. "wezterm_opacity.tmp"
+end
+if opacity_file then
     local f = io.open(opacity_file, "r")
-    local content = f:read("*a")
-    f:close()
-    opacity_state = tonumber(content) or 0.7
+    if f then
+        local content = f:read("*a")
+        f:close()
+        opacity_state = tonumber(content) or 0.7
+    end
 end
 -----------------------------------------------
 
