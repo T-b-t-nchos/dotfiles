@@ -6,7 +6,7 @@ return{
         lazy = false,
         priority = 1000,
         config = function()
-            local temp_dir = vim.fn.getenv("TEMP") or vim.fn.getenv("TMP")
+            local temp_dir = vim.fn.getenv("TEMP") or vim.fn.getenv("TMP") or "/tmp"
             local opacity_file = temp_dir .. "\\wezterm_opacity.tmp"
             local opacity
             local file = io.open(opacity_file, "r")
