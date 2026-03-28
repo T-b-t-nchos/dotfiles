@@ -1,4 +1,4 @@
 return {
     "yuttie/comfortable-motion.vim",
-    lazy = true,
+    keys = { "<C-d>", "<C-u>", "<C-f>", "<C-b>" },
 }
