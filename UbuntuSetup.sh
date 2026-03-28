@@ -87,6 +87,7 @@ Main-Function() {
     Install-AptPackage python3-pip
     # DenoLand.Deno ... npm
     Install-AptPackage build-essential
+    Install-AptPackage cmake
 
     Info "Installing neovim..."
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
