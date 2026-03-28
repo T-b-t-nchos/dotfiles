@@ -4,8 +4,15 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
-        "L3MON4D3/LuaSnip",
+        "hrsh7th/cmp-nvim-lsp-signature-help",
+        "hrsh7th/cmp-nvim-lsp-document-symbol",
+        "hrsh7th/cmp-emoji",
+        "ray-x/cmp-treesitter",
         "saadparwaiz1/cmp_luasnip",
+
+        "hrsh7th/cmp-cmdline",
+
+        "L3MON4D3/LuaSnip",
         "onsails/lspkind.nvim",
     },
     event = "InsertEnter",
@@ -54,10 +61,37 @@ return {
 
             sources = {
                 { name = "nvim_lsp" },
-                { name = "luasnip" },
                 { name = "buffer" },
                 { name = "path" },
+                { name = "nvim_lsp_signature_help" },
+                { name = "nvim_lsp_document_symbol" },
+                { name = "emoji" },
+                { name = "treesitter" },
+                { name = "luasnip" },
             },
+        })
+
+        -- `/` cmdline setup.
+        cmp.setup.cmdline('/', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = {
+                { name = 'buffer' }
+            }
+        })
+        -- `:` cmdline setup.
+        cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+                { name = 'path' }
+            },
+            {
+                {
+                    name = 'cmdline',
+                    option = {
+                        ignore_cmds = { 'Man', '!' }
+                    }
+                }
+            })
         })
     end,
 }
