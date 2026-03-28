@@ -1,4 +1,4 @@
 return {
     "yuttie/comfortable-motion.vim",
-    event = "VeryLazy",
+    lazy = true,
 }
