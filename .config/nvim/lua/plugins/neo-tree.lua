@@ -47,6 +47,23 @@ return{
                     never_show = {},
                 },
             },
+            window = {
+                mappings = {
+                    ["/"] = function(state)
+                        local node = state.tree:get_node()
+                        local path = node:get_id()
+
+                        local stat = vim.loop.fs_stat(path)
+                        if stat and stat.type == "file" then
+                            path = vim.fn.fnamemodify(path, ":h")
+                        end
+
+                        require("telescope.builtin").find_files({
+                            cwd = path,
+                        })
+                    end,
+                },
+            },
         })
     end,
 }
