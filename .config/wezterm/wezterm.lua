@@ -120,6 +120,10 @@ config.color_schemes = {
         foreground = "#ccc",
         background = "#141414",
 
+        cursor_bg = '#eee',
+        cursor_fg = 'none',
+        cursor_border = 'none',
+
         ansi = {
             "#000000", -- black
             "#cf494c", -- red
