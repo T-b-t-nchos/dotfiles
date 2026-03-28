@@ -96,6 +96,8 @@ function Main-Function {
     Install-WingetPackage junegunn.fzf
     Install-WingetPackage BurntSushi.ripgrep.MSVC
     Install-WingetPackage sharkdp.fd
+    Install-WinGetPackage GnuWin32.Zip
+    Install-WinGetPackage GnuWin32.UnZip
     Install-WingetPackage CoreyButler.NVMforWindows
     Install-WIngetPackage Python.Python.3.14
     Install-WingetPackage DenoLand.Deno
@@ -168,6 +170,16 @@ function Main-Function {
     Reload-Env
 
     Write-Host
+
+    #-------------------------------------------------------
+    # Add to PATH
+    
+    Add-ToPath "C:\Program Files (x86)\GnuWin32\bin" -Scope Machine
+
+    Reload-Env
+
+    Write-Host
+
 
     #-------------------------------------------------------
     # Other commands
@@ -561,6 +573,36 @@ function Run-command($Cmd) {
     Info($Cmd)
     iex $Cmd
     Write-Host
+}
+
+function Add-ToPath {
+    param(
+        [Parameter(Mandatory)]
+        [string]$PathToAdd,
+
+        [ValidateSet("User", "Machine")]
+        [string]$Scope = "User"
+    )
+
+    $PathToAdd = [System.IO.Path]::GetFullPath($PathToAdd).TrimEnd('\')
+
+    $current = [Environment]::GetEnvironmentVariable("Path", $Scope)
+
+    if ([string]::IsNullOrWhiteSpace($current)) {
+        $new = $PathToAdd
+    } else {
+        $entries = $current -split ';' | ForEach-Object { $_.TrimEnd('\') }
+
+        if ($entries -contains $PathToAdd) {
+            Done "PATH already contains: $PathToAdd"
+            return
+        }
+
+        $new = $current + ";" + $PathToAdd
+    }
+
+    [Environment]::SetEnvironmentVariable("Path", $new, $Scope)
+    Done "Added to $Scope PATH: $PathToAdd"
 }
 
 function Reload-Env() {
