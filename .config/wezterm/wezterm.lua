@@ -83,6 +83,7 @@ config.use_ime = true
 
 config.default_cursor_style = 'BlinkingBar'
 config.cursor_blink_rate = 480
+config.animation_fps = 120
 
 if IS_WINDOWS then
     config.launch_menu = {
