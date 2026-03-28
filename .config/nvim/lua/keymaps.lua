@@ -198,6 +198,13 @@ desc = "Open file in ddx hex editor"
 })
 
 
+-- comfortable motion
+vim.keymap.set("n", "<C-d>", ":call comfortable_motion#flick(100)<cr>", { silent = true })
+vim.keymap.set("n", "<C-u>", ":call comfortable_motion#flick(-100)<cr>", { silent = true })
+vim.keymap.set("n", "<C-f>", ":call comfortable_motion#flick(200)<cr>", { silent = true })
+vim.keymap.set("n", "<C-b>", ":call comfortable_motion#flick(-200)<cr>", { silent = true })
+
+
 -- Dial.nvim
 vim.keymap.set("n", "<C-a>", function()
     require("dial.map").manipulate("increment", "normal")
