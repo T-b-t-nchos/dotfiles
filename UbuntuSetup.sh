@@ -142,7 +142,7 @@ Main-Function() {
     export NVM_DIR="$USER_HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
     Run-command "nvm install node"
-    Run-command "npm install -g @antfu/ni mdpv tree-sitter-cli deno"
+    Run-command "npm install -g @antfu/ni mdpv tree-sitter-cli deno @mermaid-js/mermaid-cli"
 
     Reload-Env
 
