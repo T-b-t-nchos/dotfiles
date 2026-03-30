@@ -28,8 +28,8 @@ vim.keymap.set("v", ">", ">gv")
 
 
 -- move buffers
-vim.keymap.set("n", "<leader>bj", ":bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
-vim.keymap.set("n", "<leader>bk", ":bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
+vim.keymap.set("n", "<leader>bj", ":bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
+vim.keymap.set("n", "<leader>bk", ":bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
 vim.keymap.set("n", "<leader>b<Left>", ":bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
 vim.keymap.set("n", "<leader>b<Right>", ":bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
 vim.keymap.set("n", "<leader>bh", ":bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
