@@ -184,6 +184,11 @@ vim.keymap.set("n", "<leader>opn", ":Octo pr create<cr> <BAR>:Octo pr draft<cr>"
 vim.keymap.set("n", "<leader>cp", ":CccPick<cr>", { silent = true, desc = "Color CccPick"})
 
 
+-- minty
+vim.keymap.set("n", "<leader>cm", ":Huefy<cr>", { silent = true, desc = "Minty/Huefy" })
+vim.keymap.set("n", "<leader>cM", ":Shades<cr>", { silent = true, desc = "Minty/Shades" })
+
+
 -- Neo-Img
 vim.keymap.set("n", "<leader>ip", ":NeoImg DisplayImage<cr>", { silent = true, desc = "Preview Image" })
 
