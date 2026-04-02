@@ -11,14 +11,11 @@ return {
     config = function()
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-        vim.lsp.handlers["textDocument/semanticTokens/full"] =
-            vim.lsp.with(vim.lsp.semantic_tokens.full, {})
-
         vim.api.nvim_create_autocmd("LspAttach", {
             callback = function(args)
                 local client = vim.lsp.get_client_by_id(args.data.client_id)
                 if client and client.server_capabilities.semanticTokensProvider then
-                    vim.lsp.semantic_tokens.start(args.buf, client.id)
+                    vim.lsp.semantic_tokens.enable(true, { bufnr = args.buf })
                 end
             end,
         })
