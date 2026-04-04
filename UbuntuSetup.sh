@@ -94,6 +94,8 @@ Main-Function() {
     sudo mkdir -p /opt
     sudo rm -rf /opt/nvim-linux-x86_64
     sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+
+    Install-AptPackage vim-common
     
     Info "Installing wezterm..."
     curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg

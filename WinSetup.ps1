@@ -110,6 +110,7 @@ function Main-Function {
     Install-WIngetPackage Kitware.CMake
     Install-WingetPackage Microsoft.PowerShell
     Install-WingetPackage Neovim.Neovim
+    Install-WinGetPackage vim.vim
     Install-DirectPackage `
         -Name "WezTerm Nightly" `
         -Url "https://github.com/wezterm/wezterm/releases/download/nightly/WezTerm-nightly-setup.exe" `
