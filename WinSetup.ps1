@@ -116,6 +116,7 @@ function Main-Function {
         -InstallDir "C:\Program files\WezTerm"
     Install-WingetPackage JanDeDobbeleer.OhMyPosh
     Install-WingetPackage GnuPG.Gpg4win
+    Install-WinGetPackage JohnMacFarlane.Pandoc
 
     Install-ScoopPackage zenhan
 
