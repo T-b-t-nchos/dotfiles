@@ -38,6 +38,7 @@ return {
             -- Other
             "json",
             "json5",
+            "xml",
         })
     end,
     opts = {
