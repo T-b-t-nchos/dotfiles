@@ -28,6 +28,31 @@ function Main-Function {
     Write-Host "" 
     
     #-------------------------------------------------------
+    # Add dotfiles_PowerShell_profile.ps1 to Microsoft.PowerShell_profile.ps1
+
+    $DocumentsPath = [Environment]::GetFolderPath("MyDocuments")
+
+    $ProfileDir = Join-Path $DocumentsPath "PowerShell"
+    $ProfilePath = Join-Path $ProfileDir "Microsoft.PowerShell_profile.ps1"
+    $DotfilesProfile = Join-Path $ProfileDir "dotfiles_PowerShell_profile.ps1"
+
+    $Line = "if (Test-Path `"$DotfilesProfile`") { . `"$DotfilesProfile`" }"
+
+    if (-not (Test-Path $ProfileDir)) {
+        New-Item -ItemType Directory -Path $ProfileDir -Force | Out-Null
+    }
+
+    if (-not (Test-Path $ProfilePath)) {
+        New-Item -ItemType File -Path $ProfilePath -Force | Out-Null
+    }
+
+    $Exists = Select-String -Path $ProfilePath -SimpleMatch $Line -Quiet
+
+    if (-not $Exists) {
+        Add-Content -Path $ProfilePath -Value $Line
+    }
+
+    #-------------------------------------------------------
     # Download Font
     Download-font -Force:$Force
     Write-Host
@@ -145,8 +170,8 @@ function Main-Function {
         -Force:$Force
 
     New-RelativeSymlink `
-        -RelativeSource ".config\Microsoft.PowerShell_profile.ps1" `
-        -Destination (Join-Path -Path $DocumentsPath -ChildPath "PowerShell\Microsoft.PowerShell_profile.ps1") `
+        -RelativeSource ".config\dotfiles_PowerShell_profile.ps1" `
+        -Destination (Join-Path -Path $DocumentsPath -ChildPath "PowerShell\dotfiles_PowerShell_profile.ps1") `
         -Force:$Force
     
 
