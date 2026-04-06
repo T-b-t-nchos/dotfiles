@@ -4,17 +4,6 @@ if (Test-Path $theme) {
 }
 
 
-$originalPrompt = (Get-Command prompt).ScriptBlock
-$script:__firstPrompt = $true
-
-function prompt {
-    if (-not $script:__firstPrompt) {
-        Write-Host ""
-    }
-    $script:__firstPrompt = $false
-        & $originalPrompt
-}
-
 function re {
     $env:Path = 
         [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" +
