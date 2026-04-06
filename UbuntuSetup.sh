@@ -7,6 +7,13 @@ Yes=false
 
 Destination="$Destination"
 parentDir="$(dirname "$Destination")"
+
+if [ -n "$SUDO_USER" ]; then
+    targetUser="$SUDO_USER"
+else
+    targetUser="$HOME"
+fi
+
 if [ -n "$SUDO_USER" ]; then
     USER_HOME=$(eval echo "~$SUDO_USER")
 else
@@ -106,6 +113,7 @@ Main-Function() {
 
     Info "Installing ohmyposh..."
     Run-command "curl -s https://ohmyposh.dev/install.sh | bash -s"
+    Run-command "sudo chown -R $targetUser:$targetUser ~/.cache/oh-my-posh"
 
 
     Info "Installing Coderabbit CLI..."
