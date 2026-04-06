@@ -1,5 +1,8 @@
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH="$PATH:$HOME/.local/bin"
 
-
 eval "$(oh-my-posh init bash --config ~/.config/ohmyposh/theme/nchos.omp.json)"
+
+__first=1
+__orig="$PROMPT_COMMAND"
+PROMPT_COMMAND='[ -z "$__first" ] && echo; __first=; [ -n "$__orig" ] && eval "$__orig"'
