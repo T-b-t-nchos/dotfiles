@@ -1,2 +1,5 @@
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH="$PATH:$HOME/.local/bin"
+
+
+eval "$(oh-my-posh init bash --config ~/.config/ohmyposh/theme/nchos.omp.json)"
