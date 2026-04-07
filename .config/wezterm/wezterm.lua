@@ -109,7 +109,8 @@ else
     }
 end
 
-config.window_background_gradient = {colors = {'#0a0a0a'}}
+config.window_background_gradient =
+    {colors = {'#0a0a0a'}}
 
 config.window_frame = {
     inactive_titlebar_bg = 'none',
