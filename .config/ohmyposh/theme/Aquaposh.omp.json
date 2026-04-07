@@ -101,19 +101,6 @@
                 }
             ],
             "type": "prompt"
-        },
-        {
-            "alignment": "left",
-            "newline": false,
-            "segments": [
-                {
-                    "foreground": "#ffffff",
-                    "style": "plain",
-                    "template": "",
-                    "type": "text"
-                }
-            ],
-            "type": "prompt"
         }
     ],
     "final_space": true,
