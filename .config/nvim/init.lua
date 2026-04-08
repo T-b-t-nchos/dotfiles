@@ -22,12 +22,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     spec = {
         { import = "colors" },
-        { import = "plugins.funny" },
-        { import = "plugins.treesitter" },
-        { import = "plugins.telescope" },
-        { import = "plugins.lsp" },
-        { import = "plugins.git" },
-        { import = "plugins.test" },
         { import = "plugins" },
     },
     defaults = {
