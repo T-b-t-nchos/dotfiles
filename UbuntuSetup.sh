@@ -116,10 +116,6 @@ Main-Function() {
     Run-command "sudo chown -R $targetUser:$targetUser ~/.cache/oh-my-posh"
 
 
-    Info "Installing Coderabbit CLI..."
-    curl -fsSL https://cli.coderabbit.ai/install.sh | bash
-
-
     echo
 
     #-------------------------------------------------------
