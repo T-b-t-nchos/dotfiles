@@ -2,6 +2,8 @@ vim.fn.stdpath("config")
 vim.fn.stdpath("data")
 vim.fn.stdpath("cache")
 
+vim.cmd.language("ja_JP.utf-8")
+
 
 vim.opt.number = true
 vim.opt.hlsearch = true
