@@ -4,7 +4,7 @@ return{
         --event = "VeryLazy",
         cmd = "Oil",
         opts = {},
-        dependencies = { { "nvim-mini/mini.icons", opts = {} } },
+        dependencies = { "nvim-mini/mini.icons" },
         --lazy = false,
     }
 }
