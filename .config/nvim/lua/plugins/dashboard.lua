@@ -90,7 +90,18 @@ return{
                 shortcut = {
                     { desc = ' New File', group = 'String', action = 'enew', key = 'n'},
                     { desc = ' Recent Files', group = 'Keyword', action = 'Telescope oldfiles', key = 'r' },
-                    { desc = '󰊳 Lazy-nvim Update', group = 'Character', action = 'Lazy update', key = 'u' },
+                    {
+                        desc = ' Nvim Config',
+                        group = 'Character',
+                        action = function()
+                            require("telescope.builtin").find_files({
+                                cwd = "~/dotfiles/",
+                            })
+                        end,
+                        key = 'c',
+                    },
+                    { desc = '󰊳 Lazy-nvim Update', group = 'Number', action = 'Lazy update', key = 'u' },
+                    { desc = '󰈆 Quit', group = 'Boolean', action = 'q', key = 'q' },
                 },
 
                 mru = { enable = false },
