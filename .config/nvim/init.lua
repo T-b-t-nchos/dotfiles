@@ -112,20 +112,3 @@ if vim.fn.executable("zenhan") == 1 then
         })
     end
 end
-
-
-vim.api.nvim_create_autocmd("BufReadPost", {
-    callback = function(args)
-        local bufnr = args.buf
-
-        local ft = vim.bo[bufnr].filetype
-        if not ft or ft == "" then
-            return
-        end
-
-        local ok = pcall(vim.treesitter.start, bufnr, ft)
-        if not ok then
-            return
-        end
-    end,
-})
