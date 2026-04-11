@@ -59,19 +59,19 @@ vim.keymap.set("n", "<leader>|", "<cmd>vsplit<cr>", { silent = true, desc = "vsp
 vim.keymap.set("n", "<leader>-", "<cmd>split<cr>", { silent = true, desc = "hsprit" })
 
 
--- window move prefix: <leader>w + arrow
-vim.keymap.set("n", "<leader>w<Left>",  "<C-w>h", { desc = "Window left" })
-vim.keymap.set("n", "<leader>w<Right>", "<C-w>l", { desc = "Window right" })
-vim.keymap.set("n", "<leader>w<Up>",    "<C-w>k", { desc = "Window up" })
-vim.keymap.set("n", "<leader>w<Down>",  "<C-w>j", { desc = "Window down" })
-vim.keymap.set("n", "<leader>wh",  "<C-w>h", { desc = "Window left" })
-vim.keymap.set("n", "<leader>wl", "<C-w>l", { desc = "Window right" })
-vim.keymap.set("n", "<leader>wk",    "<C-w>k", { desc = "Window up" })
-vim.keymap.set("n", "<leader>wj",  "<C-w>j", { desc = "Window down" })
-vim.keymap.set("n", "<leader>wH",  "<C-w>H", { desc = "Window move left" })
-vim.keymap.set("n", "<leader>wL", "<C-w>L", { desc = "Window move right" })
-vim.keymap.set("n", "<leader>wK",    "<C-w>K", { desc = "Window move up" })
-vim.keymap.set("n", "<leader>wJ",  "<C-w>J", { desc = "Window move down" })
+-- pane move prefix: <leader>w + arrow
+vim.keymap.set("n", "<leader>w<Left>",  "<C-w>h", { desc = "Pane left" })
+vim.keymap.set("n", "<leader>w<Right>", "<C-w>l", { desc = "Pane right" })
+vim.keymap.set("n", "<leader>w<Up>",    "<C-w>k", { desc = "Pane up" })
+vim.keymap.set("n", "<leader>w<Down>",  "<C-w>j", { desc = "Pane down" })
+vim.keymap.set("n", "<leader>wh",  "<C-w>h", { desc = "Pane left" })
+vim.keymap.set("n", "<leader>wl", "<C-w>l", { desc = "Pane right" })
+vim.keymap.set("n", "<leader>wk",    "<C-w>k", { desc = "Pane up" })
+vim.keymap.set("n", "<leader>wj",  "<C-w>j", { desc = "Pane down" })
+vim.keymap.set("n", "<leader>wH",  "<C-w>H", { desc = "Pane move left" })
+vim.keymap.set("n", "<leader>wL", "<C-w>L", { desc = "Pane move right" })
+vim.keymap.set("n", "<leader>wK",    "<C-w>K", { desc = "Pane move up" })
+vim.keymap.set("n", "<leader>wJ",  "<C-w>J", { desc = "Pane move down" })
 
 -- vim.keymap.set("n", "<leader>wa",  "<C-w>h", { desc = "Window left" })
 -- vim.keymap.set("n", "<leader>wd", "<C-w>l", { desc = "Window right" })
