@@ -50,8 +50,7 @@ return{
             window = {
                 mappings = {
                     ["/"] = function(state)
-                        local node = state.tree:get_node()
-                        local path = node:get_id()
+                        local path = state.path
 
                         local stat = vim.loop.fs_stat(path)
                         if stat and stat.type == "file" then
