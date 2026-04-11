@@ -230,6 +230,11 @@ Download-font() {
 
     mkdir -p "$fontDir"
 
+    if fc-list | grep -i "Moralerspace" >/dev/null 2>&1; then
+        Done "Fonts is already installed"
+        return 0
+    fi
+
     # PowerShell original download
     # https://github.com/yuru7/moralerspace/releases/download/v2.0.0/
 
