@@ -1,9 +1,3 @@
-local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
-
-if is_windows then
-    vim.cmd.language("ja_JP.utf-8")
-end
-
 vim.opt.number = true
 vim.opt.hlsearch = true
 vim.opt.smartindent = true
