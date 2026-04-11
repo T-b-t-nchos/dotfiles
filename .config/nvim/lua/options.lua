@@ -14,9 +14,6 @@ vim.opt.fileformats = 'dos,unix,mac'
 vim.opt.encoding = "utf-8"
 vim.opt.helplang = { 'ja', 'en' }
 
-vim.opt.guifont = "Moralerspace Neon:h11"
-vim.opt.guifontwide = "Moralerspace Neon:h11"
-
 
 vim.opt.termguicolors = true
 vim.opt.winblend = 0
