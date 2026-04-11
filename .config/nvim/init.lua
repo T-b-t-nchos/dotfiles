@@ -99,13 +99,14 @@ vim.api.nvim_create_autocmd("BufReadCmd", {
 ------------------------------------------------------------
 
 
+local function zenhan_off()
+    vim.system({ "zenhan", "0" }, { detach = true })
+end
+
 if vim.fn.executable("zenhan") == 1 then
     for _, event in ipairs({ "InsertLeave", "CmdlineLeave" }) do
         vim.api.nvim_create_autocmd(event, {
-            pattern = "*",
-            callback = function(_)
-                vim.fn.system("zenhan 0")
-            end,
+            callback = zenhan_off,
         })
     end
 end
