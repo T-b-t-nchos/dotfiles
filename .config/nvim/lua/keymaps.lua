@@ -102,24 +102,12 @@ end, { desc = "Setup usual environment" })
 
 
 -- Trouble keymaps
-vim.keymap.set("n", "<leader>xx", function()
-    vim.cmd("Trouble diagnostics toggle")
-end, { desc = "Diagnostics (Trouble)" })
-vim.keymap.set("n", "<leader>xX", function()
-    vim.cmd("Trouble diagnostics toggle filter.buf=0")
-end, { desc = "Buffer Diagnostics (Trouble)" })
-vim.keymap.set("n", "<leader>xs", function()
-    vim.cmd("Trouble symbols toggle focus=false")
-end, { desc = "Symbols (Trouble)" })
-vim.keymap.set("n", "<leader>xl", function()
-    vim.cmd("Trouble lsp toggle focus=false win.position=right")
-end, { desc = "LSP Definitions / references / ... (Trouble)" })
-vim.keymap.set("n", "<leader>xL", function()
-    vim.cmd("Trouble loclist toggle")
-end, { desc = "Location List (Trouble)" })
-vim.keymap.set("n", "<leader>xQ", function()
-    vim.cmd("Trouble qflist toggle")
-end, { desc = "Quickfix List (Trouble)" })
+vim.keymap.set("n", "<leader>xx", "<cmd>diagnostics toggle<CR>", { desc = "Diagnostics (Trouble)" })
+vim.keymap.set("n", "<leader>xX", "<cmd>diagnostics toggle filter.buf=0<CR>", { desc = "Buffer Diagnostics (Trouble)" })
+vim.keymap.set("n", "<leader>xs", "<cmd>symbols toggle focus=false<CR>", { desc = "Symbols (Trouble)" })
+vim.keymap.set("n", "<leader>xl", "<cmd>lsp toggle focus=false win.position=right<CR>", { desc = "LSP Definitions / references / ... (Trouble)" })
+vim.keymap.set("n", "<leader>xL", "<cmd>loclist toggle<CR>", { desc = "Location List (Trouble)" })
+vim.keymap.set("n", "<leader>xQ", "<cmd>qflist toggle<CR>", { desc = "Quickfix List (Trouble)" })
 
 
 -- Oil
