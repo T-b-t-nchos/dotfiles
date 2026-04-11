@@ -56,10 +56,24 @@ return {
                 }
             })
 
+            require("telescope").load_extension("dir")
             require('telescope').load_extension("fzf")
             require("telescope").load_extension("file_browser")
             require('telescope').load_extension('gh')
         end
+    },
+    {
+        "princejoogie/dir-telescope.nvim",
+        lazy = true,
+        cmd = "FileInDirectory",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim",
+        },
+        opts = {},
+        config = function(_, opts)
+            require("dir-telescope").setup(opts)
+        end,
     },
     {
         "nvim-telescope/telescope-file-browser.nvim",
