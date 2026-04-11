@@ -79,6 +79,22 @@ end
 
 config.font_size = 11.0
 config.font = wezterm.font('Moralerspace Radon HW')
+
+-- config.font_size = 12.0
+-- config.font = wezterm.font('PC9800 PC98NX NF')
+-- config.font_rules = {
+--     {
+--         intensity = "Bold",
+--         italic = false,
+--         font = wezterm.font("PC9800 PC98NX NF", { weight = "Bold" }),
+--     },
+--     {
+--         intensity = "Bold",
+--         italic = true,
+--         font = wezterm.font("PC9800 PC98NX NF", { weight = "Bold", style = "Italic" }),
+--     },
+-- }
+
 config.use_ime = true
 
 config.default_cursor_style = 'BlinkingBar'
