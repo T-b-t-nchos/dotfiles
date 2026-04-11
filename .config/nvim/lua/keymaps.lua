@@ -48,16 +48,6 @@ vim.keymap.set("n", "<leader>f", function()
 end, { desc = "Neo-tree toggle & reveal current file" })
 
 
--- catppuccin toggle transparent
-vim.keymap.set("n", "<C-p>", function()
-    local cat = require("catppuccin")
-    cat.options.transparent_background = not cat.options.transparent_background
-    cat.compile()
-    vim.cmd.colorscheme("catppuccin-mocha")
-end)
-vim.keymap.set("n", "<leader>t", ":terminal<cr>", { silent = true, desc = "terminal" })
-
-
 -- Outline (aerial.nvim)
 vim.keymap.set("n", "<leader>l", "<cmd>AerialToggle<CR>", { desc = "Outline Window" })
 vim.keymap.set("n", "<C-{>", "<cmd>AerialPrev<CR>")
