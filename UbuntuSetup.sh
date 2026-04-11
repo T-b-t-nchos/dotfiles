@@ -36,11 +36,11 @@ Main-Function() {
     echo
 
     #-------------------------------------------------------
-    # Add .dotfiles_profile to source and .bashrc
-    [ -f "$HOME/.dotfiles_profile" ] && . "$HOME/.dotfiles_profile"
+    # Add .dotfiles_bashrc to source and .bashrc
+    [ -f "$HOME/.dotfiles_bashrc" ] && . "$HOME/.dotfiles_bashrc"
 
-    grep -qxF '[ -f "$HOME/.dotfiles_profile" ] && . "$HOME/.dotfiles_profile"' "$USER_HOME/.bashrc" || \
-    echo '[ -f "$HOME/.dotfiles_profile" ] && . "$HOME/.dotfiles_profile"' >> "$USER_HOME/.bashrc"
+    grep -qxF '[ -f "$HOME/.dotfiles_bashrc" ] && . "$HOME/.dotfiles_bashrc"' "$USER_HOME/.bashrc" || \
+    echo '[ -f "$HOME/.dotfiles_bashrc" ] && . "$HOME/.dotfiles_bashrc"' >> "$USER_HOME/.bashrc"
 
 
     #-------------------------------------------------------
@@ -127,7 +127,7 @@ Main-Function() {
     New-RelativeSymlink ".config/wezterm" "$USER_HOME/.config/wezterm"
     New-RelativeSymlink ".config/ohmyposh" "$USER_HOME/.config/ohmyposh"
     New-RelativeSymlink ".config/lazygit" "$USER_HOME/.config/lazygit"
-    New-RelativeSymlink ".config/.dotfiles_profile" "$USER_HOME/.dotfiles_profile"
+    New-RelativeSymlink ".config/.dotfiles_bashrc" "$USER_HOME/.dotfiles_bashrc"
 
     # Windows only paths
 
