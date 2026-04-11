@@ -49,6 +49,9 @@ return{
             },
             window = {
                 mappings = {
+                    ["f"] = function()
+                        vim.cmd("FileInDirectory")
+                    end,
                     ["/"] = function(state)
                         local path = state.path
 
