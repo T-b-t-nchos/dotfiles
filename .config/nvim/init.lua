@@ -28,7 +28,10 @@ require("lazy").setup({
         lazy = true,
         version = false,
     },
-    checker = { enabled = true },
+    checker = {
+        enabled = true,
+        frequency = 3600,
+    },
     performance = {
         rtp = {
             disabled_plugins = {
