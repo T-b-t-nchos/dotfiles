@@ -1,9 +1,12 @@
+local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+
 vim.fn.stdpath("config")
 vim.fn.stdpath("data")
 vim.fn.stdpath("cache")
 
-vim.cmd.language("ja_JP.utf-8")
-
+if is_windows then
+    vim.cmd.language("ja_JP.utf-8")
+end
 
 vim.opt.number = true
 vim.opt.hlsearch = true
