@@ -91,14 +91,14 @@ return{
                     { desc = ' New File', group = 'String', action = 'enew', key = 'n'},
                     { desc = ' Recent Files', group = 'Keyword', action = 'Telescope oldfiles', key = 'r' },
                     {
-                        desc = ' Nvim Config',
+                        desc = ' Dotfiles',
                         group = 'Character',
                         action = function()
                             require("telescope.builtin").find_files({
                                 cwd = "~/dotfiles/",
                             })
                         end,
-                        key = 'c',
+                        key = 'd',
                     },
                     { desc = '󰊳 Lazy-nvim Update', group = 'Number', action = 'Lazy update', key = 'u' },
                     { desc = '󰈆 Quit', group = 'Boolean', action = 'q', key = 'q' },
