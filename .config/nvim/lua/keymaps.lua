@@ -222,6 +222,11 @@ vim.keymap.set("x", "g<C-x>", function()
     require("dial.map").manipulate("decrement", "gvisual")
 end)
 
+
+-- Rayso
+vim.keymap.set("v", "<leader>ss", "<cmd>Rayso<cr>", { silent = true, desc = "Export to Rayso" })
+
+
 -- which-key integration
 local ok, wk = pcall(require, "which-key")
 if ok then
