@@ -227,6 +227,10 @@ end)
 vim.keymap.set("v", "<leader>ss", "<cmd>Rayso<cr>", { silent = true, desc = "Export to Rayso" })
 
 
+-- Neominimap
+vim.keymap.set("n", "<leader>nm", "<cmd>Neominimap Toggle<cr>", { silent = true, desc = "Neominimap" })
+
+
 -- which-key integration
 local ok, wk = pcall(require, "which-key")
 if ok then
