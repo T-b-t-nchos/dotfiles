@@ -81,15 +81,15 @@ config.font_size = 11.0
 config.font = wezterm.font('Moralerspace Radon HW')
 
 -- config.font_size = 12.0
--- config.font = wezterm.font('PC98NX')
+-- config.font = wezterm.font('PC98NXbs')
 -- config.font_rules = {
 --     {
 --         intensity = "Bold",
---         font = wezterm.font("PC98NX", { weight = "Bold" }),
+--         font = wezterm.font("PC98NXbs", { weight = "Bold" }),
 --     },
 --     {
 --         italic = true,
---         font = wezterm.font("PC98NX"),
+--         font = wezterm.font("PC98NXbs"),
 --     },
 -- }
 
