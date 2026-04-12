@@ -54,4 +54,11 @@ return {
             }
         }
     },
+    {
+        "Pansther/minesweeper.nvim",
+        cmd = "Minesweeper",
+        config = function()
+            require("minesweeper").setup()
+        end,
+    }
 }
