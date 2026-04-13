@@ -5,6 +5,7 @@
 -- USER-CONFIG LIST
 -- |
 -- | - "$env:WEZTERM_OPENGL" ... Use OpenGL
+-- | - "$env:WEZTERM_WEBGPU_PWR_PREF" ... WebGPU Power Preference (H/L)
 -- | 
 -- +----
 
@@ -59,6 +60,14 @@ config.initial_cols = 120
 config.initial_rows = 28
 
 local front_end = "WebGpu"
+
+local pwr = "HighPerformance"
+if os.getenv("WEZTERM_WEBGPU_PWR_PREF") == "H" then
+    pwr = "HighPerformance"
+elseif os.getenv("WEZTERM_WEBGPU_PWR_PREF") == "L" then
+    pwr = "LowPower"
+end
+config.webgpu_power_preference = pwr
 
 if os.getenv("WEZTERM_OPENGL") == "1" then
     front_end = "OpenGL"
