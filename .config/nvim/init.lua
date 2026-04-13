@@ -34,7 +34,12 @@ require("lazy").setup({
         frequency = 3600,
     },
     performance = {
+        cache = {
+            enabled = true,
+        },
+        reset_packpath = true,
         rtp = {
+            reset = true,
             disabled_plugins = {
                 "gzip",
                 "man",
