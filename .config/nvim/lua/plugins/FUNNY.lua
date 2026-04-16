@@ -60,5 +60,12 @@ return {
         config = function()
             require("minesweeper").setup()
         end,
+    },
+    {
+        "eduardoarandah/balls.nvim",
+        cmd = "Balls",
+        config = function()
+            require("balls").setup()
+        end,
     }
 }
