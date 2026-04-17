@@ -16,7 +16,7 @@ return {
             "L3MON4D3/LuaSnip",
             "onsails/lspkind.nvim",
         },
-        event = "InsertEnter",
+        event = { "InsertEnter", "CmdLineEnter" },
         config = function()
             local cmp = require("cmp")
             local luasnip = require("luasnip")
