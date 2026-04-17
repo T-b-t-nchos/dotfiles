@@ -5,8 +5,8 @@ return {
         config = function()
             require("noice").setup({
                 cmdline = {
-                    enable = true,
                     view = "cmdline"
+                    enabled = true,
                 },
                 lsp = {
                     override = {
