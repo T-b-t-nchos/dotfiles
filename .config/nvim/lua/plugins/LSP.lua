@@ -92,7 +92,22 @@ return {
                             ignore_cmds = { 'Man', '!' }
                         }
                     }
-                })
+                }),
+                formatting = {
+                    format = function(entry, item)
+                        local label = item.abbr or item.word
+
+                        if vim.fn.isdirectory(label) == 1 then
+                            item.kind = "Folder"
+                        elseif label:match("%.[%w%d]+$") then
+                            item.kind = "File"
+                        else
+                            item.kind = "Function"
+                        end
+
+                        return item
+                    end,
+                }
             })
         end,
     },
