@@ -3,6 +3,14 @@ return {
         "nvim-treesitter/nvim-treesitter",
         lazy = true,
         build = ':TSUpdate',
+        init = function()
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "cs",
+                callback = function(args)
+                    pcall(vim.treesitter.start, args.buf)
+                end,
+            })
+        end,
         config = function()
             local ts = require("nvim-treesitter")
             ts.install({
@@ -44,6 +52,9 @@ return {
         end,
         opts = {
             ensure_installed = {
+            },
+            highlight = {
+                enable = true,
             },
         },
     },
