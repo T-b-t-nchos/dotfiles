@@ -231,6 +231,16 @@ vim.keymap.set("v", "<leader>ss", "<cmd>Rayso<cr>", { silent = true, desc = "Exp
 vim.keymap.set("n", "<leader>nm", "<cmd>Neominimap Toggle<cr>", { silent = true, desc = "Neominimap" })
 
 
+-- NeoNuGet
+vim.keymap.set("n", "<leader>#n", "<cmd>Nuget<cr>", { silent = true, desc = "NeoNuGet" })
+
+
+-- csharp.nvim
+vim.keymap.set("n", "<leader>#d", function () require("csharp").debug_project() end, { silent = true, desc = "Effortless Debugging" })
+vim.keymap.set("n", "<leader>#r", function () require("csharp").run_project() end, { silent = true, desc = "Run project" })
+vim.keymap.set("n", "<leader>#u", function () require("csharp").fix_usings() end, { silent = true, desc = "Fix usings" })
+
+
 -- which-key integration
 local ok, wk = pcall(require, "which-key")
 if ok then
