@@ -2,6 +2,7 @@ return {
     {
         "iabdelkareem/csharp.nvim",
         module = "csharp",
+        ft = { "cs" },
         dependencies = {
             "williamboman/mason.nvim", -- Required, automatically installs omnisharp
             "mfussenegger/nvim-dap",
