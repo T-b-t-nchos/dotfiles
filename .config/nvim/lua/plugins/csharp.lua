@@ -9,7 +9,11 @@ return {
             "Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
         },
         config = function ()
-            require("csharp").setup()
+            require("csharp").setup({
+                lsp = {
+                    enable = false,
+                },
+            })
         end
     },
     {
