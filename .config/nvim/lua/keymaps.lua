@@ -245,6 +245,9 @@ vim.keymap.set("n", "<leader>#u", function () require("csharp").fix_usings() end
 vim.keymap.set("c", "<cr>", "<Plug>(kensaku-search-replace)<cr>", { silent = true })
 
 
+-- in-and-out.nvim
+vim.keymap.set("i", "<C-CR>", function() require("in-and-out").in_and_out() end, { silent = true, desc = "In and Out" })
+
 -- which-key integration
 local ok, wk = pcall(require, "which-key")
 if ok then
