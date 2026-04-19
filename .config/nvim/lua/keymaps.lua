@@ -241,6 +241,10 @@ vim.keymap.set("n", "<leader>#r", function () require("csharp").run_project() en
 vim.keymap.set("n", "<leader>#u", function () require("csharp").fix_usings() end, { silent = true, desc = "Fix usings" })
 
 
+-- vim-kensaku-search
+vim.keymap.set("c", "<cr>", "<Plug>(kensaku-search-replace)<cr>", { silent = true })
+
+
 -- which-key integration
 local ok, wk = pcall(require, "which-key")
 if ok then
