@@ -2,7 +2,7 @@ return {
     "danymat/neogen",
     module = "neogen",
     cmd = "Neogen",
-    dependencies = "nvim-treesitter/nvim-treesitter",
+    dependencies = "romus204/tree-sitter-manager.nvim",
     opts = {
         snippet_engine = "luasnip",
         languages = {
