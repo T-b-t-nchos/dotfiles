@@ -70,6 +70,12 @@ return {
                     { name = "treesitter" },
                     { name = "luasnip" },
                 },
+
+                window = {
+                    completion = {
+                        winhighlight = "Normal:CmpNormal,FloatBorder:CmpBorder,CursorLine:CmpMenuSel",
+                    }
+                },
             })
 
             -- `/` cmdline setup.
