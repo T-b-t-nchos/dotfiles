@@ -251,9 +251,9 @@ vim.keymap.set("i", "<C-CR>", function() require("in-and-out").in_and_out() end,
 
 -- SS
 -- ss-rubi.nvim
-vim.keymap.set("n", "<leader>srr", "<cmd>RubiInsert<cr>", { silent = true, desc = "RubiInsert" })
-vim.keymap.set("v", "<leader>srr", "<cmd>RubiInsert<cr>", { silent = true, desc = "RubiInsert" })
-vim.keymap.set("v", "<leader>sra", "<cmd>RubiInsertAC<cr>", { silent = true, desc = "RubiInsertAC" })
+vim.keymap.set("n", "<leader>Srr", "<cmd>RubiInsert<cr>", { silent = true, desc = "RubiInsert" })
+vim.keymap.set("v", "<leader>Srr", "<cmd>RubiInsert<cr>", { silent = true, desc = "RubiInsert" })
+vim.keymap.set("v", "<leader>Sra", "<cmd>RubiInsertAC<cr>", { silent = true, desc = "RubiInsertAC" })
 
 
 -- which-key integration
