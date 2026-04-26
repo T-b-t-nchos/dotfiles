@@ -248,6 +248,14 @@ vim.keymap.set("c", "<cr>", "<Plug>(kensaku-search-replace)<cr>", { silent = tru
 -- in-and-out.nvim
 vim.keymap.set("i", "<C-CR>", function() require("in-and-out").in_and_out() end, { silent = true, desc = "In and Out" })
 
+
+-- SS
+-- ss-rubi.nvim
+vim.keymap.set("n", "<leader>srr", "<cmd>RubiInsert<cr>", { silent = true, desc = "RubiInsert" })
+vim.keymap.set("v", "<leader>srr", "<cmd>RubiInsert<cr>", { silent = true, desc = "RubiInsert" })
+vim.keymap.set("v", "<leader>sra", "<cmd>RubiInsertAC<cr>", { silent = true, desc = "RubiInsertAC" })
+
+
 -- which-key integration
 local ok, wk = pcall(require, "which-key")
 if ok then
