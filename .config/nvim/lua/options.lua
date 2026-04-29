@@ -17,7 +17,7 @@ vim.opt.helplang = { 'ja', 'en' }
 
 vim.opt.termguicolors = true
 vim.opt.winblend = 0
-vim.opt.pumblend = 20
+vim.opt.pumblend = 30
 
 
 vim.g.airline_powerline_fonts = 1
