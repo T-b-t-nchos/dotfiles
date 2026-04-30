@@ -256,6 +256,10 @@ vim.keymap.set("v", "<leader>Srr", "<cmd>RubiInsert<cr>", { silent = true, desc 
 vim.keymap.set("v", "<leader>Sra", "<cmd>RubiInsertAC<cr>", { silent = true, desc = "RubiInsertAC" })
 
 
+-- live-preview.nvim
+vim.keymap.set("n", "<leader>pl", "<cmd>LivePreview start<cr>", { silent = true, desc = "Live Preview" })
+
+
 -- which-key integration
 local ok, wk = pcall(require, "which-key")
 if ok then
