@@ -2,16 +2,17 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+local vks = vim.keymap.set
 
 -- Save&Quit
-vim.keymap.set("n", "<leader>wqa", function()
+vks("n", "<leader>wqa", function()
     vim.cmd("wa")
     vim.cmd("qa")
 end, { desc = "Save All & Quit All", silent = true })
 
 
 -- Style
-vim.keymap.set("n", "<leader>=", function()
+vks("n", "<leader>=", function()
     local view = vim.fn.winsaveview()
     vim.cmd("normal! gg=G")
     vim.fn.winrestview(view)
@@ -19,29 +20,29 @@ end, { desc = "Reindent buffer (keep cursor)" })
 
 
 -- Move cursor
-vim.keymap.set('n', 'j', '<Plug>(accelerated_jk_gj)', {})
-vim.keymap.set('n', 'k', '<Plug>(accelerated_jk_gk)', {})
+vks('n', 'j', '<Plug>(accelerated_jk_gj)', {})
+vks('n', 'k', '<Plug>(accelerated_jk_gk)', {})
 
 -- Indent
-vim.keymap.set("v", "<", "<gv")
-vim.keymap.set("v", ">", ">gv")
+vks("v", "<", "<gv")
+vks("v", ">", ">gv")
 
 
 -- move buffers
-vim.keymap.set("n", "<leader>bj", "<cmd>bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
-vim.keymap.set("n", "<leader>bk", "<cmd>bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
-vim.keymap.set("n", "<leader>b<Left>", "<cmd>bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
-vim.keymap.set("n", "<leader>b<Right>", "<cmd>bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
-vim.keymap.set("n", "<leader>bh", "<cmd>bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
-vim.keymap.set("n", "<leader>bl", "<cmd>bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
+vks("n", "<leader>bj", "<cmd>bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
+vks("n", "<leader>bk", "<cmd>bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
+vks("n", "<leader>b<Left>", "<cmd>bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
+vks("n", "<leader>b<Right>", "<cmd>bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
+vks("n", "<leader>bh", "<cmd>bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
+vks("n", "<leader>bl", "<cmd>bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
 
 
 -- neotree
-vim.keymap.set("n", "<leader>nf", "<cmd>Neotree toggle<CR>", { silent = true })
-vim.keymap.set("n", "<leader>ne", "<cmd>Neotree filesystem toggle<CR>")
-vim.keymap.set("n", "<leader>nb", "<cmd>Neotree buffers toggle<CR>")
-vim.keymap.set("n", "<leader>ng", "<cmd>Neotree git_status toggle<CR>")
-vim.keymap.set("n", "<leader>f", function()
+vks("n", "<leader>nf", "<cmd>Neotree toggle<CR>", { silent = true })
+vks("n", "<leader>ne", "<cmd>Neotree filesystem toggle<CR>")
+vks("n", "<leader>nb", "<cmd>Neotree buffers toggle<CR>")
+vks("n", "<leader>ng", "<cmd>Neotree git_status toggle<CR>")
+vks("n", "<leader>f", function()
     vim.cmd("cd %:p:h")
     vim.cmd("Neotree filesystem reveal toggle left")
     --vim.cmd("wincmd l")
@@ -49,50 +50,50 @@ end, { desc = "Neo-tree toggle & reveal current file" })
 
 
 -- Outline (aerial.nvim)
-vim.keymap.set("n", "<leader>l", "<cmd>AerialToggle<CR>", { desc = "Outline Window" })
-vim.keymap.set("n", "<C-{>", "<cmd>AerialPrev<CR>")
-vim.keymap.set("n", "<C-}>", "<cmd>AerialNext<CR>")
+vks("n", "<leader>l", "<cmd>AerialToggle<CR>", { desc = "Outline Window" })
+vks("n", "<C-{>", "<cmd>AerialPrev<CR>")
+vks("n", "<C-}>", "<cmd>AerialNext<CR>")
 
 
 -- sprit
-vim.keymap.set("n", "<leader>|", "<cmd>vsplit<cr>", { silent = true, desc = "vsprit" })
-vim.keymap.set("n", "<leader>-", "<cmd>split<cr>", { silent = true, desc = "hsprit" })
+vks("n", "<leader>|", "<cmd>vsplit<cr>", { silent = true, desc = "vsprit" })
+vks("n", "<leader>-", "<cmd>split<cr>", { silent = true, desc = "hsprit" })
 
 
 -- pane move prefix: <leader>w + arrow
-vim.keymap.set("n", "<leader>w<Left>", "<C-w>h", { desc = "Pane left" })
-vim.keymap.set("n", "<leader>w<Right>", "<C-w>l", { desc = "Pane right" })
-vim.keymap.set("n", "<leader>w<Up>", "<C-w>k", { desc = "Pane up" })
-vim.keymap.set("n", "<leader>w<Down>", "<C-w>j", { desc = "Pane down" })
-vim.keymap.set("n", "<leader>wh", "<C-w>h", { desc = "Pane left" })
-vim.keymap.set("n", "<leader>wl", "<C-w>l", { desc = "Pane right" })
-vim.keymap.set("n", "<leader>wk", "<C-w>k", { desc = "Pane up" })
-vim.keymap.set("n", "<leader>wj", "<C-w>j", { desc = "Pane down" })
-vim.keymap.set("n", "<leader>wH", "<C-w>H", { desc = "Pane move left" })
-vim.keymap.set("n", "<leader>wL", "<C-w>L", { desc = "Pane move right" })
-vim.keymap.set("n", "<leader>wK", "<C-w>K", { desc = "Pane move up" })
-vim.keymap.set("n", "<leader>wJ", "<C-w>J", { desc = "Pane move down" })
+vks("n", "<leader>w<Left>", "<C-w>h", { desc = "Pane left" })
+vks("n", "<leader>w<Right>", "<C-w>l", { desc = "Pane right" })
+vks("n", "<leader>w<Up>", "<C-w>k", { desc = "Pane up" })
+vks("n", "<leader>w<Down>", "<C-w>j", { desc = "Pane down" })
+vks("n", "<leader>wh", "<C-w>h", { desc = "Pane left" })
+vks("n", "<leader>wl", "<C-w>l", { desc = "Pane right" })
+vks("n", "<leader>wk", "<C-w>k", { desc = "Pane up" })
+vks("n", "<leader>wj", "<C-w>j", { desc = "Pane down" })
+vks("n", "<leader>wH", "<C-w>H", { desc = "Pane move left" })
+vks("n", "<leader>wL", "<C-w>L", { desc = "Pane move right" })
+vks("n", "<leader>wK", "<C-w>K", { desc = "Pane move up" })
+vks("n", "<leader>wJ", "<C-w>J", { desc = "Pane move down" })
 
--- vim.keymap.set("n", "<leader>wa",  "<C-w>h", { desc = "Window left" })
--- vim.keymap.set("n", "<leader>wd", "<C-w>l", { desc = "Window right" })
--- vim.keymap.set("n", "<leader>ww",    "<C-w>k", { desc = "Window up" })
--- vim.keymap.set("n", "<leader>ws",  "<C-w>j", { desc = "Window down" })
+-- vks("n", "<leader>wa",  "<C-w>h", { desc = "Window left" })
+-- vks("n", "<leader>wd", "<C-w>l", { desc = "Window right" })
+-- vks("n", "<leader>ww",    "<C-w>k", { desc = "Window up" })
+-- vks("n", "<leader>ws",  "<C-w>j", { desc = "Window down" })
 
 -- terminal(old)
---vim.keymap.set("n", "<leader>tc", "<cmd>belowright split | resize 10 | terminal cmd<cr>", { silent = true, desc = "Cmd" })
---vim.keymap.set("n", "<leader>tp", "<cmd>belowright split | resize 10 | terminal pwsh<cr>", { silent = true, desc = "Pwsh" })
---vim.keymap.set("n", "<leader>tb", "<cmd>belowright split | resize 10 | terminal bash<cr>", { silent = true, desc = "Git Bash" })
---vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
+--vks("n", "<leader>tc", "<cmd>belowright split | resize 10 | terminal cmd<cr>", { silent = true, desc = "Cmd" })
+--vks("n", "<leader>tp", "<cmd>belowright split | resize 10 | terminal pwsh<cr>", { silent = true, desc = "Pwsh" })
+--vks("n", "<leader>tb", "<cmd>belowright split | resize 10 | terminal bash<cr>", { silent = true, desc = "Git Bash" })
+--vks("t", "<Esc>", [[<C-\><C-n>]])
 
 
 -- toggleterm
-vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<cr>", { silent = true, desc = "Toggle Terminal" })
---vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
-vim.keymap.set("t", "<C-n>", [[<C-\><C-n>]])
+vks("n", "<leader>t", "<cmd>ToggleTerm<cr>", { silent = true, desc = "Toggle Terminal" })
+--vks("t", "<Esc>", [[<C-\><C-n>]])
+vks("t", "<C-n>", [[<C-\><C-n>]])
 
 
 -- setup usual environment
-vim.keymap.set("n", "<leader>s", function()
+vks("n", "<leader>s", function()
     vim.cmd("ToggleTerm direction=horizontal focus=false")
     vim.cmd("normal! L")
     vim.cmd("wincmd k")
@@ -106,77 +107,77 @@ end, { desc = "Setup usual environment" })
 
 
 -- Trouble keymaps
-vim.keymap.set("n", "<leader>xx", "<cmd>diagnostics toggle<CR>", { desc = "Diagnostics (Trouble)" })
-vim.keymap.set("n", "<leader>xX", "<cmd>diagnostics toggle filter.buf=0<CR>", { desc = "Buffer Diagnostics (Trouble)" })
-vim.keymap.set("n", "<leader>xs", "<cmd>symbols toggle focus=false<CR>", { desc = "Symbols (Trouble)" })
-vim.keymap.set("n", "<leader>xl", "<cmd>lsp toggle focus=false win.position=right<CR>", { desc = "LSP Definitions / references / ... (Trouble)" })
-vim.keymap.set("n", "<leader>xL", "<cmd>loclist toggle<CR>", { desc = "Location List (Trouble)" })
-vim.keymap.set("n", "<leader>xQ", "<cmd>qflist toggle<CR>", { desc = "Quickfix List (Trouble)" })
+vks("n", "<leader>xx", "<cmd>diagnostics toggle<CR>", { desc = "Diagnostics (Trouble)" })
+vks("n", "<leader>xX", "<cmd>diagnostics toggle filter.buf=0<CR>", { desc = "Buffer Diagnostics (Trouble)" })
+vks("n", "<leader>xs", "<cmd>symbols toggle focus=false<CR>", { desc = "Symbols (Trouble)" })
+vks("n", "<leader>xl", "<cmd>lsp toggle focus=false win.position=right<CR>", { desc = "LSP Definitions / references / ... (Trouble)" })
+vks("n", "<leader>xL", "<cmd>loclist toggle<CR>", { desc = "Location List (Trouble)" })
+vks("n", "<leader>xQ", "<cmd>qflist toggle<CR>", { desc = "Quickfix List (Trouble)" })
 
 
 -- Oil
-vim.keymap.set("n", "<leader>.", "<cmd>Oil<cr>", { silent = true, desc = "Open Oil"})
+vks("n", "<leader>.", "<cmd>Oil<cr>", { silent = true, desc = "Open Oil"})
 
 
 -- neogen
-vim.keymap.set("n", "<leader>d", function()
+vks("n", "<leader>d", function()
     require("neogen").generate()
 end, { desc = "Generate doc comment (neogen)" })
 
 
 -- Comment 
--- vim.keymap.set("n", "<leader>cc", function() require('Comment.api').toggle.linewise.current() end, { noremap = true, silent = true, desc = "Toggle Comment (linewise)" })
--- vim.keymap.set("n", "<leader>cb", function() require('Comment.api').toggle.blockwise.current() end, { noremap = true, silent = true, desc = "Toggle Comment (blockwise)" })
+-- vks("n", "<leader>cc", function() require('Comment.api').toggle.linewise.current() end, { noremap = true, silent = true, desc = "Toggle Comment (linewise)" })
+-- vks("n", "<leader>cb", function() require('Comment.api').toggle.blockwise.current() end, { noremap = true, silent = true, desc = "Toggle Comment (blockwise)" })
 
 
 -- lazygit
-vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { silent = true, desc = "Open Lazygit"})
+vks("n", "<leader>gg", "<cmd>LazyGit<cr>", { silent = true, desc = "Open Lazygit"})
 
 
 -- gitgraph
-vim.keymap.set("n", "<leader>gl", function() require("gitgraph").draw({}, { all = true, max_count = 5000 }) end, { silent = true, desc = "Open GitGraph" })
+vks("n", "<leader>gl", function() require("gitgraph").draw({}, { all = true, max_count = 5000 }) end, { silent = true, desc = "Open GitGraph" })
 
 
 -- diffview
-vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { silent = true, desc = "Open Diffview" })
+vks("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { silent = true, desc = "Open Diffview" })
 
 
 -- markdown preview
-vim.keymap.set("n", "<leader>pm", "<cmd>terminal mdpv %:p<cr>", { silent = true, desc = "Start Markdown preview" })
+vks("n", "<leader>pm", "<cmd>terminal mdpv %:p<cr>", { silent = true, desc = "Start Markdown preview" })
 
 
 -- Octo
-vim.keymap.set("n", "<leader>oo", "<cmd>Octo<cr>", { silent = true, desc = "Octo list" })
+vks("n", "<leader>oo", "<cmd>Octo<cr>", { silent = true, desc = "Octo list" })
 
-vim.keymap.set("n", "<leader>oil", "<cmd>Octo issue list<cr>", { silent = true, desc = "gh Issue list" })
-vim.keymap.set("n", "<leader>oie", "<cmd>Octo issue edit<cr>", { silent = true, desc = "gh Issue edit" })
-vim.keymap.set("n", "<leader>oic", "<cmd>Octo issue close<cr>", { silent = true, desc = "gh Issue close" })
-vim.keymap.set("n", "<leader>oib", "<cmd>Octo issue browser<cr>", { silent = true, desc = "gh Issue browser" })
-vim.keymap.set("n", "<leader>oin", "<cmd>Octo issue create<cr>", { silent = true, desc = "gh Issue create" })
+vks("n", "<leader>oil", "<cmd>Octo issue list<cr>", { silent = true, desc = "gh Issue list" })
+vks("n", "<leader>oie", "<cmd>Octo issue edit<cr>", { silent = true, desc = "gh Issue edit" })
+vks("n", "<leader>oic", "<cmd>Octo issue close<cr>", { silent = true, desc = "gh Issue close" })
+vks("n", "<leader>oib", "<cmd>Octo issue browser<cr>", { silent = true, desc = "gh Issue browser" })
+vks("n", "<leader>oin", "<cmd>Octo issue create<cr>", { silent = true, desc = "gh Issue create" })
 
-vim.keymap.set("n", "<leader>opl", "<cmd>Octo pr list<cr>", { silent = true, desc = "gh PR list" })
-vim.keymap.set("n", "<leader>ope", "<cmd>Octo pr edit<cr>", { silent = true, desc = "gh PR edit" })
-vim.keymap.set("n", "<leader>opc", "<cmd>Octo pr close<cr>", { silent = true, desc = "gh PR close" })
-vim.keymap.set("n", "<leader>opb", "<cmd>Octo pr browser<cr>", { silent = true, desc = "gh PR browser" })
-vim.keymap.set("n", "<leader>opc", "<cmd>Octo pr create<cr>", { silent = true, desc = "gh PR create" })
-vim.keymap.set("n", "<leader>opn", "<cmd>Octo pr create<cr> <BAR>:Octo pr draft<cr>", { silent = true, desc = "gh PR new draft" })
+vks("n", "<leader>opl", "<cmd>Octo pr list<cr>", { silent = true, desc = "gh PR list" })
+vks("n", "<leader>ope", "<cmd>Octo pr edit<cr>", { silent = true, desc = "gh PR edit" })
+vks("n", "<leader>opc", "<cmd>Octo pr close<cr>", { silent = true, desc = "gh PR close" })
+vks("n", "<leader>opb", "<cmd>Octo pr browser<cr>", { silent = true, desc = "gh PR browser" })
+vks("n", "<leader>opc", "<cmd>Octo pr create<cr>", { silent = true, desc = "gh PR create" })
+vks("n", "<leader>opn", "<cmd>Octo pr create<cr> <BAR>:Octo pr draft<cr>", { silent = true, desc = "gh PR new draft" })
 
 
 -- ccc
-vim.keymap.set("n", "<leader>cp", "<cmd>CccPick<cr>", { silent = true, desc = "Color CccPick"})
+vks("n", "<leader>cp", "<cmd>CccPick<cr>", { silent = true, desc = "Color CccPick"})
 
 
 -- minty
-vim.keymap.set("n", "<leader>cm", "<cmd>Huefy<cr>", { silent = true, desc = "Minty/Huefy" })
-vim.keymap.set("n", "<leader>cM", "<cmd>Shades<cr>", { silent = true, desc = "Minty/Shades" })
+vks("n", "<leader>cm", "<cmd>Huefy<cr>", { silent = true, desc = "Minty/Huefy" })
+vks("n", "<leader>cM", "<cmd>Shades<cr>", { silent = true, desc = "Minty/Shades" })
 
 
 -- Neo-Img
-vim.keymap.set("n", "<leader>ip", "<cmd>NeoImg DisplayImage<cr>", { silent = true, desc = "Preview Image" })
+vks("n", "<leader>ip", "<cmd>NeoImg DisplayImage<cr>", { silent = true, desc = "Preview Image" })
 
 
 -- Ddx.vim
-vim.keymap.set("n", "<leader>h", function()
+vks("n", "<leader>h", function()
     vim.fn["ddx#start"]({
         name = "default",
         path = vim.fn.expand("%:p"),
@@ -190,70 +191,70 @@ desc = "Open file in ddx hex editor"
 
 
 -- comfortable motion
-vim.keymap.set("n", "<C-d>", "<cmd>call comfortable_motion#flick(100)<cr>", { silent = true })
-vim.keymap.set("n", "<C-u>", "<cmd>call comfortable_motion#flick(-100)<cr>", { silent = true })
-vim.keymap.set("n", "<C-f>", "<cmd>call comfortable_motion#flick(200)<cr>", { silent = true })
-vim.keymap.set("n", "<C-b>", "<cmd>call comfortable_motion#flick(-200)<cr>", { silent = true })
+vks("n", "<C-d>", "<cmd>call comfortable_motion#flick(100)<cr>", { silent = true })
+vks("n", "<C-u>", "<cmd>call comfortable_motion#flick(-100)<cr>", { silent = true })
+vks("n", "<C-f>", "<cmd>call comfortable_motion#flick(200)<cr>", { silent = true })
+vks("n", "<C-b>", "<cmd>call comfortable_motion#flick(-200)<cr>", { silent = true })
 
 
 -- Dial.nvim
-vim.keymap.set("n", "<C-a>", function()
+vks("n", "<C-a>", function()
     require("dial.map").manipulate("increment", "normal")
 end)
-vim.keymap.set("n", "<C-x>", function()
+vks("n", "<C-x>", function()
     require("dial.map").manipulate("decrement", "normal")
 end)
-vim.keymap.set("n", "g<C-a>", function()
+vks("n", "g<C-a>", function()
     require("dial.map").manipulate("increment", "gnormal")
 end)
-vim.keymap.set("n", "g<C-x>", function()
+vks("n", "g<C-x>", function()
     require("dial.map").manipulate("decrement", "gnormal")
 end)
-vim.keymap.set("x", "<C-a>", function()
+vks("x", "<C-a>", function()
     require("dial.map").manipulate("increment", "visual")
 end)
-vim.keymap.set("x", "<C-x>", function()
+vks("x", "<C-x>", function()
     require("dial.map").manipulate("decrement", "visual")
 end)
-vim.keymap.set("x", "g<C-a>", function()
+vks("x", "g<C-a>", function()
     require("dial.map").manipulate("increment", "gvisual")
 end)
-vim.keymap.set("x", "g<C-x>", function()
+vks("x", "g<C-x>", function()
     require("dial.map").manipulate("decrement", "gvisual")
 end)
 
 
 -- Rayso
-vim.keymap.set("v", "<leader>ss", "<cmd>Rayso<cr>", { silent = true, desc = "Export to Rayso" })
+vks("v", "<leader>ss", "<cmd>Rayso<cr>", { silent = true, desc = "Export to Rayso" })
 
 
 -- Neominimap
-vim.keymap.set("n", "<leader>nm", "<cmd>Neominimap Toggle<cr>", { silent = true, desc = "Neominimap" })
+vks("n", "<leader>nm", "<cmd>Neominimap Toggle<cr>", { silent = true, desc = "Neominimap" })
 
 
 -- NeoNuGet
-vim.keymap.set("n", "<leader>#n", "<cmd>Nuget<cr>", { silent = true, desc = "NeoNuGet" })
+vks("n", "<leader>#n", "<cmd>Nuget<cr>", { silent = true, desc = "NeoNuGet" })
 
 
 -- csharp.nvim
-vim.keymap.set("n", "<leader>#d", function () require("csharp").debug_project() end, { silent = true, desc = "Effortless Debugging" })
-vim.keymap.set("n", "<leader>#r", function () require("csharp").run_project() end, { silent = true, desc = "Run project" })
-vim.keymap.set("n", "<leader>#u", function () require("csharp").fix_usings() end, { silent = true, desc = "Fix usings" })
+vks("n", "<leader>#d", function () require("csharp").debug_project() end, { silent = true, desc = "Effortless Debugging" })
+vks("n", "<leader>#r", function () require("csharp").run_project() end, { silent = true, desc = "Run project" })
+vks("n", "<leader>#u", function () require("csharp").fix_usings() end, { silent = true, desc = "Fix usings" })
 
 
 -- vim-kensaku-search
-vim.keymap.set("c", "<cr>", "<Plug>(kensaku-search-replace)<cr>", { silent = true })
+vks("c", "<cr>", "<Plug>(kensaku-search-replace)<cr>", { silent = true })
 
 
 -- in-and-out.nvim
-vim.keymap.set("i", "<C-CR>", function() require("in-and-out").in_and_out() end, { silent = true, desc = "In and Out" })
+vks("i", "<C-CR>", function() require("in-and-out").in_and_out() end, { silent = true, desc = "In and Out" })
 
 
 -- SS
 -- ss-rubi.nvim
-vim.keymap.set("n", "<leader>Srr", "<cmd>RubiInsert<cr>", { silent = true, desc = "RubiInsert" })
-vim.keymap.set("v", "<leader>Srr", "<cmd>RubiInsert<cr>", { silent = true, desc = "RubiInsert" })
-vim.keymap.set("v", "<leader>Sra", "<cmd>RubiInsertAC<cr>", { silent = true, desc = "RubiInsertAC" })
+vks("n", "<leader>Srr", "<cmd>RubiInsert<cr>", { silent = true, desc = "RubiInsert" })
+vks("v", "<leader>Srr", "<cmd>RubiInsert<cr>", { silent = true, desc = "RubiInsert" })
+vks("v", "<leader>Sra", "<cmd>RubiInsertAC<cr>", { silent = true, desc = "RubiInsertAC" })
 
 
 -- live-preview.nvim
