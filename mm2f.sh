@@ -12,63 +12,64 @@ if [ ! -f "$YAML" ]; then
     exit 1
 fi
 
+DEFAULT_PRIORITY=("apt" "scoop")
 
-# yq install (apt)
-if dpkg -s yq >/dev/null 2>&1; then
-    echo -e "\033[0;32mAlready installed: yq\033[0m"
-else
-    echo -e "\033[0;36mInstalling yq ...\033[0m"
+get_default_command() {
+    case "$1" in
+        apt) echo "sudo apt install -y {id}" ;;
+        scoop) echo "scoop install {id}" ;;
+    esac
+}
 
-    sudo apt-get update -y >/dev/null 2>&1
-    sudo apt-get install -y yq
-
-    if [ $? -ne 0 ]; then
-        echo -e "\033[1;31mInstallation failed: yq\033[0m"
-    else
-        echo -e "\033[0;32mInstalled yq\033[0m"
-    fi
-fi
-
+priority=($(yq -r '.options.linux.priority[]? // empty' "$YAML"))
+[ ${#priority[@]} -eq 0 ] && priority=("${DEFAULT_PRIORITY[@]}")
 
 len=$(yq '.packages | length' "$YAML")
 
 for ((i=0; i<len; i++)); do
     name=$(yq -r ".packages[$i].name" "$YAML")
 
-    apt=$(yq -r ".packages[$i].apt // empty" "$YAML")
-    scoop=$(yq -r ".packages[$i].scoop // empty" "$YAML")
+    selected_pm=""
+    id=""
 
-    if [ -n "$apt" ]; then
-        id="$apt"
-        pm="apt"
-    elif [ -n "$scoop" ]; then
-        id="$scoop"
-        pm="scoop"
-    else
+    for pm in "${priority[@]}"; do
+        val=$(yq -r ".packages[$i].$pm // empty" "$YAML")
+        if [ -n "$val" ]; then
+            selected_pm="$pm"
+            id="$val"
+            break
+        fi
+    done
+
+    if [ -z "$selected_pm" ]; then
         echo -e "\033[1;33mSkipped: $name\033[0m"
         continue
     fi
 
     installed=0
-
-    if [ "$pm" = "apt" ]; then
-        dpkg -s "$id" >/dev/null 2>&1 && installed=1
-    else
-        scoop list "$id" 2>/dev/null | grep -q "^$id" && installed=1
-    fi
+    case "$selected_pm" in
+        apt)
+            dpkg -s "$id" >/dev/null 2>&1 && installed=1
+            ;;
+        scoop)
+            scoop list "$id" 2>/dev/null | grep -q "^$id" && installed=1
+            ;;
+    esac
 
     if [ "$installed" -eq 1 ]; then
         echo -e "\033[0;32mAlready installed: $id\033[0m"
         continue
     fi
 
-    echo -e "\033[0;36mInstalling $id ...\033[0m"
-
-    if [ "$pm" = "apt" ]; then
-        sudo apt-get install -y "$id"
-    else
-        scoop install "$id"
+    template=$(yq -r ".options.linux.commands.$selected_pm // empty" "$YAML")
+    if [ -z "$template" ]; then
+        template=$(get_default_command "$selected_pm")
     fi
+
+    cmd=${template//\{id\}/$id}
+
+    echo -e "\033[0;36mInstalling $id ...\033[0m"
+    eval "$cmd"
 
     if [ $? -ne 0 ]; then
         echo -e "\033[1;31mInstallation failed: $id\033[0m"
