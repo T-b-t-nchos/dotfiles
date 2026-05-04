@@ -173,7 +173,7 @@ function Main-Function {
 
     New-RelativeSymlink `
         -RelativeSource ".config\yazi" `
-        -Destination ("~\.config\yazi") `
+        -Destination (Join-Path $env:APPDATA "yazi\config") `
         -Force:$Force
     
     Reload-Env
