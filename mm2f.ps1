@@ -1,4 +1,4 @@
-## Multi package Manager packages To a file
+## Multi package Manager packages To a File
 ## Usage: mm2f.ps1 [packages.yml] 
 ## Requires: winget, choco, scoop
 

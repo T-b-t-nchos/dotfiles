@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-# Multi package Manager packages To a file
+# Multi package Manager packages To a File
 # Usage: mm2f.sh [packages.yml] 
 # Requires: apt, scoop
 
