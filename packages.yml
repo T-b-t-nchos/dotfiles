@@ -2,12 +2,26 @@
 # List of packages to install
 #
 # #Syntax---;
+# options: #Example
+#   windows:
+#     priority: [winget, choco, scoop]
+#     commands:
+#       winget: winget install --id {id} -e --accept-package-agreements --accept-source-agreements
+#       choco: choco install {id} -y
+#       scoop: scoop install {id}
+#       win-scoop: scoop install {id}
+#   linux:
+#     priority: [apt, scoop]
+#     commands:
+#       apt: sudo apt install -y {id}
+#       scoop: scoop install {id}
+#
 # packages:
 #   - name: Package name
 #     winget: Winget package ID (Optional)
 #     choco: Chocolatey package name (Optional)
 #     scoop: Scoop package name (Optional)
-#     win-scoop: Scoop package name (Optional)
+#     win-scoop: Scoop package name (Only for Windows) (Optional)
 #     apt: Apt package name (Optional)
 
 options:
