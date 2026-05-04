@@ -78,6 +78,10 @@ packages:
     winget: GnuWin32.UnZip
     apt: unzip
 
+  - name: File
+    winget: GnuWin32.File
+    apt: file
+
     # =========================
     # Runtime / Languages
     # =========================
