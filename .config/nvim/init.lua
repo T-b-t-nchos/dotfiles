@@ -31,7 +31,7 @@ require("lazy").setup({
     },
     checker = {
         enabled = true,
-        frequency = 3600,
+        frequency = 86400,
     },
     performance = {
         cache = {
