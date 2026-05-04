@@ -7,6 +7,26 @@
 
 YAML="${1:-./packages.yml}"
 
+
+# yq install
+if command -v yq >/dev/null 2>&1; then
+    echo -e "\033[0;32mAlready installed: yq\033[0m"
+else
+    echo -e "\033[0;36mInstalling yq ...\033[0m"
+
+    sudo wget -qO /usr/local/bin/yq \
+      https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+    sudo chmod +x /usr/local/bin/yq
+
+    if [ $? -ne 0 ]; then
+        echo -e "\033[1;31mInstallation failed: yq\033[0m"
+        exit 1
+    else
+        echo -e "\033[0;32mInstalled yq\033[0m"
+    fi
+fi
+
+
 if [ ! -f "$YAML" ]; then
     echo -e "\033[1;31mYAML not found: $YAML\033[0m"
     exit 1
