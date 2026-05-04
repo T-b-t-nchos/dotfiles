@@ -7,6 +7,7 @@ Yes=false
 
 Destination="$Destination"
 parentDir="$(dirname "$Destination")"
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [ -n "$SUDO_USER" ]; then
     targetUser="$SUDO_USER"
@@ -69,32 +70,20 @@ Main-Function() {
 
     Run-command "sudo apt update"
 
-    # Google.JapaneseIME
+    sudo "$script_dir/mm2f.sh" "$script_dir/packages.yml"
 
-
-    Install-AptPackage git
-    Install-AptPackage gh
-    
     Info "Installing lazygit..."
     LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
     curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
     tar xf lazygit.tar.gz lazygit
     sudo install lazygit -D -t /usr/local/bin/
 
-    Install-AptPackage fzf
-    Install-AptPackage ripgrep
-    Install-AptPackage fd-find
+    # Set up fzf
     mkdir -p ~/.local/bin
     ln -s "$(which fdfind)" ~/.local/bin/fd
 
     Info "Installing nvm..."
     Run-command "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash"
-
-    Install-AptPackage python3
-    Install-AptPackage python3-pip
-    # DenoLand.Deno ... npm
-    Install-AptPackage build-essential
-    Install-AptPackage cmake
 
     Info "Installing neovim..."
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
@@ -102,8 +91,6 @@ Main-Function() {
     sudo rm -rf /opt/nvim-linux-x86_64
     sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 
-    Install-AptPackage vim-common
-    
     Info "Installing wezterm..."
     curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
     echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list

@@ -112,41 +112,20 @@ function Main-Function {
 
     #-------------------------------------------------------
     # Install...
-    
-    Install-WingetPackage Google.JapaneseIME
 
-    Install-WingetPackage Git.Git
-    Install-WingetPackage GitHub.cli
-    Install-WingetPackage JesseDuffield.lazygit
-    Install-WingetPackage junegunn.fzf
-    Install-WingetPackage BurntSushi.ripgrep.MSVC
-    Install-WingetPackage sharkdp.fd
-    Install-WinGetPackage GnuWin32.Zip
-    Install-WinGetPackage GnuWin32.UnZip
-    Install-WingetPackage CoreyButler.NVMforWindows
-    Install-WIngetPackage Python.Python.3.14
-    Install-WingetPackage DenoLand.Deno
+    & (Join-Path $PSScriptRoot 'mm2f.ps1') (Join-Path $PSScriptRoot 'packages.yml')
+    
     Install-WingetPackage `
         -PackageId "Microsoft.VisualStudio.BuildTools" `
         -AdditionalArgs @(
             "--override"
             "--passive --config $parentDir\.config\.vsconfig"
         )
-    Install-WIngetPackage Kitware.CMake
-    Install-WingetPackage Microsoft.PowerShell
-    Install-WingetPackage Neovim.Neovim
-    Install-WinGetPackage vim.vim
     Install-DirectPackage `
         -Name "WezTerm Nightly" `
         -Url "https://github.com/wezterm/wezterm/releases/download/nightly/WezTerm-nightly-setup.exe" `
         -InstallDir "C:\Program files\WezTerm"
-    Install-WingetPackage JanDeDobbeleer.OhMyPosh
-    Install-WingetPackage GnuPG.Gpg4win
-    Install-WinGetPackage JohnMacFarlane.Pandoc
 
-    Install-ScoopPackage zenhan
-
-    Install-ChocoPackage make
 
     
     Run-command "wsl --install"
