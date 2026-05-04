@@ -7,6 +7,7 @@
 #     winget: Winget package ID (Optional)
 #     choco: Chocolatey package name (Optional)
 #     scoop: Scoop package name (Optional)
+#     win-scoop: Scoop package name (Optional)
 #     apt: Apt package name (Optional)
 
 options:
@@ -16,6 +17,7 @@ options:
       winget: winget install --id {id} -e --accept-package-agreements --accept-source-agreements
       choco: choco install {id} -y
       scoop: scoop install {id}
+      win-scoop: scoop install {id}
 
     linux:
       priority: [apt, scoop]
