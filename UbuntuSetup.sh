@@ -7,6 +7,7 @@ Yes=false
 
 Destination="$Destination"
 parentDir="$(dirname "$Destination")"
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [ -n "$SUDO_USER" ]; then
     targetUser="$SUDO_USER"
@@ -69,7 +70,7 @@ Main-Function() {
 
     Run-command "sudo apt update"
 
-    sudo ./mm2f.sh ./packages.yml
+    sudo "$script_dir/mm2f.sh" "$script_dir/packages.yml"
 
     Info "Installing lazygit..."
     LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')

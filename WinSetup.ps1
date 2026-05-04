@@ -113,7 +113,7 @@ function Main-Function {
     #-------------------------------------------------------
     # Install...
 
-    .\mm2f.ps1 .\packages.yml
+    & (Join-Path $PSScriptRoot 'mm2f.ps1') (Join-Path $PSScriptRoot 'packages.yml')
     
     Install-WingetPackage `
         -PackageId "Microsoft.VisualStudio.BuildTools" `
