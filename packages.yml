@@ -1,0 +1,136 @@
+# packages.yml
+# List of packages to install
+#
+# #Syntax---;
+# packages:
+#   - name: Package name
+#     winget: Winget package ID (Optional)
+#     choco: Chocolatey package name (Optional)
+#     scoop: Scoop package name (Optional)
+#     apt: Apt package name (Optional)
+
+options:
+  windows:
+    priority: [winget, choco, scoop]
+    commands:
+      winget: winget install --id {id} -e --accept-package-agreements --accept-source-agreements
+      choco: choco install {id} -y
+      scoop: scoop install {id}
+
+    linux:
+      priority: [apt, scoop]
+      commands:
+        apt: sudo apt install -y {id}
+        scoop: scoop install {id}
+
+packages:
+  # =========================
+  # Input Method
+  # =========================
+  - name: GoogleJapaneseInput
+    winget: Google.JapaneseIME
+
+    # =========================
+    # Version Control
+    # =========================
+  - name: Git
+    winget: Git.Git
+    apt: git
+  - name: GitHubCli
+    winget: GitHub.cli
+    apt: gh
+  - name: LazyGit
+    winget: JesseDuffield.lazygit
+
+    # =========================
+    # CLI Utilities
+    # =========================
+  - name: FZF
+    winget: junegunn.fzf
+    apt: fzf
+  - name: ripgrep
+    winget: BurntSushi.ripgrep.MSVC
+    apt: ripgrep
+  - name: fd
+    winget: sharkdp.fd
+    apt: fd-find
+
+  - name: Zip
+    winget: GnuWin32.Zip
+    apt: zip
+  - name: UnZip
+    winget: GnuWin32.UnZip
+    apt: unzip
+
+    # =========================
+    # Runtime / Languages
+    # =========================
+  - name: nvm
+    winget: CoreyButler.NVMforWindows
+    # For Ubuntu, use curl manually.
+  - name: Python
+    winget: Python.Python.3.14
+    apt: python3
+  - name: PythonPip
+    apt: python3-pip
+  - name: Deno
+    winget: DenoLand.Deno
+    # For Ubuntu, use npm.
+
+    # =========================
+    # Build Tools
+    # =========================
+  - name: BuildTools
+  # For windows, use winget manually.
+  # winget: Microsoft.VisualStudio.BuildTools
+    apt: build-essential
+  - name: CMake
+    winget: Kitware.CMake
+    apt: cmake
+  - name: Make
+    choco: make
+
+    # =========================
+    # Shell / Terminal
+    # =========================
+  - name: PowerShell
+    winget: Microsoft.PowerShell
+  - name: OhMyPosh
+    winget: JanDeDobbeleer.OhMyPosh
+    # For Ubuntu, use curl manually.
+
+    # =========================
+    # Editors
+    # =========================
+  - name: Neovim
+    winget: Neovim.Neovim
+    # For Ubuntu, use curl manually.
+  - name: Vim
+    winget: vim.vim
+    apt: vim-common
+
+    # =========================
+    # Security / Encryption
+    # =========================
+  - name: Gpg4win
+    winget: GnuPG.Gpg4win
+
+    # =========================
+    # Document Processing
+    # =========================
+  - name: Pandoc
+    winget: JohnMacFarlane.Pandoc
+
+    # =========================
+    # File Manager
+    # =========================
+  - name: Yazi
+    winget: sxyazi.yazi
+    # For Ubuntu, use curl manually.
+
+    # =========================
+    # Misc
+    # =========================
+  - name: zenhan
+    win-scoop: zenhan
+
