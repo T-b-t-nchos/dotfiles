@@ -115,6 +115,19 @@ Main-Function() {
     Run-command "curl -s https://ohmyposh.dev/install.sh | bash -s"
     Run-command "sudo chown -R $targetUser:$targetUser ~/.cache/oh-my-posh"
 
+    Info "Installing yazi..."
+    YAZI_VERSION=$(curl -s "https://api.github.com/repos/sxyazi/yazi/releases/latest" \
+        | grep -Po '"tag_name": *"\K[^"]*')
+    ARCH=$(uname -m)
+    case "$ARCH" in
+        x86_64)   DEB_ARCH="x86_64-unknown-linux-gnu" ;;
+        aarch64)  DEB_ARCH="aarch64-unknown-linux-gnu" ;;
+        *)        echo "Unsupported architecture: $ARCH"; exit 1 ;;
+    esac
+    DEB_FILE="yazi-${DEB_ARCH}.deb"
+    curl -Lo "$DEB_FILE" \
+        "https://github.com/sxyazi/yazi/releases/download/${YAZI_VERSION}/${DEB_FILE}"
+    sudo apt install -y "./${DEB_FILE}"
 
     echo
 
@@ -127,6 +140,7 @@ Main-Function() {
     New-RelativeSymlink ".config/wezterm" "$USER_HOME/.config/wezterm"
     New-RelativeSymlink ".config/ohmyposh" "$USER_HOME/.config/ohmyposh"
     New-RelativeSymlink ".config/lazygit" "$USER_HOME/.config/lazygit"
+    New-RelativeSymlink ".config/yazi" "$USER_HOME/.config/yazi"
     New-RelativeSymlink ".config/.dotfiles_bashrc" "$USER_HOME/.dotfiles_bashrc"
 
     # Windows only paths

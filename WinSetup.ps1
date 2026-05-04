@@ -191,6 +191,11 @@ function Main-Function {
         -RelativeSource ".config\lazygit" `
         -Destination (Join-Path $env:APPDATA "jesseduffield\lazygit") `
         -Force:$Force
+
+    New-RelativeSymlink `
+        -RelativeSource ".config\yazi" `
+        -Destination ("~\.config\yazi") `
+        -Force:$Force
     
     Reload-Env
 
