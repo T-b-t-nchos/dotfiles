@@ -70,6 +70,7 @@ Main-Function() {
 
     Run-command "sudo apt update"
 
+    sudo chmod +x "$script_dir/mm2f.sh"
     sudo "$script_dir/mm2f.sh" "$script_dir/packages.yml"
 
     Info "Installing lazygit..."
