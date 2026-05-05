@@ -26,7 +26,7 @@
 
 options:
   windows:
-    priority: [winget, choco, scoop]
+    priority: [winget, choco, winscoop, scoop]
     commands:
       winget: winget install --id {id} -e --accept-package-agreements --accept-source-agreements
       choco: choco install {id} -y

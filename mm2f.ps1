@@ -15,7 +15,7 @@ $conf = Get-Content $Path -Raw | ConvertFrom-Yaml
 
 $priority = $conf.options.windows.priority
 if (-not $priority) {
-    $priority = @("winget","choco","scoop")
+    $priority = @("winget","choco","winscoop","scoop")
 }
 
 $commands = $conf.options.windows.commands
@@ -27,6 +27,7 @@ $defaultCommands = @{
     winget = 'winget install --id {id} -e --accept-package-agreements --accept-source-agreements'
     choco  = 'choco install {id} -y'
     scoop  = 'scoop install {id}'
+    winscoop = 'scoop install {id}'
 }
 
 foreach ($p in $conf.packages) {
@@ -50,6 +51,10 @@ foreach ($p in $conf.packages) {
             if ($LASTEXITCODE -eq 0) { $installed = $true }
         }
         "scoop" {
+            $out = scoop list $id 2>$null
+            if ($out -match "^\s*$id\s") { $installed = $true }
+        }
+        "winscoop" {
             $out = scoop list $id 2>$null
             if ($out -match "^\s*$id\s") { $installed = $true }
         }
