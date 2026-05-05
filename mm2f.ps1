@@ -33,6 +33,8 @@ $defaultCommands = @{
 foreach ($p in $conf.packages) {
     $pm = $priority | Where-Object { $p.$_ } | Select-Object -First 1
 
+    $pm = if ($pm -eq "winscoop") { "scoop" } else { $pm }
+
     if (-not $pm) {
         Write-Host "Skipped: $($p.name)" -ForegroundColor Yellow
         continue
