@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
-
 # Multi package Manager packages To a File
-# Usage: mm2f.sh [packages.yml] 
-# Requires: apt, scoop
+# Usage: mm2f.sh [packages.yml]
+# Requirements:
+# - bash (For running the script)
+# - sudo (For running as root)
+# - wget (For installing yq)
 
 YAML="${1:-./packages.yml}"
 
@@ -14,16 +16,18 @@ if command -v yq >/dev/null 2>&1; then
 else
     echo -e "\033[0;36mInstalling yq ...\033[0m"
 
-    sudo wget -qO /usr/local/bin/yq \
-      https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
-    sudo chmod +x /usr/local/bin/yq
-
-    if [ $? -ne 0 ]; then
-        echo -e "\033[1;31mInstallation failed: yq\033[0m"
+    if ! sudo wget -qO /usr/local/bin/yq \
+        https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64; then
+        echo -e "\033[1;31mDownload failed: yq\033[0m"
         exit 1
-    else
-        echo -e "\033[0;32mInstalled yq\033[0m"
     fi
+
+    if ! sudo chmod +x /usr/local/bin/yq; then
+        echo -e "\033[1;31mPermission set failed: yq\033[0m"
+        exit 1
+    fi
+
+    echo -e "\033[0;32mInstalled yq\033[0m"
 fi
 
 
@@ -42,7 +46,7 @@ get_default_command() {
     esac
 }
 
-priority=($(yq -r '.options.linux.priority[]? // empty' "$YAML"))
+mapfile -t priority < <(yq -r '.options.linux.priority[]? // empty' "$YAML")
 [ ${#priority[@]} -eq 0 ] && priority=("${DEFAULT_PRIORITY[@]}")
 
 len=$(yq '.packages | length' "$YAML")
@@ -62,7 +66,7 @@ for ((i=0; i<len; i++)); do
         fi
     done
 
-    selected_pm=$([ "$selected_pm" = "linuxscoop" ] && echo "scoop" || echo "$selected_pm")
+    check_pm=$([ "$selected_pm" = "linuxscoop" ] && echo "scoop" || echo "$selected_pm")
 
     if [ -z "$selected_pm" ]; then
         echo -e "\033[1;33mSkipped: $name\033[0m"
@@ -70,14 +74,11 @@ for ((i=0; i<len; i++)); do
     fi
 
     installed=0
-    case "$selected_pm" in
+    case "$check_pm" in
         apt)
             dpkg -s "$id" >/dev/null 2>&1 && installed=1
             ;;
         scoop)
-            scoop list "$id" 2>/dev/null | grep -q "^$id" && installed=1
-            ;;
-        linuxscoop)
             scoop list "$id" 2>/dev/null | grep -q "^$id" && installed=1
             ;;
     esac
@@ -95,9 +96,8 @@ for ((i=0; i<len; i++)); do
     cmd=${template//\{id\}/$id}
 
     echo -e "\033[0;36mInstalling $id ...\033[0m"
-    eval "$cmd"
 
-    if [ $? -ne 0 ]; then
+    if ! eval "$cmd"; then
         echo -e "\033[1;31mInstallation failed: $id\033[0m"
     else
         echo -e "\033[0;32mInstalled $id\033[0m"

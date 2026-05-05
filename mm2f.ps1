@@ -1,6 +1,7 @@
 ## Multi package Manager packages To a File
-## Usage: mm2f.ps1 [packages.yml] 
-## Requires: winget, choco, scoop
+## Usage: mm2f.ps1 [packages.yml]
+## Requirements:
+## - powershell 7 (For running the script)
 
 param(
     [string]$Path = ".\packages.yml"
@@ -10,6 +11,14 @@ if (!(Test-Path $Path)) {
     Write-Host "YAML not found: $Path" -ForegroundColor Red
     exit 1
 }
+
+try {
+    Install-Module -Name powershell-yaml -Force -Scope CurrentUser -ErrorAction Stop
+} catch {
+    Write-Host "Failed to install powershell-yaml: $_" -ForegroundColor Red
+    exit 1
+}
+Import-Module powershell-yaml -ErrorAction Stop
 
 $conf = Get-Content $Path -Raw | ConvertFrom-Yaml
 
@@ -33,23 +42,22 @@ $defaultCommands = @{
 foreach ($p in $conf.packages) {
     $pm = $priority | Where-Object { $p.$_ } | Select-Object -First 1
 
-    $pm = if ($pm -eq "winscoop") { "scoop" } else { $pm }
-
     if (-not $pm) {
         Write-Host "Skipped: $($p.name)" -ForegroundColor Yellow
         continue
     }
 
     $id = $p.$pm
+    $checkPm = if ($pm -eq "winscoop") { "scoop" } else { $pm }
 
     $installed = $false
-    switch ($pm) {
+    switch ($checkPm) {
         "winget" {
             winget list --id $id -e 1>$null 2>$null
             if ($LASTEXITCODE -eq 0) { $installed = $true }
         }
         "choco" {
-            choco list --local-only --exact $id 1>$null 2>$null
+            choco list --exact $id 1>$null 2>$null
             if ($LASTEXITCODE -eq 0) { $installed = $true }
         }
         "winscoop" {
@@ -58,7 +66,7 @@ foreach ($p in $conf.packages) {
         }
         "scoop" {
             $out = scoop list $id 2>$null
-            if ($out -match "^\s*$id\s") { $installed = $true }
+            if ($out -match "^\s*$([regex]::Escape($id))\s") { $installed = $true }
         }
     }
 
