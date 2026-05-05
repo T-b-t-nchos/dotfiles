@@ -32,12 +32,13 @@ if [ ! -f "$YAML" ]; then
     exit 1
 fi
 
-DEFAULT_PRIORITY=("apt" "scoop")
+DEFAULT_PRIORITY=("apt" "linuxscoop" "scoop")
 
 get_default_command() {
     case "$1" in
         apt) echo "sudo apt install -y {id}" ;;
         scoop) echo "scoop install {id}" ;;
+        linuxscoop) echo "scoop install {id}" ;;
     esac
 }
 
@@ -61,6 +62,8 @@ for ((i=0; i<len; i++)); do
         fi
     done
 
+    selected_pm=$([ "$selected_pm" = "linuxscoop" ] && echo "scoop" || echo "$selected_pm")
+
     if [ -z "$selected_pm" ]; then
         echo -e "\033[1;33mSkipped: $name\033[0m"
         continue
@@ -72,6 +75,9 @@ for ((i=0; i<len; i++)); do
             dpkg -s "$id" >/dev/null 2>&1 && installed=1
             ;;
         scoop)
+            scoop list "$id" 2>/dev/null | grep -q "^$id" && installed=1
+            ;;
+        linuxscoop)
             scoop list "$id" 2>/dev/null | grep -q "^$id" && installed=1
             ;;
     esac
