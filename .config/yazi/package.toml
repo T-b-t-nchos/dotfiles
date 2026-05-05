@@ -1,0 +1,7 @@
+[plugin]
+deps = []
+
+[[flavor.deps]]
+use = "T-b-t-nchos/aquazium"
+rev = "5b70505"
+hash = "d99fee62eca5fe4d9c000fc14db160c1"
