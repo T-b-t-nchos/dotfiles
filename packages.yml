@@ -23,6 +23,7 @@
 #     scoop: Scoop package name (Optional)
 #     winscoop: Scoop package name (Only for Windows) (Optional)
 #     apt: Apt package name (Optional)
+#     linuxscoop: Scoop package name (Only for Linux) (Optional)
 
 options:
   windows:
@@ -37,6 +38,7 @@ options:
       priority: [apt, scoop]
       commands:
         apt: sudo apt install -y {id}
+        linuxscoop: scoop install {id}
         scoop: scoop install {id}
 
 packages:
