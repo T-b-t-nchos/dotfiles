@@ -26,8 +26,8 @@ if (-not $commands) {
 $defaultCommands = @{
     winget = 'winget install --id {id} -e --accept-package-agreements --accept-source-agreements'
     choco  = 'choco install {id} -y'
-    scoop  = 'scoop install {id}'
     winscoop = 'scoop install {id}'
+    scoop  = 'scoop install {id}'
 }
 
 foreach ($p in $conf.packages) {
@@ -50,11 +50,11 @@ foreach ($p in $conf.packages) {
             choco list --local-only --exact $id 1>$null 2>$null
             if ($LASTEXITCODE -eq 0) { $installed = $true }
         }
-        "scoop" {
+        "winscoop" {
             $out = scoop list $id 2>$null
             if ($out -match "^\s*$id\s") { $installed = $true }
         }
-        "winscoop" {
+        "scoop" {
             $out = scoop list $id 2>$null
             if ($out -match "^\s*$id\s") { $installed = $true }
         }
