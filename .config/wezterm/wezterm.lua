@@ -141,6 +141,9 @@ config.window_frame = {
 }
 config.color_scheme = 'Custom Dimidium'
 config.color_schemes = {
+    -- Port of Dimidium (zlib license)
+    -- Original: https://github.com/dofuuz/dimidium
+    -- Modified by: T-b-t-nchos
     ['Custom Dimidium'] = {
         foreground = "#ccc",
         background = "#141414",
