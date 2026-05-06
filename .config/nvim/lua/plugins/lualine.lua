@@ -3,6 +3,29 @@ return {
     event = { "BufReadPost", "BufAdd", "BufNewFile" },
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
+        local function char_count()
+            local buf = vim.api.nvim_get_current_buf()
+            local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+
+            local count = 0
+            for _, line in ipairs(lines) do
+                count = count + vim.fn.strchars(line)
+            end
+
+            return string.format("Char: %d", count)
+        end
+
+        require("lualine").setup({
+            options = {
+                theme = "auto",
+            },
+            sections = {
+                lualine_c = {
+                    char_count,
+                },
+            },
+        })
+
         require('lualine').setup({
             options = {
                 icons_enabled = true,
@@ -27,8 +50,8 @@ return {
                 lualine_a = { 'mode' },
                 lualine_b = { 'branch', 'diff', 'diagnostics' },
                 lualine_c = { 'filename' },
-                lualine_x = { 'encoding', 'fileformat', 'filetype' },
-                lualine_y = { 'progress' },
+                lualine_x = { 'encoding', 'fileformat', 'filetype', 'progress' },
+                lualine_y = { char_count },
                 lualine_z = { 'location' },
             },
 
