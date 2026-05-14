@@ -105,6 +105,15 @@ vim.api.nvim_create_autocmd("BufReadCmd", {
 ------------------------------------------------------------
 
 
+vim.api.nvim_create_user_command("LazyLoadAll", function()
+    local plugins = vim.tbl_keys(require("lazy.core.config").plugins)
+
+    require("lazy").load({
+        plugins = plugins,
+    })
+end, {})
+
+
 local function zenhan_off()
     vim.system({ "zenhan", "0" }, { detach = true })
 end
