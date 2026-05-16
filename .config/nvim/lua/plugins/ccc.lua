@@ -7,10 +7,8 @@ return {
 
         ccc.setup({
             highlighter = {
-                auto_enable = true,
-                lsp = true,
+                auto_enable = false,
             },
-            default_color = "#000000"
         })
     end
 }
