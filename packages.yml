@@ -1,45 +1,20 @@
 # packages.yml
 # List of packages to install
-#
-# #Syntax---;
-# options: #Example
-#   windows:
-#     priority: [winget, choco, scoop]
-#     commands:
-#       winget: winget install --id {id} -e --accept-package-agreements --accept-source-agreements
-#       choco: choco install {id} -y
-#       scoop: scoop install {id}
-#       winscoop: scoop install {id}
-#   linux:
-#     priority: [apt, linuxscoop, scoop]
-#     commands:
-#       apt: sudo apt install -y {id}
-#       scoop: scoop install {id}
-#
-# packages:
-#   - name: Package name
-#     winget: Winget package ID (Optional)
-#     choco: Chocolatey package name (Optional)
-#     scoop: Scoop package name (Optional)
-#     winscoop: Scoop package name (Only for Windows) (Optional)
-#     apt: Apt package name (Optional)
-#     linuxscoop: Scoop package name (Only for Linux) (Optional)
 
 options:
   windows:
-    priority: [winget, choco, winscoop, scoop]
+    priority: [winget, choco, scoop]
     commands:
       winget: winget install --id {id} -e --accept-package-agreements --accept-source-agreements
       choco: choco install {id} -y
-      winscoop: scoop install {id}
       scoop: scoop install {id}
 
   linux:
-    priority: [apt, scoop]
+    priority: [apt, pacman]
     commands:
       apt: sudo apt install -y {id}
-      linuxscoop: scoop install {id}
-      scoop: scoop install {id}
+      pacman: sudo pacman -S --noconfirm {id}
+      
 
 packages:
   # =========================
@@ -154,5 +129,5 @@ packages:
     # Misc
     # =========================
   - name: zenhan
-    winscoop: zenhan
+    scoop: zenhan
 
