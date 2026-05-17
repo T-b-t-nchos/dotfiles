@@ -111,7 +111,7 @@ return {
                             item.kind = "Function"
                         end
 
-                        return require("nvim-highlight-colors").format(entry, item)
+                        return item
                     end,
                 }
             })
