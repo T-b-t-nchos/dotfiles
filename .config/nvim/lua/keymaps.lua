@@ -261,6 +261,11 @@ vks("v", "<leader>Sra", "<cmd>RubiInsertAC<cr>", { silent = true, desc = "RubiIn
 vim.keymap.set("n", "<leader>pl", "<cmd>LivePreview start<cr>", { silent = true, desc = "Live Preview" })
 
 
+-- yazi.nvim
+vim.keymap.set("n", "<leader>yz", "<cmd>Yazi<cr>", { silent = true, desc = "Yazi" })
+vim.keymap.set("n", "<leader>yZ", "<cmd>Yazi cwd<cr>", { silent = true, desc = "Yazi in nvim's working directory" })
+
+
 -- which-key integration
 local ok, wk = pcall(require, "which-key")
 if ok then
