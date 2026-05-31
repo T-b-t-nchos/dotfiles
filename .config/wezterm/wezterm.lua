@@ -133,49 +133,16 @@ else
 end
 
 config.window_background_gradient =
-    {colors = {'#0a0a0a'}}
+    {colors = {'#000e1e'}}
 
 config.window_frame = {
     inactive_titlebar_bg = 'none',
     active_titlebar_bg = 'none'
 }
-config.color_scheme = 'Custom Dimidium'
-config.color_schemes = {
-    -- Port of Dimidium (zlib license)
-    -- Original: https://github.com/dofuuz/dimidium
-    -- Modified by: T-b-t-nchos
-    ['Custom Dimidium'] = {
-        foreground = "#ccc",
-        background = "#141414",
-
-        cursor_bg = '#eee',
-        cursor_fg = 'none',
-        cursor_border = 'none',
-
-        ansi = {
-            "#000000", -- black
-            "#cf494c", -- red
-            "#60b442", -- green
-            "#db9c11", -- yellow
-            "#0575d8", -- blue
-            "#af5ed2", -- magenta
-            "#1db6bb", -- cyan
-            "#bab7b6", -- white
-        },
-
-        brights = {
-            "#817e7e", -- bright black
-            "#ff643b", -- bright red
-            "#37e57b", -- bright green
-            "#fccd1a", -- bright yellow
-            "#688dfd", -- bright blue
-            "#ed6fe9", -- bright magenta
-            "#32e0fb", -- bright cyan
-            "#dee3e4", -- bright white
-        },
-    },
+config.color_scheme = 'Aquatermium'
+config.color_scheme_dirs = {
+    "./colors",
 }
-
 
 config.show_new_tab_button_in_tab_bar = false
 config.show_close_tab_button_in_tabs = false
