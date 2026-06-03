@@ -38,6 +38,9 @@ packages:
     # =========================
     # CLI Utilities
     # =========================
+  - name: Coreutils for Windows
+    winget: Microsoft.Coreutils
+
   - name: FZF
     winget: junegunn.fzf
     apt: fzf
