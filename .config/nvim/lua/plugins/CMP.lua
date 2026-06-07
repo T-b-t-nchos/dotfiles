@@ -11,6 +11,7 @@ return {
             "ray-x/cmp-treesitter",
 
             "moyiz/blink-emoji.nvim",
+            'Kaiser-Yang/blink-cmp-git',
 
             "L3MON4D3/LuaSnip",
         },
@@ -140,6 +141,7 @@ return {
                     "snippets",
                     "emoji",
                     "treesitter",
+                    "git",
                 },
 
                 providers = {
@@ -165,6 +167,30 @@ return {
                     treesitter = {
                         name = "Treesitter",
                         module = "blink.compat.source",
+                    },
+
+                    git = {
+                        name = 'Git',
+                        module = 'blink-cmp-git',
+                        -- only enable this source when filetype is gitcommit, markdown, or 'octo'
+                        enabled = function()
+                            return vim.tbl_contains({ 'octo', 'gitcommit', 'markdown' }, vim.bo.filetype)
+                        end,
+                        --- @module 'blink-cmp-git'
+                        --- @type blink-cmp-git.Options
+                        opts = {
+                            commit = {
+                                triggers = { ':', '@', '#', '!' },
+                            },
+                            git_centers = {
+                                github = {
+
+                                },
+                                gitlab = {
+
+                                }
+                            }
+                        }
                     },
                 },
             },
