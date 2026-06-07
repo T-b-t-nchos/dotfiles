@@ -156,7 +156,7 @@ return {
                         },
                         should_show_items = function()
                             return vim.tbl_contains(
-                                { "gitcommit", "markdown" },
+                                { "gitcommit", "markdown", "text" },
                                 vim.o.filetype
                             )
                         end,
