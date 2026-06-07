@@ -86,6 +86,7 @@ function Main-Function {
     if (Get-Command scoop -ErrorAction SilentlyContinue) {
         Done "scoop is installed"
         scoop --version
+        scoop update
     } 
     else {
         Info "Download scoop..."
@@ -100,6 +101,7 @@ function Main-Function {
     if (Get-Command choco -ErrorAction SilentlyContinue) {
         Done "Chocolatey already installed"
         choco --version
+        choco upgrade chocolatey -y
     }
     else {
         Info "Download chocolatey..."
