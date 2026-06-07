@@ -60,6 +60,7 @@ return {
             require('telescope').load_extension("fzf")
             require("telescope").load_extension("file_browser")
             require('telescope').load_extension('gh')
+            require('telescope').load_extension('nerdy')
         end
     },
     {
