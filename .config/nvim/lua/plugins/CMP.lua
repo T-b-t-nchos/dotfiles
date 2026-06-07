@@ -118,6 +118,7 @@ return {
                 sources = {
                     "buffer",
                     "cmdline",
+                    "path",
                 },
 
                 completion = {
