@@ -45,6 +45,7 @@ return {
                     "yamlls",
                     "bashls",
                     "powershell_es",
+                    "gh_actions_ls",
                 },
             })
 
