@@ -27,6 +27,18 @@ vks('n', 'k', '<Plug>(accelerated_jk_gk)', {})
 vks("v", "<", "<gv")
 vks("v", ">", ">gv")
 
+-- Telescope
+vks("n", "<leader>Tff", "<cmd>Telescope find_files<cr>", { silent = true, desc = "Find File" })
+vks("n", "<leader>Tfb", "<cwd>Telescope file_browser<cr>", { silent = true, desc = "File Browser" })
+vks("n", "<leader>Tfd", "<cmd>Telescope find_files cwd_only=true<cr>", { silent = true, desc = "Find File in cwd" })
+vks("n", "<leader>Tg", "<cmd>Telescope live_grep<cr>", { silent = true, desc = "Live Grep" })
+vks("n", "<leader>Tb", "<cmd>Telescope buffers<cr>", { silent = true, desc = "Buffers" })
+vks("n", "<leader>Tn", "<cmd>Telescope nerdy<cr>", { silent = true, desc = "Nerdy" })
+vks("n", "<leader>Tc", "<cmd>Telescope colorscheme<cr>", { silent = true, desc = "Colorscheme" })
+vks("n", "<leader>Th", "<cmd>Telescope help_tags<cr>", { silent = true, desc = "Help" })
+vks("n", "<leader>Tk", "<cmd>Telescope keymaps<cr>", { silent = true, desc = "Keymaps" })
+vks("n", "<leader>Tv", "<cmd>Telescope vim_options<cr>", { silent = true, desc = "Vim Options" })
+vks("n", "<leader>Tr", "<cmd>Telescope registers<cr>", { silent = true, desc = "Registers" })
 
 -- move buffers
 vks("n", "<leader>bj", "<cmd>bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
