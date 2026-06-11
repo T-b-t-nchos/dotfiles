@@ -1,5 +1,5 @@
 return {
     "lambdalisue/vim-kensaku",
     lazy = true,
-    depandencies = { "vim-denops/denops.vim" },
+    dependencies = { "vim-denops/denops.vim" },
 }
