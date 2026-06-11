@@ -1,5 +1,9 @@
 return {
     "lambdalisue/vim-kensaku-search",
-    event = "CmdlineEnter",
-    dependencies = { "lambdalisue/vim-kensaku" },
+    -- event = "CmdlineEnter",
+    event = "VeryLazy",
+    dependencies = {
+        "lambdalisue/vim-kensaku",
+        "vim-denops/denops.vim",
+    },
 }
