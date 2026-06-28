@@ -47,6 +47,8 @@ vks("n", "<leader>b<Left>", "<cmd>bprev<CR>", { silent = true, desc = "Move Buff
 vks("n", "<leader>b<Right>", "<cmd>bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
 vks("n", "<leader>bh", "<cmd>bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
 vks("n", "<leader>bl", "<cmd>bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
+vks("n", "H", "<cmd>bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
+vks("n", "L", "<cmd>bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
 
 
 -- neotree
@@ -72,19 +74,15 @@ vks("n", "<leader>|", "<cmd>vsplit<cr>", { silent = true, desc = "vsprit" })
 vks("n", "<leader>-", "<cmd>split<cr>", { silent = true, desc = "hsprit" })
 
 
--- pane move prefix: <leader>w + arrow
-vks("n", "<leader>w<Left>", "<C-w>h", { desc = "Pane left" })
-vks("n", "<leader>w<Right>", "<C-w>l", { desc = "Pane right" })
-vks("n", "<leader>w<Up>", "<C-w>k", { desc = "Pane up" })
-vks("n", "<leader>w<Down>", "<C-w>j", { desc = "Pane down" })
-vks("n", "<leader>wh", "<C-w>h", { desc = "Pane left" })
-vks("n", "<leader>wl", "<C-w>l", { desc = "Pane right" })
-vks("n", "<leader>wk", "<C-w>k", { desc = "Pane up" })
-vks("n", "<leader>wj", "<C-w>j", { desc = "Pane down" })
-vks("n", "<leader>wH", "<C-w>H", { desc = "Pane move left" })
-vks("n", "<leader>wL", "<C-w>L", { desc = "Pane move right" })
-vks("n", "<leader>wK", "<C-w>K", { desc = "Pane move up" })
-vks("n", "<leader>wJ", "<C-w>J", { desc = "Pane move down" })
+-- pane move prefix: Ctrl + hjkl
+vks("n", "<C-h>", "<C-w>h",  { desc = "Pane left" })
+vks("n", "<C-l>", "<C-w>l",  { desc = "Pane right" })
+vks("n", "<C-k>", "<C-w>k", { desc = "Pane up" })
+vks("n", "<C-j>", "<C-w>j", { desc = "Pane down" })
+vks("n", "<C-A-h>", "<C-w>H",  { desc = "Pane left" })
+vks("n", "<C-A-l>", "<C-w>L",  { desc = "Pane right" })
+vks("n", "<C-A-k>", "<C-w>K", { desc = "Pane up" })
+vks("n", "<C-A-j>", "<C-w>J", { desc = "Pane down" })
 
 -- vks("n", "<leader>wa",  "<C-w>h", { desc = "Window left" })
 -- vks("n", "<leader>wd", "<C-w>l", { desc = "Window right" })
