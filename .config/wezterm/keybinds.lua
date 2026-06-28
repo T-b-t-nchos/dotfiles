@@ -64,7 +64,8 @@ return {
         { key = 'F', mods = 'SHIFT|CTRL', action = act.Search 'CurrentSelectionOrEmptyString' },
         { key = 'K', mods = 'CTRL', action = act.ClearScrollback 'ScrollbackOnly' },
         { key = 'K', mods = 'SHIFT|CTRL', action = act.ClearScrollback 'ScrollbackOnly' },
-        { key = 'L', mods = 'CTRL', action = act.ShowDebugOverlay },
+        -- { key = 'L', mods = 'CTRL', action = act.ShowDebugOverlay },
+        { key = 'L', mods = 'CTRL', action = act.DisableDefaultAssignment },
         { key = 'L', mods = 'SHIFT|CTRL', action = act.ShowLauncher },
         { key = 'M', mods = 'CTRL', action = act.Hide },
         { key = 'N', mods = 'CTRL', action = act.SpawnWindow },
@@ -94,7 +95,7 @@ return {
         { key = 'f', mods = 'SUPER', action = act.Search 'CurrentSelectionOrEmptyString' },
         { key = 'k', mods = 'SHIFT|CTRL', action = act.ClearScrollback 'ScrollbackOnly' },
         { key = 'k', mods = 'SUPER', action = act.ClearScrollback 'ScrollbackOnly' },
-        { key = 'l', mods = 'CTRL', action = act.ShowLauncher }, 
+        -- { key = 'l', mods = 'CTRL', action = act.ShowLauncher }, 
         {
             key = 'l',
             mods = 'SHIFT|CTRL',
