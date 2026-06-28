@@ -84,6 +84,12 @@ vks("n", "<C-A-l>", "<C-w>L",  { desc = "Pane right" })
 vks("n", "<C-A-k>", "<C-w>K", { desc = "Pane up" })
 vks("n", "<C-A-j>", "<C-w>J", { desc = "Pane down" })
 
+-- resize pane
+vks("n", "<C-Up>", "<cmd>resize +1<CR>", { silent = true })
+vks("n", "<C-Down>", "<cmd>resize -1<CR>", { silent = true })
+vks("n", "<C-Left>", "<cmd>vertical resize -1<CR>", { silent = true })
+vks("n", "<C-Right>", "<cmd>vertical resize +1<CR>", { silent = true })
+
 -- vks("n", "<leader>wa",  "<C-w>h", { desc = "Window left" })
 -- vks("n", "<leader>wd", "<C-w>l", { desc = "Window right" })
 -- vks("n", "<leader>ww",    "<C-w>k", { desc = "Window up" })
