@@ -17,3 +17,8 @@ function mkcd {
     }
     Set-Location $path
 }
+
+function gitinit {
+    git init
+    git commit --allow-empty -m "Initial commit"
+}

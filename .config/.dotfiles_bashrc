@@ -8,3 +8,8 @@ mkcd() {
     mkdir -p "$1"
     cd "$1"
 }
+
+gitinit() {
+    git init
+    git commit --allow-empty -m "Initial commit"
+}
