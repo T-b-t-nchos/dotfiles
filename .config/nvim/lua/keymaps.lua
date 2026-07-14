@@ -104,8 +104,8 @@ vks("n", "<C-Right>", "<cmd>vertical resize +1<CR>", { silent = true })
 
 
 -- toggleterm
-vks("n", "<leader>t", "<cmd>ToggleTerm<cr>", { silent = true, desc = "Toggle Terminal" })
-vks("i", "<C-\\>", "<cmd>toggleterm<cr>", { silent = true, desc = "Toggle Terminal" })
+vks("n", "<C-\\>", "<cmd>ToggleTerm<cr>", { silent = true, desc = "toggle terminal" })
+vks("i", "<C-\\>", "<cmd>ToggleTerm<cr>", { silent = true, desc = "toggle terminal" })
 --vks("t", "<Esc>", [[<C-\><C-n>]])
 vks("t", "<C-n>", [[<C-\><C-n>]])
 
