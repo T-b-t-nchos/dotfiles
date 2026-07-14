@@ -69,9 +69,10 @@ vks("n", "<C-{>", "<cmd>AerialPrev<CR>")
 vks("n", "<C-}>", "<cmd>AerialNext<CR>")
 
 
--- sprit
+-- Window
 vks("n", "<leader>|", "<cmd>vsplit<cr>", { silent = true, desc = "vsprit" })
 vks("n", "<leader>-", "<cmd>split<cr>", { silent = true, desc = "hsprit" })
+vks("n", "<leader>wd", "<C-W>c", { silent = true, desc = "close window" })
 
 
 -- pane move prefix: Ctrl + hjkl
