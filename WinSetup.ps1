@@ -247,7 +247,7 @@ function Main-Function {
     Info " - Add PC98NX font with https://github.com/T-b-t-nchos/PC9800-PC98NX-NF-eXtended "
     Info " - Connect to the NAS"
     Info " - Make symlink of C:\ScreenShot to NAS"
-    Info "  -> e.g. New-Item -ItemType SymbolicLink -Path ""C:\ScreenShots"" -Target ""N:\画像とか\ScreenShot\"""
+    Info "  -> e.g. New-Item -ItemType SymbolicLink -Path ""C:\ScreenShots"" -Target ""\path\to\ScreenShot\"""
 
     Write-Host "Press Enter to exit...."
     Read-Host
