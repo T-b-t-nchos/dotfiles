@@ -123,7 +123,7 @@ function Main-Function {
             "--override"
             "--passive --config $parentDir\.config\.vsconfig"
         )
-    Install-DirectPackage `
+    Install-WithInstaller `
         -Name "WezTerm Nightly" `
         -Url "https://github.com/wezterm/wezterm/releases/download/nightly/WezTerm-nightly-setup.exe" `
         -InstallDir "C:\Program files\WezTerm"
@@ -493,7 +493,7 @@ function Install-ChocoPackage {
     }
 }
 
-function Install-DirectPackage {
+function Install-WithInstaller {
     param(
         [Parameter(Mandatory)]
         [string]$Name,
