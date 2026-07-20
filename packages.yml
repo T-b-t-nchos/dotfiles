@@ -2,153 +2,153 @@
 # List of packages to install
 
 options:
-  windows:
-    priority: [winget, choco, scoop]
+    windows:
+        priority: [winget, choco, scoop]
     commands:
-      winget: winget install --id {id} -e --accept-package-agreements --accept-source-agreements
-      choco: choco install {id} -y
-      scoop: scoop install {id}
+        winget: winget install --id {id} -e --accept-package-agreements --accept-source-agreements
+    choco: choco install {id} -y
+    scoop: scoop install {id}
 
-  linux:
+linux:
     priority: [apt, pacman]
     commands:
-      apt: sudo apt install -y {id}
-      pacman: sudo pacman -S --noconfirm {id}
+        apt: sudo apt install -y {id}
+    pacman: sudo pacman -S --noconfirm {id}
 
 
 packages:
-  # =========================
-  # Input Method
-  # =========================
-  - name: GoogleJapaneseInput
-    winget: Google.JapaneseIME
+    # =========================
+    # Input Method
+    # =========================
+    - name: GoogleJapaneseInput
+      winget: Google.JapaneseIME
 
-    # =========================
-    # Version Control
-    # =========================
-  - name: Git
-    winget: Git.Git
-    apt: git
-  - name: GitHubCli
-    winget: GitHub.cli
-    apt: gh
-  - name: LazyGit
-    winget: JesseDuffield.lazygit
+      # =========================
+      # Version Control
+      # =========================
+    - name: Git
+      winget: Git.Git
+      apt: git
+    - name: GitHubCli
+      winget: GitHub.cli
+      apt: gh
+    - name: LazyGit
+      winget: JesseDuffield.lazygit
 
-    # =========================
-    # CLI Utilities
-    # =========================
-  - name: Coreutils for Windows
-    winget: Microsoft.Coreutils
+      # =========================
+      # CLI Utilities
+      # =========================
+    - name: Coreutils for Windows
+      winget: Microsoft.Coreutils
 
-  - name: FZF
-    winget: junegunn.fzf
-    apt: fzf
-  - name: ripgrep
-    winget: BurntSushi.ripgrep.MSVC
-    apt: ripgrep
-  - name: fd
-    winget: sharkdp.fd
-    apt: fd-find
-  - name: jq
-    winget: jqlang.jq
-    apt: jq
-  - name: zoxide
-    winget: ajeetdsouza.zoxide
-    apt: zoxide
+    - name: FZF
+      winget: junegunn.fzf
+      apt: fzf
+    - name: ripgrep
+      winget: BurntSushi.ripgrep.MSVC
+      apt: ripgrep
+    - name: fd
+      winget: sharkdp.fd
+      apt: fd-find
+    - name: jq
+      winget: jqlang.jq
+      apt: jq
+    - name: zoxide
+      winget: ajeetdsouza.zoxide
+      apt: zoxide
 
-  - name: Zip
-    winget: GnuWin32.Zip
-    apt: zip
-  - name: UnZip
-    winget: GnuWin32.UnZip
-    apt: unzip
-  - name: 7-Zip
-    winget: 7zip.7zip
-    apt: 7zip
+    - name: Zip
+      winget: GnuWin32.Zip
+      apt: zip
+    - name: UnZip
+      winget: GnuWin32.UnZip
+      apt: unzip
+    - name: 7-Zip
+      winget: 7zip.7zip
+      apt: 7zip
 
-  - name: File
-    winget: GnuWin32.File
-    apt: file
+    - name: File
+      winget: GnuWin32.File
+      apt: file
 
-  - name: ffmpeg
-    winget: Gyan.ffmpeg
-    apt: ffmpeg
-  - name: ImageMagick
-    winget: ImageMagick.ImageMagick
-    apt: imagemagick
+    - name: ffmpeg
+      winget: Gyan.ffmpeg
+      apt: ffmpeg
+    - name: ImageMagick
+      winget: ImageMagick.ImageMagick
+      apt: imagemagick
 
-    # =========================
-    # Runtime / Languages
-    # =========================
-  - name: nvm
-    winget: CoreyButler.NVMforWindows
-    # For Ubuntu, use curl manually.
-  - name: Python
-    winget: Python.Python.3.14
-    apt: python3
-  - name: PythonPip
-    apt: python3-pip
-  - name: Deno
-    winget: DenoLand.Deno
-    # For Ubuntu, use npm.
+      # =========================
+      # Runtime / Languages
+      # =========================
+    - name: nvm
+      winget: CoreyButler.NVMforWindows
+      # For Ubuntu, use curl manually.
+    - name: Python
+      winget: Python.Python.3.14
+      apt: python3
+    - name: PythonPip
+      apt: python3-pip
+    - name: Deno
+      winget: DenoLand.Deno
+      # For Ubuntu, use npm.
 
-    # =========================
-    # Build Tools
-    # =========================
-  - name: BuildTools
-  # For windows, use winget manually.
-  # winget: Microsoft.VisualStudio.BuildTools
-    apt: build-essential
-  - name: CMake
-    winget: Kitware.CMake
-    apt: cmake
-  - name: Make
-    choco: make
+      # =========================
+      # Build Tools
+      # =========================
+    - name: BuildTools
+    # For windows, use winget manually.
+    # winget: Microsoft.VisualStudio.BuildTools
+      apt: build-essential
+    - name: CMake
+      winget: Kitware.CMake
+      apt: cmake
+    - name: Make
+      choco: make
 
-    # =========================
-    # Shell / Terminal
-    # =========================
-  - name: PowerShell
-    winget: Microsoft.PowerShell
-  - name: OhMyPosh
-    winget: JanDeDobbeleer.OhMyPosh
-    # For Ubuntu, use curl manually.
+      # =========================
+      # Shell / Terminal
+      # =========================
+    - name: PowerShell
+      winget: Microsoft.PowerShell
+    - name: OhMyPosh
+      winget: JanDeDobbeleer.OhMyPosh
+      # For Ubuntu, use curl manually.
 
-    # =========================
-    # Editors
-    # =========================
-  - name: Neovim
-    winget: Neovim.Neovim
-    # For Ubuntu, use curl manually.
-  - name: Vim
-    winget: vim.vim
-    apt: vim-common
+      # =========================
+      # Editors
+      # =========================
+    - name: Neovim
+      winget: Neovim.Neovim
+      # For Ubuntu, use curl manually.
+    - name: Vim
+      winget: vim.vim
+      apt: vim-common
 
-    # =========================
-    # Security / Encryption
-    # =========================
-  - name: Gpg4win
-    winget: GnuPG.Gpg4win
+      # =========================
+      # Security / Encryption
+      # =========================
+    - name: Gpg4win
+      winget: GnuPG.Gpg4win
 
-    # =========================
-    # Document Processing
-    # =========================
-  - name: Pandoc
-    winget: JohnMacFarlane.Pandoc
-  - name: Poppler
-    winget: oschwartz10612.Poppler
-    apt: poppler-utils
+      # =========================
+      # Document Processing
+      # =========================
+    - name: Pandoc
+      winget: JohnMacFarlane.Pandoc
+    - name: Poppler
+      winget: oschwartz10612.Poppler
+      apt: poppler-utils
 
-    # =========================
-    # File Manager
-    # =========================
-  - name: Yazi
-    winget: sxyazi.yazi
-    # For Ubuntu, use curl manually.
+      # =========================
+      # File Manager
+      # =========================
+    - name: Yazi
+      winget: sxyazi.yazi
+      # For Ubuntu, use curl manually.
 
-    # =========================
-    # Misc
-    # =========================
-  - name: zenhan
-    scoop: zenhan
+      # =========================
+      # Misc
+      # =========================
+    - name: zenhan
+      scoop: zenhan
