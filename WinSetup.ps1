@@ -17,16 +17,16 @@ function Main-Function {
     clear
 
     Ensure-Administrator| Out-Null
-    
+
     if (-not $Yes) {
         Confirm-Execution
     }
     else {
         Warn "Check skipped."
     }
-    
-    Write-Host "" 
-    
+
+    Write-Host ""
+
     #-------------------------------------------------------
     # Add dotfiles_PowerShell_profile.ps1 to Microsoft.PowerShell_profile.ps1
 
@@ -58,11 +58,11 @@ function Main-Function {
     Write-Host
 
     #-------------------------------------------------------
-    # Download Winget 
+    # Download Winget
     if (Get-Command winget -ErrorAction SilentlyContinue) {
         Done "winget is installed"
         winget --version
-    } 
+    }
     else {
         Info "Download winget..."
 
@@ -78,7 +78,7 @@ function Main-Function {
         Add-AppxPackage -Path $path
 
     }
-    
+
     Write-Host
 
     #-------------------------------------------------------
@@ -87,13 +87,13 @@ function Main-Function {
         Done "scoop is installed"
         scoop --version
         scoop update
-    } 
+    }
     else {
         Info "Download scoop..."
         Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
         iex "& {$(irm https://get.scoop.sh)} -RunAsAdmin"
     }
-    
+
     Write-Host
 
     #-------------------------------------------------------
@@ -116,7 +116,7 @@ function Main-Function {
     # Install...
 
     & (Join-Path $PSScriptRoot 'mm2f.ps1') (Join-Path $PSScriptRoot 'packages.yml')
-    
+
     Install-WingetPackage `
         -PackageId "Microsoft.VisualStudio.BuildTools" `
         -AdditionalArgs @(
@@ -139,19 +139,19 @@ function Main-Function {
         -InstallDir "$HOME\.bin\rapture"
 
 
-    
+
     Run-command "wsl --install"
 
 
     Reload-Env
-    
+
     Write-Host
 
     #-------------------------------------------------------
     # dot-config...
-    
+
     $DocumentsPath = [Environment]::GetFolderPath("MyDocuments")
-    
+
     New-RelativeSymlink `
         -RelativeSource ".config\Google Japanese Input\config1.db" `
         -Destination (Join-Path $HOME "\AppData\LocalLow\Google\Google Japanese Input\config1.db") `
@@ -161,18 +161,18 @@ function Main-Function {
         -RelativeSource ".config\dotfiles_PowerShell_profile.ps1" `
         -Destination (Join-Path -Path $DocumentsPath -ChildPath "PowerShell\dotfiles_PowerShell_profile.ps1") `
         -Force:$Force
-    
+
 
     New-RelativeSymlink `
         -RelativeSource ".config\nvim" `
         -Destination (Join-Path $env:LOCALAPPDATA "nvim") `
         -Force:$Force
-    
+
     New-RelativeSymlink `
         -RelativeSource ".config\wezterm" `
         -Destination ("~\.config\wezterm") `
         -Force:$Force
-    
+
     New-RelativeSymlink `
         -RelativeSource ".config\ohmyposh" `
         -Destination ("~\.config\ohmyposh") `
@@ -205,7 +205,7 @@ function Main-Function {
 
     #-------------------------------------------------------
     # Add to PATH
-    
+
     Add-ToPath "C:\Program Files (x86)\GnuWin32\bin" -Scope Machine
     Add-ToPath "$HOME\.bin\sshhub" -Scope User
     Add-ToPath "$HOME\.bin\rapture" -Scope User
@@ -217,7 +217,7 @@ function Main-Function {
 
     #-------------------------------------------------------
     # Other commands
-    
+
     Run-command("gh extension install yusukebe/gh-markdown-preview")
 
     Run-command("nvm install latest")
@@ -401,7 +401,7 @@ function Download-Font {
         if ($Force) { $flags = 0x14 }
 
         $fontsFolder.CopyHere($_.FullName, $flags)
-    }    
+    }
 
     Done "Installed Moralerspace."
 }
@@ -540,7 +540,7 @@ function Install-WithInstaller {
 
     try {
         Info "Downloading $Name ..."
-        
+
         curl.exe -L `
             --fail `
             --output $tempFile `
