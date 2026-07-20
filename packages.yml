@@ -72,7 +72,7 @@ packages:
       apt: file
 
     - name: ffmpeg
-      winget: Gyan.ffmpeg
+      winget: Gyan.FFmpeg
       apt: ffmpeg
     - name: ImageMagick
       winget: ImageMagick.ImageMagick
