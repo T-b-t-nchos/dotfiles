@@ -242,6 +242,13 @@ function Main-Function {
     #-------------------------------------------------------
 
     Info "Done."
+
+    Info "TODO (If you are Nchos):"
+    Info " - Add PC98NX font with https://github.com/T-b-t-nchos/PC9800-PC98NX-NF-eXtended "
+    Info " - Connect to the NAS"
+    Info " - Make symlink of C:\ScreenShot to NAS"
+    Info "  -> e.g. New-Item -ItemType SymbolicLink -Path ""C:\ScreenShots"" -Target ""N:\画像とか\ScreenShot\"""
+
     Write-Host "Press Enter to exit...."
     Read-Host
 }
