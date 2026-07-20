@@ -128,6 +128,16 @@ function Main-Function {
         -Url "https://github.com/wezterm/wezterm/releases/download/nightly/WezTerm-nightly-setup.exe" `
         -InstallDir "C:\Program files\WezTerm"
 
+    Install-Zip `
+        -Name "sshhub" `
+        -Url "https://github.com/T-b-t-nchos/sshhub/releases/latest/download/sshhub_win-x64.zip" `
+        -InstallDir "$HOME\.bin\sshhub"
+
+    Install-Zip `
+        -Name "rapture" `
+        -Url "https://www.knystudio.net/rapture-2.4.1.zip" `
+        -InstallDir "$HOME\.bin\rapture"
+
 
     
     Run-command "wsl --install"
@@ -183,6 +193,11 @@ function Main-Function {
         -Destination ("~\.config\AutoHotkey") `
         -Force:$Force
 
+    New-RelativeSymlink `
+        -RelativeSource ".config\Rapture" `
+        -Destination ("~\.config\Rapture") `
+        -Force:$Force
+
 
     Reload-Env
 
@@ -192,6 +207,8 @@ function Main-Function {
     # Add to PATH
     
     Add-ToPath "C:\Program Files (x86)\GnuWin32\bin" -Scope Machine
+    Add-ToPath "$HOME\.bin\sshhub" -Scope User
+    Add-ToPath "$HOME\.bin\rapture" -Scope User
 
     Reload-Env
 
@@ -212,10 +229,10 @@ function Main-Function {
     $Shortcut = $WshShell.CreateShortcut(
         "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\dotfiles_AHK.lnk"
     )
-    $Shortcut.TargetPath = (Get-Command AutoHotkey64.exe).Source
+    $Shortcut.TargetPath = "$env:ProgramFiles\AutoHotkey\v2\AutoHotkey64.exe"
     $Shortcut.Arguments  = "`"$HOME\.config\AutoHotkey\main.ahk`""
     $Shortcut.WorkingDirectory = "$HOME\.config\AutoHotkey"
-    $Shortcut.IconLocation = (Get-Command AutoHotkey64.exe).Source
+    $Shortcut.IconLocation = "$env:ProgramFilesAutoHotkeyv2AutoHotkey64.exe"
     $Shortcut.Save()
 
     Reload-Env
@@ -544,6 +561,52 @@ function Install-WithInstaller {
         else {
             Done "Installed $Name"
         }
+    }
+    catch {
+        Error "Installation failed: $Name"
+    }
+    finally {
+        if (Test-Path $tempFile) {
+            Remove-Item $tempFile -Force
+        }
+    }
+}
+
+function Install-Zip {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Name,
+
+        [Parameter(Mandatory)]
+        [string]$Url,
+
+        [Parameter(Mandatory)]
+        [string]$InstallDir
+    )
+
+    if (Test-Path $InstallDir) {
+        Done "Already installed: $Name"
+        return
+    }
+
+    $tempFile = Join-Path $env:TEMP "$($Name)-zip.zip"
+
+    try {
+        Info "Downloading $Name ..."
+
+        curl.exe -L `
+            --fail `
+            --output $tempFile `
+            $Url
+
+        if ($LASTEXITCODE -ne 0 -or !(Test-Path $tempFile)) {
+            Error "Download failed: $Name"
+            return
+        }
+
+        Info "Installing $Name ..."
+
+        Expand-Archive $tempFile -DestinationPath $InstallDir -Force
     }
     catch {
         Error "Installation failed: $Name"
