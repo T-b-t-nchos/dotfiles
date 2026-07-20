@@ -123,7 +123,7 @@ function Main-Function {
             "--override"
             "--passive --config $parentDir\.config\.vsconfig"
         )
-    Install-DirectPackage `
+    Install-WithInstaller `
         -Name "WezTerm Nightly" `
         -Url "https://github.com/wezterm/wezterm/releases/download/nightly/WezTerm-nightly-setup.exe" `
         -InstallDir "C:\Program files\WezTerm"
@@ -177,7 +177,13 @@ function Main-Function {
         -RelativeSource ".config\yazi" `
         -Destination (Join-Path $env:APPDATA "yazi\config") `
         -Force:$Force
-    
+
+    New-RelativeSymlink `
+        -RelativeSource ".config\AutoHotkey" `
+        -Destination ("~\.config\AutoHotkey") `
+        -Force:$Force
+
+
     Reload-Env
 
     Write-Host
@@ -199,6 +205,18 @@ function Main-Function {
 
     Run-command("nvm install latest")
     Run-command("npm install -g @antfu/ni mdpv tree-sitter-cli @mermaid-js/mermaid-cli")
+
+
+    Info "Create AutoHotkey startup shortcut"
+    $WshShell = New-Object -ComObject WScript.Shell
+    $Shortcut = $WshShell.CreateShortcut(
+        "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\dotfiles_AHK.lnk"
+    )
+    $Shortcut.TargetPath = (Get-Command AutoHotkey64.exe).Source
+    $Shortcut.Arguments  = "`"$HOME\.config\AutoHotkey\main.ahk`""
+    $Shortcut.WorkingDirectory = "$HOME\.config\AutoHotkey"
+    $Shortcut.IconLocation = (Get-Command AutoHotkey64.exe).Source
+    $Shortcut.Save()
 
     Reload-Env
 
@@ -475,7 +493,7 @@ function Install-ChocoPackage {
     }
 }
 
-function Install-DirectPackage {
+function Install-WithInstaller {
     param(
         [Parameter(Mandatory)]
         [string]$Name,
