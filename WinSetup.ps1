@@ -229,10 +229,10 @@ function Main-Function {
     $Shortcut = $WshShell.CreateShortcut(
         "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\dotfiles_AHK.lnk"
     )
-    $Shortcut.TargetPath = (Get-Command AutoHotkey64.exe).Source
+    $Shortcut.TargetPath = "$env:ProgramFiles\AutoHotkey\v2\AutoHotkey64.exe"
     $Shortcut.Arguments  = "`"$HOME\.config\AutoHotkey\main.ahk`""
     $Shortcut.WorkingDirectory = "$HOME\.config\AutoHotkey"
-    $Shortcut.IconLocation = (Get-Command AutoHotkey64.exe).Source
+    $Shortcut.IconLocation = "$env:ProgramFilesAutoHotkeyv2AutoHotkey64.exe"
     $Shortcut.Save()
 
     Reload-Env
