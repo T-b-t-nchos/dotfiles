@@ -555,6 +555,52 @@ function Install-WithInstaller {
     }
 }
 
+function Install-Zip {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Name,
+
+        [Parameter(Mandatory)]
+        [string]$Url,
+
+        [Parameter(Mandatory)]
+        [string]$InstallDir
+    )
+
+    if (Test-Path $InstallDir) {
+        Done "Already installed: $Name"
+        return
+    }
+
+    $tempFile = Join-Path $env:TEMP "$($Name)-zip.zip"
+
+    try {
+        Info "Downloading $Name ..."
+
+        curl.exe -L `
+            --fail `
+            --output $tempFile `
+            $Url
+
+        if ($LASTEXITCODE -ne 0 -or !(Test-Path $tempFile)) {
+            Error "Download failed: $Name"
+            return
+        }
+
+        Info "Installing $Name ..."
+
+        Expand-Archive $tempFile -DestinationPath $InstallDir -Force
+    }
+    catch {
+        Error "Installation failed: $Name"
+    }
+    finally {
+        if (Test-Path $tempFile) {
+            Remove-Item $tempFile -Force
+        }
+    }
+}
+
 
 function New-RelativeSymlink {
     param(
