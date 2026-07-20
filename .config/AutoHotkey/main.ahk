@@ -1,8 +1,10 @@
 #Include lib/IMEv2.ahk
 
+HOME := EnvGet("USERPROFILE")
+
 #InputLevel 1
 PrintScreen:: {
-    Run A_UserProfile "\.bin\rapture\rapture.exe", A_UserProfile "\.config\rapture\"
+    Run HOME "\.bin\rapture\rapture.exe", HOME "\.config\rapture"
     return
 }
 
