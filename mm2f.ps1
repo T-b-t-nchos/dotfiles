@@ -33,7 +33,7 @@ if (-not $commands) {
 }
 
 $defaultCommands = @{
-    winget = 'winget install --id {id} -e --accept-package-agreements --accept-source-agreements'
+    winget = 'winget install --id {id} -e --accept-package-agreements --accept-source-agreements --source winget'
     choco  = 'choco install {id} -y'
     scoop  = 'scoop install {id}'
 }
