@@ -193,6 +193,11 @@ function Main-Function {
         -Destination ("~\.config\AutoHotkey") `
         -Force:$Force
 
+    New-RelativeSymlink `
+        -RelativeSource ".config\Rapture" `
+        -Destination ("~\.config\Rapture") `
+        -Force:$Force
+
 
     Reload-Env
 
