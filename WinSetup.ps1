@@ -206,6 +206,18 @@ function Main-Function {
     Run-command("nvm install latest")
     Run-command("npm install -g @antfu/ni mdpv tree-sitter-cli @mermaid-js/mermaid-cli")
 
+
+    Info "Create AutoHotkey startup shortcut"
+    $WshShell = New-Object -ComObject WScript.Shell
+    $Shortcut = $WshShell.CreateShortcut(
+        "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\dotfiles_AHK.lnk"
+    )
+    $Shortcut.TargetPath = (Get-Command AutoHotkey64.exe).Source
+    $Shortcut.Arguments  = "`"$HOME\.config\AutoHotkey\main.ahk`""
+    $Shortcut.WorkingDirectory = "$HOME\.config\AutoHotkey"
+    $Shortcut.IconLocation = (Get-Command AutoHotkey64.exe).Source
+    $Shortcut.Save()
+
     Reload-Env
 
     Write-Host
