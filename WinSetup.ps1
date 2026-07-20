@@ -232,9 +232,8 @@ function Main-Function {
     $Shortcut.TargetPath = "$env:ProgramFiles\AutoHotkey\v2\AutoHotkey64.exe"
     $Shortcut.Arguments  = "`"$HOME\.config\AutoHotkey\main.ahk`""
     $Shortcut.WorkingDirectory = "$HOME\.config\AutoHotkey"
-    $Shortcut.IconLocation = "$env:ProgramFilesAutoHotkeyv2AutoHotkey64.exe"
+    $Shortcut.IconLocation = "$env:ProgramFiles\AutoHotkey\v2\AutoHotkey64.exe"
     $Shortcut.Save()
-
     Reload-Env
 
     Write-Host
