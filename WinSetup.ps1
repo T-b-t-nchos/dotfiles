@@ -177,7 +177,13 @@ function Main-Function {
         -RelativeSource ".config\yazi" `
         -Destination (Join-Path $env:APPDATA "yazi\config") `
         -Force:$Force
-    
+
+    New-RelativeSymlink `
+        -RelativeSource ".config\AutoHotkey" `
+        -Destination ("~\.config\AutoHotkey") `
+        -Force:$Force
+
+
     Reload-Env
 
     Write-Host
