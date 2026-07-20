@@ -17,16 +17,16 @@ function Main-Function {
     clear
 
     Ensure-Administrator| Out-Null
-    
+
     if (-not $Yes) {
         Confirm-Execution
     }
     else {
         Warn "Check skipped."
     }
-    
-    Write-Host "" 
-    
+
+    Write-Host ""
+
     #-------------------------------------------------------
     # Add dotfiles_PowerShell_profile.ps1 to Microsoft.PowerShell_profile.ps1
 
@@ -58,11 +58,11 @@ function Main-Function {
     Write-Host
 
     #-------------------------------------------------------
-    # Download Winget 
+    # Download Winget
     if (Get-Command winget -ErrorAction SilentlyContinue) {
         Done "winget is installed"
         winget --version
-    } 
+    }
     else {
         Info "Download winget..."
 
@@ -78,7 +78,7 @@ function Main-Function {
         Add-AppxPackage -Path $path
 
     }
-    
+
     Write-Host
 
     #-------------------------------------------------------
@@ -87,13 +87,13 @@ function Main-Function {
         Done "scoop is installed"
         scoop --version
         scoop update
-    } 
+    }
     else {
         Info "Download scoop..."
         Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
         iex "& {$(irm https://get.scoop.sh)} -RunAsAdmin"
     }
-    
+
     Write-Host
 
     #-------------------------------------------------------
@@ -116,32 +116,42 @@ function Main-Function {
     # Install...
 
     & (Join-Path $PSScriptRoot 'mm2f.ps1') (Join-Path $PSScriptRoot 'packages.yml')
-    
+
     Install-WingetPackage `
         -PackageId "Microsoft.VisualStudio.BuildTools" `
         -AdditionalArgs @(
             "--override"
             "--passive --config $parentDir\.config\.vsconfig"
         )
-    Install-DirectPackage `
+    Install-WithInstaller `
         -Name "WezTerm Nightly" `
         -Url "https://github.com/wezterm/wezterm/releases/download/nightly/WezTerm-nightly-setup.exe" `
         -InstallDir "C:\Program files\WezTerm"
 
+    Install-Zip `
+        -Name "sshhub" `
+        -Url "https://github.com/T-b-t-nchos/sshhub/releases/latest/download/sshhub_win-x64.zip" `
+        -InstallDir "$HOME\.bin\sshhub"
 
-    
+    Install-Zip `
+        -Name "rapture" `
+        -Url "https://www.knystudio.net/rapture-2.4.1.zip" `
+        -InstallDir "$HOME\.bin\rapture"
+
+
+
     Run-command "wsl --install"
 
 
     Reload-Env
-    
+
     Write-Host
 
     #-------------------------------------------------------
     # dot-config...
-    
+
     $DocumentsPath = [Environment]::GetFolderPath("MyDocuments")
-    
+
     New-RelativeSymlink `
         -RelativeSource ".config\Google Japanese Input\config1.db" `
         -Destination (Join-Path $HOME "\AppData\LocalLow\Google\Google Japanese Input\config1.db") `
@@ -151,18 +161,18 @@ function Main-Function {
         -RelativeSource ".config\dotfiles_PowerShell_profile.ps1" `
         -Destination (Join-Path -Path $DocumentsPath -ChildPath "PowerShell\dotfiles_PowerShell_profile.ps1") `
         -Force:$Force
-    
+
 
     New-RelativeSymlink `
         -RelativeSource ".config\nvim" `
         -Destination (Join-Path $env:LOCALAPPDATA "nvim") `
         -Force:$Force
-    
+
     New-RelativeSymlink `
         -RelativeSource ".config\wezterm" `
         -Destination ("~\.config\wezterm") `
         -Force:$Force
-    
+
     New-RelativeSymlink `
         -RelativeSource ".config\ohmyposh" `
         -Destination ("~\.config\ohmyposh") `
@@ -177,15 +187,28 @@ function Main-Function {
         -RelativeSource ".config\yazi" `
         -Destination (Join-Path $env:APPDATA "yazi\config") `
         -Force:$Force
-    
+
+    New-RelativeSymlink `
+        -RelativeSource ".config\AutoHotkey" `
+        -Destination ("~\.config\AutoHotkey") `
+        -Force:$Force
+
+    New-RelativeSymlink `
+        -RelativeSource ".config\Rapture" `
+        -Destination ("~\.config\Rapture") `
+        -Force:$Force
+
+
     Reload-Env
 
     Write-Host
 
     #-------------------------------------------------------
     # Add to PATH
-    
+
     Add-ToPath "C:\Program Files (x86)\GnuWin32\bin" -Scope Machine
+    Add-ToPath "$HOME\.bin\sshhub" -Scope User
+    Add-ToPath "$HOME\.bin\rapture" -Scope User
 
     Reload-Env
 
@@ -194,12 +217,23 @@ function Main-Function {
 
     #-------------------------------------------------------
     # Other commands
-    
+
     Run-command("gh extension install yusukebe/gh-markdown-preview")
 
     Run-command("nvm install latest")
     Run-command("npm install -g @antfu/ni mdpv tree-sitter-cli @mermaid-js/mermaid-cli")
 
+
+    Info "Create AutoHotkey startup shortcut"
+    $WshShell = New-Object -ComObject WScript.Shell
+    $Shortcut = $WshShell.CreateShortcut(
+        "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\dotfiles_AHK.lnk"
+    )
+    $Shortcut.TargetPath = "$env:ProgramFiles\AutoHotkey\v2\AutoHotkey64.exe"
+    $Shortcut.Arguments  = "`"$HOME\.config\AutoHotkey\main.ahk`""
+    $Shortcut.WorkingDirectory = "$HOME\.config\AutoHotkey"
+    $Shortcut.IconLocation = "$env:ProgramFiles\AutoHotkey\v2\AutoHotkey64.exe"
+    $Shortcut.Save()
     Reload-Env
 
     Write-Host
@@ -207,6 +241,13 @@ function Main-Function {
     #-------------------------------------------------------
 
     Info "Done."
+
+    Info "TODO (If you are Nchos):"
+    Info " - Add PC98NX font with https://github.com/T-b-t-nchos/PC9800-PC98NX-NF-eXtended "
+    Info " - Connect to the NAS"
+    Info " - Make symlink of C:\ScreenShot to NAS"
+    Info "  -> e.g. New-Item -ItemType SymbolicLink -Path ""C:\ScreenShots"" -Target ""\path\to\ScreenShot\"""
+
     Write-Host "Press Enter to exit...."
     Read-Host
 }
@@ -359,7 +400,7 @@ function Download-Font {
         if ($Force) { $flags = 0x14 }
 
         $fontsFolder.CopyHere($_.FullName, $flags)
-    }    
+    }
 
     Done "Installed Moralerspace."
 }
@@ -475,7 +516,7 @@ function Install-ChocoPackage {
     }
 }
 
-function Install-DirectPackage {
+function Install-WithInstaller {
     param(
         [Parameter(Mandatory)]
         [string]$Name,
@@ -498,7 +539,7 @@ function Install-DirectPackage {
 
     try {
         Info "Downloading $Name ..."
-        
+
         curl.exe -L `
             --fail `
             --output $tempFile `
@@ -526,6 +567,52 @@ function Install-DirectPackage {
         else {
             Done "Installed $Name"
         }
+    }
+    catch {
+        Error "Installation failed: $Name"
+    }
+    finally {
+        if (Test-Path $tempFile) {
+            Remove-Item $tempFile -Force
+        }
+    }
+}
+
+function Install-Zip {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Name,
+
+        [Parameter(Mandatory)]
+        [string]$Url,
+
+        [Parameter(Mandatory)]
+        [string]$InstallDir
+    )
+
+    if (Test-Path $InstallDir) {
+        Done "Already installed: $Name"
+        return
+    }
+
+    $tempFile = Join-Path $env:TEMP "$($Name)-zip.zip"
+
+    try {
+        Info "Downloading $Name ..."
+
+        curl.exe -L `
+            --fail `
+            --output $tempFile `
+            $Url
+
+        if ($LASTEXITCODE -ne 0 -or !(Test-Path $tempFile)) {
+            Error "Download failed: $Name"
+            return
+        }
+
+        Info "Installing $Name ..."
+
+        Expand-Archive $tempFile -DestinationPath $InstallDir -Force
     }
     catch {
         Error "Installation failed: $Name"
