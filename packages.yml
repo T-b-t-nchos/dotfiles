@@ -152,3 +152,6 @@ packages:
     # =========================
     - name: zenhan
       scoop: zenhan
+
+    - name: AutoHotkey
+      winget: AutoHotkey.AutoHotkey
