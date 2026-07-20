@@ -128,6 +128,16 @@ function Main-Function {
         -Url "https://github.com/wezterm/wezterm/releases/download/nightly/WezTerm-nightly-setup.exe" `
         -InstallDir "C:\Program files\WezTerm"
 
+    Install-Zip `
+        -Name "sshhub" `
+        -Url "https://github.com/T-b-t-nchos/sshhub/releases/latest/download/sshhub_win-x64.zip" `
+        -InstallDir "$HOME\.bin\sshhub"
+
+    Install-Zip `
+        -Name "rapture" `
+        -Url "https://www.knystudio.net/rapture-2.4.1.zip" `
+        -InstallDir "$HOME\.bin\rapture"
+
 
     
     Run-command "wsl --install"
