@@ -23,9 +23,9 @@ packages:
     - name: GoogleJapaneseInput
       winget: Google.JapaneseIME
 
-      # =========================
-      # Version Control
-      # =========================
+    # =========================
+    # Version Control
+    # =========================
     - name: Git
       winget: Git.Git
       apt: git
@@ -35,9 +35,9 @@ packages:
     - name: LazyGit
       winget: JesseDuffield.lazygit
 
-      # =========================
-      # CLI Utilities
-      # =========================
+    # =========================
+    # CLI Utilities
+    # =========================
     - name: Coreutils for Windows
       winget: Microsoft.Coreutils
 
@@ -78,9 +78,9 @@ packages:
       winget: ImageMagick.ImageMagick
       apt: imagemagick
 
-      # =========================
-      # Runtime / Languages
-      # =========================
+    # =========================
+    # Runtime / Languages
+    # =========================
     - name: nvm
       winget: CoreyButler.NVMforWindows
       # For Ubuntu, use curl manually.
@@ -93,9 +93,9 @@ packages:
       winget: DenoLand.Deno
       # For Ubuntu, use npm.
 
-      # =========================
-      # Build Tools
-      # =========================
+    # =========================
+    # Build Tools
+    # =========================
     - name: BuildTools
     # For windows, use winget manually.
     # winget: Microsoft.VisualStudio.BuildTools
@@ -106,18 +106,18 @@ packages:
     - name: Make
       choco: make
 
-      # =========================
-      # Shell / Terminal
-      # =========================
+    # =========================
+    # Shell / Terminal
+    # =========================
     - name: PowerShell
       winget: Microsoft.PowerShell
     - name: OhMyPosh
       winget: JanDeDobbeleer.OhMyPosh
       # For Ubuntu, use curl manually.
 
-      # =========================
-      # Editors
-      # =========================
+    # =========================
+    # Editors
+    # =========================
     - name: Neovim
       winget: Neovim.Neovim
       # For Ubuntu, use curl manually.
@@ -125,30 +125,30 @@ packages:
       winget: vim.vim
       apt: vim-common
 
-      # =========================
-      # Security / Encryption
-      # =========================
+    # =========================
+    # Security / Encryption
+    # =========================
     - name: Gpg4win
       winget: GnuPG.Gpg4win
 
-      # =========================
-      # Document Processing
-      # =========================
+    # =========================
+    # Document Processing
+    # =========================
     - name: Pandoc
       winget: JohnMacFarlane.Pandoc
     - name: Poppler
       winget: oschwartz10612.Poppler
       apt: poppler-utils
 
-      # =========================
-      # File Manager
-      # =========================
+    # =========================
+    # File Manager
+    # =========================
     - name: Yazi
       winget: sxyazi.yazi
       # For Ubuntu, use curl manually.
 
-      # =========================
-      # Misc
-      # =========================
+    # =========================
+    # Misc
+    # =========================
     - name: zenhan
       scoop: zenhan
