@@ -2,7 +2,7 @@
 
 #InputLevel 1
 PrintScreen:: {
-    Run A_UserProfile "\.bin\rapture\rapture.exe"
+    Run A_UserProfile "\.bin\rapture\rapture.exe", A_UserProfile "\.config\rapture\"
     return
 }
 
