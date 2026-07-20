@@ -202,6 +202,8 @@ function Main-Function {
     # Add to PATH
     
     Add-ToPath "C:\Program Files (x86)\GnuWin32\bin" -Scope Machine
+    Add-ToPath "$HOME\.bin\sshhub" -Scope User
+    Add-ToPath "$HOME\.bin\rapture" -Scope User
 
     Reload-Env
 
