@@ -14,7 +14,7 @@ options:
     commands:
       apt: sudo apt install -y {id}
       pacman: sudo pacman -S --noconfirm {id}
-      
+
 
 packages:
   # =========================
@@ -50,6 +50,12 @@ packages:
   - name: fd
     winget: sharkdp.fd
     apt: fd-find
+  - name: jq
+    winget: jqlang.jq
+    apt: jq
+  - name: zoxide
+    winget: ajeetdsouza.zoxide
+    apt: zoxide
 
   - name: Zip
     winget: GnuWin32.Zip
@@ -57,10 +63,20 @@ packages:
   - name: UnZip
     winget: GnuWin32.UnZip
     apt: unzip
+  - name: 7-Zip
+    winget: 7zip.7zip
+    apt: 7zip
 
   - name: File
     winget: GnuWin32.File
     apt: file
+
+  - name: ffmpeg
+    winget: Gyan.ffmpeg
+    apt: ffmpeg
+  - name: ImageMagick
+    winget: ImageMagick.ImageMagick
+    apt: imagemagick
 
     # =========================
     # Runtime / Languages
@@ -120,6 +136,9 @@ packages:
     # =========================
   - name: Pandoc
     winget: JohnMacFarlane.Pandoc
+  - name: Poppler
+    winget: oschwartz10612.Poppler
+    apt: poppler-utils
 
     # =========================
     # File Manager
@@ -133,4 +152,3 @@ packages:
     # =========================
   - name: zenhan
     scoop: zenhan
-
