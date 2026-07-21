@@ -247,6 +247,7 @@ function Main-Function {
     Info " - Connect to the NAS"
     Info " - Make symlink of C:\ScreenShot to NAS"
     Info "  -> e.g. New-Item -ItemType SymbolicLink -Path ""C:\ScreenShots"" -Target ""\path\to\ScreenShot\"""
+    Info " - Sign in to github with gh auth login"
 
     Write-Host "Press Enter to exit...."
     Read-Host
