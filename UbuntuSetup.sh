@@ -59,7 +59,7 @@ Main-Function() {
     # if (Get-Command winget -ErrorAction SilentlyContinue) {
     #     Done "winget is installed"
     #     winget --version
-    # } 
+    # }
     # else {
     #     Info "Download winget..."
     #     ...
@@ -293,6 +293,47 @@ Install-AptPackage() {
     else
         Done "Installed $pkg"
     fi
+}
+
+Install-Zip() {
+
+    name="$1"
+    url="$2"
+    install_dir="$3"
+
+    if [ -d "$install_dir" ]; then
+        Done "Already installed: $name"
+        return
+    fi
+
+    temp_file="/tmp/${name}-zip.zip"
+
+    Info "Downloading $name ..."
+
+    curl -L \
+        --fail \
+        --output "$temp_file" \
+        "$url"
+
+    if [ $? -ne 0 ] || [ ! -f "$temp_file" ]; then
+        Error "Download failed: $name"
+        rm -f "$temp_file"
+        return
+    fi
+
+    Info "Installing $name ..."
+
+    mkdir -p "$install_dir"
+
+    unzip -q "$temp_file" -d "$install_dir"
+
+    if [ $? -ne 0 ]; then
+        Error "Installation failed: $name"
+    else
+        Done "Installed $name"
+    fi
+
+    rm -f "$temp_file"
 }
 
 #-----------------------------------------------------------------------------------------------#
