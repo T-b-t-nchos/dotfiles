@@ -117,10 +117,12 @@ Main-Function() {
         "https://github.com/sxyazi/yazi/releases/download/${YAZI_VERSION}/${DEB_FILE}"
     sudo apt install -y "./${DEB_FILE}"
 
-    curl -LO https://github.com/T-b-t-nchos/sshhub/releases/latest/download/sshhub_linux-x64.zip
-    unzip sshhub_linux-x64.zip -d ~/.bin/sshhub
+    Install-Zip \
+        "sshhub" \
+        "https://github.com/T-b-t-nchos/sshhub/releases/latest/download/sshhub_linux-x64.zip" \
+        "$HOME/.bin/sshhub"
     chmod +x ~/.bin/sshhub/sshhub
-    rm sshhub_linux-x64.zip
+
 
     echo
 
