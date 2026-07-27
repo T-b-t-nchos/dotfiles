@@ -24,3 +24,4 @@ function gitinit {
 }
 
 function cd { z $args }
+function cdd { cd $args }

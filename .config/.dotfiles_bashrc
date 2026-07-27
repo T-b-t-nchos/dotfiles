@@ -16,3 +16,4 @@ gitinit() {
 }
 
 alias cd() { z $* }
+alias cdd() { cd $* }
