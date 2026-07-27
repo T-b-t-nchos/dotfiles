@@ -5,12 +5,12 @@ export PATH="$PATH:$HOME/.bin/sshhub"
 eval "$(oh-my-posh init bash --config ~/.config/ohmyposh/theme/Aquaposh.omp.json)"
 
 # Custom commands
-mkcd() {
+alias mkcd() {
     mkdir -p "$1"
     cd "$1"
 }
 
-gitinit() {
+alias gitinit() {
     git init
     git commit --allow-empty -m "Initial commit"
 }
