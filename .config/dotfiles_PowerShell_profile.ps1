@@ -3,6 +3,8 @@ if (Test-Path $theme) {
     oh-my-posh init pwsh --config $theme | Invoke-Expression
 }
 
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
+
 # Custom commands
 function re {
     $env:Path =
