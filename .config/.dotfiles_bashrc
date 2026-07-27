@@ -17,6 +17,6 @@ gitinit() {
     git commit --allow-empty -m "Initial commit"
 }
 
-cd() { z $* }
-cdd() { builtin cd "$@" }
+cd() { z $*; }
+cdd() { builtin cd "$@"; }
 
