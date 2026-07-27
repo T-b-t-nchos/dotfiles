@@ -56,7 +56,7 @@ vks("n", "<leader>nf", "<cmd>Neotree toggle<CR>", { silent = true })
 vks("n", "<leader>ne", "<cmd>Neotree filesystem toggle<CR>")
 vks("n", "<leader>nb", "<cmd>Neotree buffers toggle<CR>")
 vks("n", "<leader>ng", "<cmd>Neotree git_status toggle<CR>")
-vks("n", "<leader>f", function()
+vks("n", "<leader>e", function()
     vim.cmd("cd %:p:h")
     vim.cmd("Neotree filesystem reveal toggle left")
     --vim.cmd("wincmd l")
@@ -144,7 +144,7 @@ vks("n", "<leader>d", function()
 end, { desc = "Generate doc comment (neogen)" })
 
 
--- Comment 
+-- Comment
 -- vks("n", "<leader>cc", function() require('Comment.api').toggle.linewise.current() end, { noremap = true, silent = true, desc = "Toggle Comment (linewise)" })
 -- vks("n", "<leader>cb", function() require('Comment.api').toggle.blockwise.current() end, { noremap = true, silent = true, desc = "Toggle Comment (blockwise)" })
 
