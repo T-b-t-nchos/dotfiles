@@ -5,7 +5,7 @@ if (Test-Path $theme) {
 
 # Custom commands
 function re {
-    $env:Path = 
+    $env:Path =
         [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" +
         [System.Environment]::GetEnvironmentVariable("Path","User")
 }
@@ -22,3 +22,5 @@ function gitinit {
     git init
     git commit --allow-empty -m "Initial commit"
 }
+
+function cd { z $args }
