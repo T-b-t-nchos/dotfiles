@@ -18,4 +18,4 @@ alias gitinit() {
 }
 
 alias cd() { z $* }
-alias cdd() { cd $* }
+alias cdd() { builtin cd "$@" }
