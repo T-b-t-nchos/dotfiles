@@ -6,6 +6,24 @@ return {
             win = {
                 border = "rounded",
             },
+            spec = {
+                {
+                    mode = "n",
+                    { "<leader>b", group = "Buffers" },
+                    { "<leader>c", group = "Colors" },
+                    { "<leader>g", group = "Git" },
+                    { "<leader>i", group = "Images" },
+                    { "<leader>n", group = "Navigation" },
+                    { "<leader>o", group = "GitHub (Octo)" },
+                    { "<leader>p", group = "Previews" },
+                    { "<leader>S", group = "Setsu." },
+                    { "<leader>T", group = "Treesitter" },
+                    { "<leader>w", group = "Windows" },
+                    { "<leader>x", group = "LSP" },
+                    { "<leader>#", group = "C#/.NET" },
+                    { "<leader><tab>", group = "tabs" },
+                },
+            },
         })
 
         local wk = require("which-key")
