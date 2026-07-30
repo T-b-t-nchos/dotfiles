@@ -145,6 +145,10 @@ packages:
       winget: oschwartz10612.Poppler
       apt: poppler-utils
 
+    - name: Evince
+      apt: evince
+      # windows is not supported
+
     # =========================
     # File Manager
     # =========================
