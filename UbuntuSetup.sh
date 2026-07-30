@@ -6,7 +6,7 @@ Yes=false
 #-----------------------------------------------------------------------------------------------#
 
 Destination="$Destination"
-parentDir="$(dirname "$Destination")"
+parentDir="$(dirname"$Destination")"
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [ -n "$SUDO_USER" ]; then
@@ -123,6 +123,11 @@ Main-Function() {
         "$HOME/.bin/sshhub"
     chmod +x ~/.bin/sshhub/sshhub
 
+    Info "Installing texlive..."
+    wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+    tar -zxf install-tl-unx.tar.gz
+    cd install-tl-*
+    sudo perl install-tl
 
     echo
 
