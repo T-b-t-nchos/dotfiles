@@ -1,6 +1,11 @@
 **/yazi/flavors/
 **/yazi/plugins/
 
+lazygit**
+nvim-**
+yazi-**
+**/install-tl**
+
 **/[Tt]ools/
 lazy-lock.json
 
