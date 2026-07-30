@@ -126,8 +126,11 @@ Main-Function() {
     Info "Installing texlive..."
     wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
     tar -zxf install-tl-unx.tar.gz
-    cd install-tl-*
-    sudo perl install-tl
+    rm install-tl-unx.tar.gz
+    cd "$(printf '%s\n' install-tl-* | sort | tail -n1)"
+    sudo perl install-tl --profile=../.config/TeX-Live/unx.texlive.profile
+    cd ..
+    rm -rf install-tl-*
 
     echo
 

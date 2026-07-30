@@ -139,6 +139,17 @@ function Main-Function {
         -InstallDir "$HOME\.bin\rapture"
 
 
+    Info "Installing texlive..."
+    Invoke-WebRequest `
+        -Uri "https://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip" `
+        -OutFile "install-tl.zip"
+    Expand-Archive install-tl.zip
+    Set-Location (Get-ChildItem .\install-tl\install-tl-* -Directory | Sort-Object Name | Select-Object -Last 1)
+    .\install-tl-windows.bat --no-gui --profile="..\..\.config\TeX-Live\win.texlive.profile"
+    Set-Location ..\..
+    Remove-Item .\install-tl.zip
+    Remove-Item .\install-tl -Force -Recurse
+
 
     Run-command "wsl --install"
 
