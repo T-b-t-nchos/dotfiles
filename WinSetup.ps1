@@ -245,6 +245,13 @@ function Main-Function {
     $Shortcut.WorkingDirectory = "$HOME\.config\AutoHotkey"
     $Shortcut.IconLocation = "$env:ProgramFiles\AutoHotkey\v2\AutoHotkey64.exe"
     $Shortcut.Save()
+
+
+    Info "Setup TeX Live..."
+    tlmgr update --self --all
+    tlmgr install lualatex-math
+    tlmgr path add
+
     Reload-Env
 
     Write-Host

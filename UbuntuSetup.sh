@@ -167,6 +167,13 @@ Main-Function() {
     Run-command "nvm install node"
     Run-command "npm install -g @antfu/ni mdpv tree-sitter-cli deno @mermaid-js/mermaid-cli"
 
+
+    Info "Setup TeX Live..."
+    sudo "$(find /usr/local/texlive -type f -path '*/bin/*/tlmgr' | sort | tail -n1)" path add
+    sudo tlmgr update --self --all
+    sudo tlmgr install latexmk lualatex-math
+    sudo tlmgr path add
+
     Reload-Env
 
     echo
