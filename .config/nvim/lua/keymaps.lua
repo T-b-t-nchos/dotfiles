@@ -40,7 +40,7 @@ vks("n", "<leader>Tk", "<cmd>Telescope keymaps<cr>", { silent = true, desc = "Ke
 vks("n", "<leader>Tv", "<cmd>Telescope vim_options<cr>", { silent = true, desc = "Vim Options" })
 vks("n", "<leader>Tr", "<cmd>Telescope registers<cr>", { silent = true, desc = "Registers" })
 
--- move buffers
+-- buffers
 vks("n", "<leader>bj", "<cmd>bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
 vks("n", "<leader>bk", "<cmd>bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
 vks("n", "<leader>b<Left>", "<cmd>bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
@@ -49,6 +49,7 @@ vks("n", "<leader>bh", "<cmd>bprev<CR>", { silent = true, desc = "Move Buffer Pr
 vks("n", "<leader>bl", "<cmd>bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
 vks("n", "H", "<cmd>bprev<CR>", { silent = true, desc = "Move Buffer Prev(←)"})
 vks("n", "L", "<cmd>bnext<CR>", { silent = true, desc = "Move Buffer Next(→)"})
+vks("n", "<leader>X", "<cmd>bd<CR>", { silent = true, desc = "Delete buffer" })
 
 
 -- neotree
