@@ -125,6 +125,11 @@ packages:
       winget: vim.vim
       apt: vim-common
 
+    - name: TexLive
+      scoop: texlive
+      apt: texlive-full
+
+
     # =========================
     # Security / Encryption
     # =========================
