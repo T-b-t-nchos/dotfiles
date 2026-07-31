@@ -30,6 +30,20 @@ vim.opt.shiftwidth = 4
 
 
 vim.opt.clipboard:append('unnamedplus')
+if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 or vim.fn.has('win32unix') == 1 then
+    vim.g.clipboard = {
+        name = "win32yank",
+        copy = {
+            ["+"] = "win32yank.exe -i --crlf",
+            ["*"] = "win32yank.exe -i --crlf",
+        },
+        paste = {
+            ["+"] = "win32yank.exe -o --lf",
+            ["*"] = "win32yank.exe -o --lf",
+        },
+        cache_enabled = 0,
+    }
+end
 
 
 vim.opt.winborder = "rounded"
