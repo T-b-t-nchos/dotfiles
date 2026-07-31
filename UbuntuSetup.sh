@@ -12,9 +12,8 @@ SkipOtherCommands=false
 
 #-----------------------------------------------------------------------------------------------#
 # Parse options (Ubuntu only)
-
 show_help() {
-    cat "$(dirname "$0")/doc/scriptHelp.txt"
+    cat "$(dirname "$0")/docs/scriptHelp.txt"
 }
 
 while (($#)); do
@@ -46,7 +45,7 @@ while (($#)); do
         -SkipOtherCommands)
             SkipOtherCommands=true
             ;;
-        -Help|-h|--help)
+        -Help|-h|-\?|--help)
             show_help
             exit 0
             ;;

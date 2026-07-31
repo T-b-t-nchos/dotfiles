@@ -17,7 +17,7 @@ param(
 #-----------------------------------------------------------------------------------------------#
 # Help
 function Show-Help {
-    Get-Content "$(Split-Path -Parent $PSCommandPath)/doc/scriptHelp.txt"
+    Get-Content "$(Split-Path -Parent $PSCommandPath)/docs/scriptHelp.txt"
 }
 
 if ($Help) {
