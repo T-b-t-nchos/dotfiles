@@ -369,7 +369,7 @@ Run-OtherCommands() {
     Info "Setup TeX Live..."
     sudo "$(find /usr/local/texlive -type f -path '*/bin/*/tlmgr' | sort | tail -n1)" path add
     sudo tlmgr update --self --all
-    sudo tlmgr install latexmk lualatex-math
+    sudo tlmgr install latexmk lualatex-math uplatex
     sudo tlmgr path add
 
     Reload-Env

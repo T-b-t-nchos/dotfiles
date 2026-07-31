@@ -467,7 +467,7 @@ function Run-OtherCommands {
 
     Info "Setup TeX Live..."
     tlmgr update --self --all
-    tlmgr install latexmk lualatex-math
+    tlmgr install latexmk lualatex-math uplatex
     tlmgr path add
 
     Reload-Env
