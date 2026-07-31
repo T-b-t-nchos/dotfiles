@@ -13,6 +13,7 @@ return {
                     { "<leader>c", group = "Colors" },
                     { "<leader>g", group = "Git" },
                     { "<leader>i", group = "Images" },
+                    { "<leader>L", group = "(Lua/La)TeX" },
                     { "<leader>n", group = "Navigation" },
                     { "<leader>o", group = "GitHub (Octo)" },
                     { "<leader>p", group = "Previews" },

@@ -298,6 +298,12 @@ vim.keymap.set("n", "<leader>yz", "<cmd>Yazi<cr>", { silent = true, desc = "Yazi
 vim.keymap.set("n", "<leader>yZ", "<cmd>Yazi cwd<cr>", { silent = true, desc = "Yazi in nvim's working directory" })
 
 
+-- VimTex
+vks("n", "<leader>Ll", "<cmd>VimtexCompile<cr>", { silent = true, desc = "Vimtex Compile" })
+vks("n", "<leader>Ls", "<cmd>VimtexCompileSS<cr>", { silent = true, desc = "Vimtex Compile one shot" })
+vks("n", "<leader>pt", "<cmd>VimtexCompile<cr>", { silent = true, desc = "Preview (La)TeX" })
+
+
 -- which-key integration
 local ok, wk = pcall(require, "which-key")
 if ok then
