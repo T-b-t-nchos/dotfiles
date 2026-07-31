@@ -12,6 +12,7 @@ return {
 
             "moyiz/blink-emoji.nvim",
             'Kaiser-Yang/blink-cmp-git',
+            "erooke/blink-cmp-latex",
 
             "L3MON4D3/LuaSnip",
         },
@@ -143,6 +144,7 @@ return {
                     "emoji",
                     "treesitter",
                     "git",
+                    "latex",
                 },
 
                 providers = {
@@ -192,6 +194,13 @@ return {
                                 }
                             }
                         }
+                    },
+                    latex = {
+                        name = "Latex",
+                        module = "blink-cmp-latex",
+                        opts = {
+                            insert_command = false
+                        },
                     },
                 },
             },
