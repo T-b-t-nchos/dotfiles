@@ -9,6 +9,9 @@ vks("n", "<leader>wqa", function()
     vim.cmd("wa")
     vim.cmd("qa")
 end, { desc = "Save All & Quit All", silent = true })
+vks("n", "<leader>qq", function()
+    vim.cmd("qa")
+end, { desc = "Quit", silent = true })
 
 
 -- Style
