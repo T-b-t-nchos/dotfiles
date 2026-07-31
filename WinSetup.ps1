@@ -1,4 +1,8 @@
 param(
+    [Alias("h", "?", "help")]
+    [switch]$Help,
+
+
     [switch]$Force,
     [switch]$Yes,
     [switch]$SkipFont,
@@ -9,6 +13,18 @@ param(
     [switch]$SkipPATH,
     [switch]$SkipOtherCommands
 )
+
+#-----------------------------------------------------------------------------------------------#
+# Help
+function Show-Help {
+    Get-Content "$(Split-Path -Parent $PSCommandPath)/doc/scriptHelp.txt"
+}
+
+if ($Help) {
+    Show-Help
+    exit 0
+}
+
 
 #-----------------------------------------------------------------------------------------------#
 

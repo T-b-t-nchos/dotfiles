@@ -11,6 +11,23 @@ SkipPATH=false # Not implemented
 SkipOtherCommands=false
 
 #-----------------------------------------------------------------------------------------------#
+# Help
+show_help() {
+    cat "$(dirname "$0")/doc/scriptHelp.txt"
+}
+
+while (($#)); do
+    case "$1" in
+        -h|--help|-\?)
+            show_help
+            exit 0
+            ;;
+    esac
+    shift
+done
+
+
+#-----------------------------------------------------------------------------------------------#
 
 Destination="$Destination"
 parentDir="$(dirname"$Destination")"
