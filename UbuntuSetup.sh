@@ -11,18 +11,52 @@ SkipPATH=false # Not implemented
 SkipOtherCommands=false
 
 #-----------------------------------------------------------------------------------------------#
-# Help
+# Parse options (Ubuntu only)
+
 show_help() {
     cat "$(dirname "$0")/doc/scriptHelp.txt"
 }
 
 while (($#)); do
     case "$1" in
-        -h|--help|-\?)
+        -Force)
+            Force=true
+            ;;
+        -Yes)
+            Yes=true
+            ;;
+        -SkipFont)
+            SkipFont=true
+            ;;
+        -SkipPackMgr)
+            SkipPackMgr=true
+            ;;
+        -SkipMM2F)
+            SkipMM2F=true
+            ;;
+        -SkipManualInstall)
+            SkipManualInstall=true
+            ;;
+        -SkipSymlinks)
+            SkipSymlinks=true
+            ;;
+        -SkipPATH)
+            SkipPATH=true
+            ;;
+        -SkipOtherCommands)
+            SkipOtherCommands=true
+            ;;
+        -Help|-h|--help)
             show_help
             exit 0
             ;;
+        *)
+            echo "Unknown option: $1" >&2
+            echo "Use -Help or --help for usage."
+            exit 1
+            ;;
     esac
+
     shift
 done
 
