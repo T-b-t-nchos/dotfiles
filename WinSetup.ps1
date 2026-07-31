@@ -27,6 +27,7 @@ if ($Help) {
 
 if ($args.Count -gt 0) {
     Write-Error "Unknown argument(s): $($args -join ', ')"
+    Write-Error "Use -Help or -h for usage."
     exit 1
 }
 
