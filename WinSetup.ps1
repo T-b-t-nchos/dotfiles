@@ -1,5 +1,5 @@
 param(
-    [Alias("h", "?", "help")]
+    [Alias("h", "?")]
     [switch]$Help,
 
 
