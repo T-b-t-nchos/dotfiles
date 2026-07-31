@@ -15,7 +15,7 @@ param(
 )
 
 #-----------------------------------------------------------------------------------------------#
-# Help
+# Parce options (Windows only)
 function Show-Help {
     Get-Content "$(Split-Path -Parent $PSCommandPath)/docs/scriptHelp.txt"
 }
@@ -23,6 +23,11 @@ function Show-Help {
 if ($Help) {
     Show-Help
     exit 0
+}
+
+if ($args.Count -gt 0) {
+    Write-Error "Unknown argument(s): $($args -join ', ')"
+    exit 1
 }
 
 
