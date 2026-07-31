@@ -5,7 +5,7 @@
 # ----------------------------------------
 
 $latex = 'uplatex %O -kanji=utf8 -no-guess-input-enc -synctex=1 -interaction=nonstopmode %S';
-$pdflatex = 'pdflatex %O -synctex=1 -interaction=nonstopmode %S';
+$pdflatex = 'lualatex %O -synctex=1 -interaction=nonstopmode %S';
 $lualatex = 'lualatex %O -synctex=1 -interaction=nonstopmode %S';
 $xelatex = 'xelatex %O -no-pdf -synctex=1 -shell-escape -interaction=nonstopmode %S';
 
@@ -36,7 +36,7 @@ $ps2pdf = 'ps2pdf.exe %O %S %D';
 # PDF mode
 # ----------------------------------------
 
-# $pdf_mode = 4;
+$pdf_mode = 4;
 
 # ----------------------------------------
 # PDF Viewer
