@@ -1,0 +1,53 @@
+Nchos Dotfiles Installation Script
+=================================
+
+Usage:
+    .\install.ps1 [options]
+
+
+Options:
+    -Help, -h, -?
+        Show this help message.
+
+    -Force
+        Overwrite existing files and settings.
+
+    -Yes
+        Skip confirmation prompt.
+
+    -SkipFont
+        Skip font installation.
+
+    -SkipPackMgr
+        Skip package manager installation.
+
+    -SkipMM2F
+        Skip mm2f package installation.
+
+    -SkipManualInstall
+        Skip manual installation.
+
+    -SkipSymlinks
+        Skip symbolic link creation.
+
+    -SkipPATH
+        Skip PATH configuration.
+
+    -SkipOtherCommands
+        Skip additional setup commands.
+
+
+Examples:
+    .\install.ps1
+    .\install.ps1 -Yes
+    .\install.ps1 -Force -SkipFont
+
+
+Description:
+    Installs and configures Nchos' Windows development environment,
+    including dotfiles, tools, fonts, and packages.
+
+
+Repository:
+    https://github.com/T-b-t-nchos/dotfiles
+
