@@ -2,6 +2,13 @@
 
 Force=false
 Yes=false
+SkipFont=false
+SkipPackMgr=false # Not implemented
+SkipMM2F=false
+SkipManualInstall=false
+SkipSymlinks=false
+SkipPATH=false # Not implemented
+SkipOtherCommands=false
 
 #-----------------------------------------------------------------------------------------------#
 
@@ -46,33 +53,160 @@ Main-Function() {
 
     #-------------------------------------------------------
     # Download Font
-    Install-AptPackage curl
-    Install-AptPackage unzip
-    Install-AptPackage gpg
-    Download-font
-    echo
+    if [ -z "$SkipFont" ]; then
+        Download-font
+    else
+        echo "Skipped: Font"
+    fi
 
     #-------------------------------------------------------
-    # Download Winget (Windows only)
+    # Install package managers
+    if [ -z "$SkipPackMgr" ]; then
+        # Install-PackMgr
+    else
+        echo "Skipped: Install PackMgr"
+    fi
 
-    # PowerShell original:
-    # if (Get-Command winget -ErrorAction SilentlyContinue) {
-    #     Done "winget is installed"
-    #     winget --version
-    # }
-    # else {
-    #     Info "Download winget..."
-    #     ...
-    # }
 
     #-------------------------------------------------------
     # Install...
 
+    if [ -z "$SkipMM2F" ]; then
+        Install-withMM2F
+    else
+        echo "Skipped: Install with MM2F"
+    fi
+
+    if [ -z "$SkipManualInstall" ]; then
+        Install-Manually
+    else
+        echo "Skipped: Install Manually"
+    fi
+
+
+    #-------------------------------------------------------
+    # Symlinks
+    if [ -z "$SkipSymlinks" ]; then
+        local args=()
+        if [ -n "$Force" ]; then
+            args+=("-Force")
+        fi
+        Make-Symlinks "${args[@]}"
+    else
+        echo "Skipped: Symlinks"
+    fi
+
+    #-------------------------------------------------------
+    # Add to PATH
+    if [ -z "$SkipPATH" ]; then
+        # Add-PATH
+    else
+        echo "Skipped: Add to PATH"
+    fi
+
+    #-------------------------------------------------------
+    # Other commands
+    if [ -z "$SkipOtherCommands" ]; then
+        Run-OtherCommands
+    else
+        echo "Skipped: Other commands"
+    fi
+
+    #-------------------------------------------------------
+
+    Info "Done. Please reboot your system."
+    echo "Press Enter to exit...."
+    read
+}
+
+#-----------------------------------------------------------------------------------------------#
+
+
+function Confirm-Execution {
+
+
+banner='
+    ________      _____     __________________
+    ___  __ \_______  /_    ___  __/__(_)__  /____________
+    __  / / /  __ \  __/    __  /_ __  /__  /_  _ \_  ___/
+    _  /_/ // /_/ / /_      _  __/ _  / _  / /  __/(__  )
+    /_____/ \____/\__/      /_/    /_/  /_/  \___//____/  By Nchos
+
+    ________    _____                     ________            _____        _____
+    __  ___/______  /____  _________      __  ___/_______________(_)_________  /_
+    _____ \_  _ \  __/  / / /__  __ \     _____ \_  ___/_  ___/_  /___  __ \  __/
+    ____/ //  __/ /_ / /_/ /__  /_/ /     ____/ // /__ _  /   _  / __  /_/ / /_
+    /____/ \___/\__/ \__,_/ _  .___/      /____/ \___/ /_/    /_/  _  .___/\__/
+                            /_/                                    /_/
+
+'
+
+    Info "$banner"
+
+echo
+read -p "Continue? (Y/N) " response
+
+if [[ ! "$response" =~ ^[Yy]$ ]]; then
+    echo "Aborted."
+    exit 1
+fi
+}
+
+Download-font() {
+    Install-AptPackage curl
+    Install-AptPackage unzip
+    Install-AptPackage gpg
+
+    fontDir="$USER_HOME/.local/share/fonts"
+
+    mkdir -p "$fontDir"
+
+    if fc-list | grep -i "Moralerspace" >/dev/null 2>&1; then
+        Done "Fonts is already installed"
+        return 0
+    fi
+
+    # PowerShell original download
+    # https://github.com/yuru7/moralerspace/releases/download/v2.0.0/
+
+    base="https://github.com/yuru7/moralerspace/releases/download/v2.0.0/"
+    files=(
+        "Moralerspace_v2.0.0.zip"
+        "MoralerspaceHW_v2.0.0.zip"
+    )
+
+    tmp="/tmp/ms"
+
+    rm -rf "$tmp"
+    mkdir -p "$tmp"
+
+    for f in "${files[@]}"; do
+        zip="$tmp/$f"
+        url="$base$f"
+
+        Info "Downloading $f ..."
+        curl -L -f -o "$zip" "$url"
+
+        unzip -o "$zip" -d "$tmp"
+    done
+
+    find "$tmp" -type f \( -name "*.ttf" -o -name "*.otf" \) -exec cp {} "$fontDir" \;
+
+    fc-cache -f
+
+    Done "Installed Moralerspace."
+
+    echo
+}
+
+Install-withMM2F() {
     Run-command "sudo apt update"
 
     sudo chmod +x "$script_dir/mm2f.sh"
     sudo "$script_dir/mm2f.sh" "$script_dir/packages.yml"
+}
 
+Install-Manually() {
     Info "Installing lazygit..."
     LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
     curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
@@ -133,9 +267,23 @@ Main-Function() {
     rm -rf install-tl-*
 
     echo
+}
 
-    #-------------------------------------------------------
-    # dot-config...
+Make-Symlinks() {
+    local Force=false
+
+    while (($#)); do
+        case "$1" in
+            -Force|--force|-f)
+                Force=true
+                ;;
+            *)
+                echo "Unknown option: $1" >&2
+                return 1
+                ;;
+        esac
+        shift
+    done
 
     DocumentsPath="$USER_HOME/Documents"
 
@@ -156,10 +304,9 @@ Main-Function() {
     Reload-Env
 
     echo
+}
 
-    #-------------------------------------------------------
-    # Other commands
-
+Run-OtherCommands() {
     Run-command "gh extension install yusukebe/gh-markdown-preview"
 
     Info "Setup node.js..."
@@ -180,13 +327,9 @@ Main-Function() {
     echo
 
     trap "kill $SUDO_KEEPALIVE_PID 2>/dev/null" EXIT
-
-    #-------------------------------------------------------
-
-    Info "Done. Please reboot your system."
-    echo "Press Enter to exit...."
-    read
 }
+
+
 
 #-----------------------------------------------------------------------------------------------#
 
@@ -217,81 +360,7 @@ Ensure-Administrator() {
     SUDO_KEEPALIVE_PID=$!
 }
 
-function Confirm-Execution {
 
-
-banner='
-    ________      _____     __________________
-    ___  __ \_______  /_    ___  __/__(_)__  /____________
-    __  / / /  __ \  __/    __  /_ __  /__  /_  _ \_  ___/
-    _  /_/ // /_/ / /_      _  __/ _  / _  / /  __/(__  )
-    /_____/ \____/\__/      /_/    /_/  /_/  \___//____/  By Nchos
-
-    ________    _____                     ________            _____        _____
-    __  ___/______  /____  _________      __  ___/_______________(_)_________  /_
-    _____ \_  _ \  __/  / / /__  __ \     _____ \_  ___/_  ___/_  /___  __ \  __/
-    ____/ //  __/ /_ / /_/ /__  /_/ /     ____/ // /__ _  /   _  / __  /_/ / /_
-    /____/ \___/\__/ \__,_/ _  .___/      /____/ \___/ /_/    /_/  _  .___/\__/
-                            /_/                                    /_/
-
-'
-
-    Info "$banner"
-
-echo
-read -p "Continue? (Y/N) " response
-
-if [[ ! "$response" =~ ^[Yy]$ ]]; then
-    echo "Aborted."
-    exit 1
-fi
-}
-
-#-----------------------------------------------------------------------------------------------#
-
-Download-font() {
-
-    fontDir="$USER_HOME/.local/share/fonts"
-
-    mkdir -p "$fontDir"
-
-    if fc-list | grep -i "Moralerspace" >/dev/null 2>&1; then
-        Done "Fonts is already installed"
-        return 0
-    fi
-
-    # PowerShell original download
-    # https://github.com/yuru7/moralerspace/releases/download/v2.0.0/
-
-    base="https://github.com/yuru7/moralerspace/releases/download/v2.0.0/"
-    files=(
-        "Moralerspace_v2.0.0.zip"
-        "MoralerspaceHW_v2.0.0.zip"
-    )
-
-    tmp="/tmp/ms"
-
-    rm -rf "$tmp"
-    mkdir -p "$tmp"
-
-    for f in "${files[@]}"; do
-        zip="$tmp/$f"
-        url="$base$f"
-
-        Info "Downloading $f ..."
-        curl -L -f -o "$zip" "$url"
-
-        unzip -o "$zip" -d "$tmp"
-    done
-
-    find "$tmp" -type f \( -name "*.ttf" -o -name "*.otf" \) -exec cp {} "$fontDir" \;
-
-    fc-cache -f
-
-    Done "Installed Moralerspace."
-}
-
-#-----------------------------------------------------------------------------------------------#
 
 Install-AptPackage() {
 

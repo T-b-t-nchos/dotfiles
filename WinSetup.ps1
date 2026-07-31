@@ -1,6 +1,13 @@
 param(
     [switch]$Force,
-    [switch]$Yes
+    [switch]$Yes,
+    [switch]$SkipFont,
+    [switch]$SkipPackMgr,
+    [switch]$SkipMM2F,
+    [switch]$SkipManualInstall,
+    [switch]$SkipSymlinks,
+    [switch]$SkipPATH,
+    [switch]$SkipOtherCommands
 )
 
 #-----------------------------------------------------------------------------------------------#
@@ -54,212 +61,68 @@ function Main-Function {
 
     #-------------------------------------------------------
     # Download Font
-    Download-font -Force:$Force
-    Write-Host
-
-    #-------------------------------------------------------
-    # Download Winget
-    if (Get-Command winget -ErrorAction SilentlyContinue) {
-        Done "winget is installed"
-        winget --version
+    if (-not $SkipFont) {
+        Download-font -Force:$Force
     }
     else {
-        Info "Download winget..."
-
-        $ProgressPreference = 'SilentlyContinue'
-
-        $release = Invoke-RestMethod -Uri "https://api.github.com/repos/microsoft/winget-cli/releases/latest"
-
-        $asset = $release.assets | Where-Object { $_.name -like "*.msixbundle" }
-
-        $path = "$env:TEMP\winget.msixbundle"
-        Invoke-WebRequest -Uri $asset.browser_download_url -OutFile $path
-
-        Add-AppxPackage -Path $path
-
+        Write-Host "Skipped: Font"
     }
-
-    Write-Host
 
     #-------------------------------------------------------
-    # Download scoop
-    if (Get-Command scoop -ErrorAction SilentlyContinue) {
-        Done "scoop is installed"
-        scoop --version
-        scoop update
+    # Install package managers
+    if (-not $SkipPackMgr) {
+        Install-PackMgr
     }
     else {
-        Info "Download scoop..."
-        Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
-        iex "& {$(irm https://get.scoop.sh)} -RunAsAdmin"
+        Write-Host "Skipped: Install PackMgr"
     }
-
-    Write-Host
-
-    #-------------------------------------------------------
-    # Download chocolatey
-    if (Get-Command choco -ErrorAction SilentlyContinue) {
-        Done "Chocolatey already installed"
-        choco --version
-        choco upgrade chocolatey -y
-    }
-    else {
-        Info "Download chocolatey..."
-        Set-ExecutionPolicy Bypass -Scope Process -Force
-        [System.Net.ServicePointManager]::SecurityProtocol = 3072
-        iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-    }
-
-    Write-Host
 
     #-------------------------------------------------------
     # Install...
 
-    & (Join-Path $PSScriptRoot 'mm2f.ps1') (Join-Path $PSScriptRoot 'packages.yml')
+    if (-not $SkipMM2F) {
+        Install-withMM2F
+    }
+    else {
+        Write-Host "Skipped: Install with MM2F"
+    }
 
-    Install-WingetPackage `
-        -PackageId "Microsoft.VisualStudio.BuildTools" `
-        -AdditionalArgs @(
-            "--override"
-            "--passive --config $parentDir\.config\.vsconfig"
-        )
-    Install-WithInstaller `
-        -Name "WezTerm Nightly" `
-        -Url "https://github.com/wezterm/wezterm/releases/download/nightly/WezTerm-nightly-setup.exe" `
-        -InstallDir "C:\Program files\WezTerm"
-
-    Install-Zip `
-        -Name "sshhub" `
-        -Url "https://github.com/T-b-t-nchos/sshhub/releases/latest/download/sshhub_win-x64.zip" `
-        -InstallDir "$HOME\.bin\sshhub"
-
-    Install-Zip `
-        -Name "rapture" `
-        -Url "https://www.knystudio.net/rapture-2.4.1.zip" `
-        -InstallDir "$HOME\.bin\rapture"
-
-
-    Info "Installing texlive..."
-    Invoke-WebRequest `
-        -Uri "https://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip" `
-        -OutFile "install-tl.zip"
-    Expand-Archive install-tl.zip
-    Set-Location (Get-ChildItem .\install-tl\install-tl-* -Directory | Sort-Object Name | Select-Object -Last 1)
-    .\install-tl-windows.bat --no-gui --profile="..\..\.config\TeX-Live\win.texlive.profile"
-    Set-Location ..\..
-    Remove-Item .\install-tl.zip
-    Remove-Item .\install-tl -Force -Recurse
-
-
-    Run-command "wsl --install"
-
-
-    Reload-Env
-
-    Write-Host
+    if (-not $SkipManualInstall) {
+        Install-Manually
+    }
+    else {
+        Write-Host "Skipped: Install Manually"
+    }
 
     #-------------------------------------------------------
-    # dot-config...
+    # Symlinks
+    if (-not $SkipSymlinks) {
+        Make-Symlinks -Force:$Force
+    }
+    else {
+        Write-Host "Skipped: Symlinks"
+    }
 
-    $DocumentsPath = [Environment]::GetFolderPath("MyDocuments")
-
-    New-RelativeSymlink `
-        -RelativeSource ".config\Google Japanese Input\config1.db" `
-        -Destination (Join-Path $HOME "\AppData\LocalLow\Google\Google Japanese Input\config1.db") `
-        -Force:$Force
-
-    New-RelativeSymlink `
-        -RelativeSource ".config\dotfiles_PowerShell_profile.ps1" `
-        -Destination (Join-Path -Path $DocumentsPath -ChildPath "PowerShell\dotfiles_PowerShell_profile.ps1") `
-        -Force:$Force
-
-
-    New-RelativeSymlink `
-        -RelativeSource ".config\nvim" `
-        -Destination (Join-Path $env:LOCALAPPDATA "nvim") `
-        -Force:$Force
-
-    New-RelativeSymlink `
-        -RelativeSource ".config\wezterm" `
-        -Destination ("~\.config\wezterm") `
-        -Force:$Force
-
-    New-RelativeSymlink `
-        -RelativeSource ".config\ohmyposh" `
-        -Destination ("~\.config\ohmyposh") `
-        -Force:$Force
-
-    New-RelativeSymlink `
-        -RelativeSource ".config\lazygit" `
-        -Destination (Join-Path $env:APPDATA "jesseduffield\lazygit") `
-        -Force:$Force
-
-    New-RelativeSymlink `
-        -RelativeSource ".config\yazi" `
-        -Destination (Join-Path $env:APPDATA "yazi\config") `
-        -Force:$Force
-
-    New-RelativeSymlink `
-        -RelativeSource ".config\AutoHotkey" `
-        -Destination ("~\.config\AutoHotkey") `
-        -Force:$Force
-
-    New-RelativeSymlink `
-        -RelativeSource ".config\Rapture" `
-        -Destination ("~\.config\Rapture") `
-        -Force:$Force
-
-    New-RelativeSymlink `
-        -RelativeSource ".config\.latexmkrc" `
-        -Destination ("~\.latexmkrc") `
-        -Force:$Force
-
-
-    Reload-Env
-
-    Write-Host
 
     #-------------------------------------------------------
     # Add to PATH
-
-    Add-ToPath "C:\Program Files (x86)\GnuWin32\bin" -Scope Machine
-    Add-ToPath "$HOME\.bin\sshhub" -Scope User
-    Add-ToPath "$HOME\.bin\rapture" -Scope User
-
-    Reload-Env
-
-    Write-Host
+    if (-not $SkipPATH) {
+        Add-PATH -Force:$Force
+    }
+    else {
+        Write-Host "Skipped: Add to PATH"
+    }
 
 
     #-------------------------------------------------------
     # Other commands
+    if (-not $SkipOtherCommands) {
+        Run-OtherCommands
+    }
+    else {
+        Write-Host "Skipped: Other commands"
+    }
 
-    Run-command("gh extension install yusukebe/gh-markdown-preview")
-
-    Run-command("nvm install latest")
-    Run-command("npm install -g @antfu/ni mdpv tree-sitter-cli @mermaid-js/mermaid-cli")
-
-
-    Info "Create AutoHotkey startup shortcut"
-    $WshShell = New-Object -ComObject WScript.Shell
-    $Shortcut = $WshShell.CreateShortcut(
-        "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\dotfiles_AHK.lnk"
-    )
-    $Shortcut.TargetPath = "$env:ProgramFiles\AutoHotkey\v2\AutoHotkey64.exe"
-    $Shortcut.Arguments  = "`"$HOME\.config\AutoHotkey\main.ahk`""
-    $Shortcut.WorkingDirectory = "$HOME\.config\AutoHotkey"
-    $Shortcut.IconLocation = "$env:ProgramFiles\AutoHotkey\v2\AutoHotkey64.exe"
-    $Shortcut.Save()
-
-
-    Info "Setup TeX Live..."
-    tlmgr update --self --all
-    tlmgr install lualatex-math
-    tlmgr path add
-
-    Reload-Env
-
-    Write-Host
 
     #-------------------------------------------------------
 
@@ -277,58 +140,6 @@ function Main-Function {
 }
 
 #-----------------------------------------------------------------------------------------------#
-
-
-function Ensure-Administrator {
-
-    $currentUser = [Security.Principal.WindowsIdentity]::GetCurrent()
-    $principal   = New-Object Security.Principal.WindowsPrincipal($currentUser)
-    $isAdmin     = $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
-
-    if ($isAdmin) {
-        # Done "Running with administrator privileges."
-        return $true
-    }
-
-    Warn "This script is not running with administrator privileges."
-    $choice = Read-Host "Restart as administrator? (Y/N)"
-
-    if ($choice -notmatch '^[Yy]$') {
-        Info "Continuing without elevation."
-        return $false
-    }
-
-    $scriptPath = $PSCommandPath
-
-    if (-not $scriptPath -or -not (Test-Path $scriptPath)) {
-        Error "Script path could not be resolved. Run this as a .ps1 file."
-        return $false
-    }
-
-    $paramList = @()
-
-    foreach ($key in $PSBoundParameters.Keys) {
-        if ($PSBoundParameters[$key] -is [switch]) {
-            if ($PSBoundParameters[$key].IsPresent) {
-                $paramList += "-$key"
-            }
-        }
-        else {
-            $paramList += "-$key `"$($PSBoundParameters[$key])`""
-        }
-    }
-
-    $argString = $paramList -join ' '
-
-    Info "Restarting with administrator privileges..."
-
-    Start-Process `
-        -FilePath (Get-Process -Id $PID).Path `
-        -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`" $argString" `
-        -Verb RunAs
-
-    exit
-}
 
 
 function Confirm-Execution {
@@ -427,6 +238,274 @@ function Download-Font {
     }
 
     Done "Installed Moralerspace."
+
+    Write-Host
+}
+
+function Install-PackMgr {
+    #-------------------------------------------------------
+    # Download Winget
+    if (Get-Command winget -ErrorAction SilentlyContinue) {
+        Done "winget is installed"
+        winget --version
+    }
+    else {
+        Info "Download winget..."
+
+        $ProgressPreference = 'SilentlyContinue'
+
+        $release = Invoke-RestMethod -Uri "https://api.github.com/repos/microsoft/winget-cli/releases/latest"
+
+        $asset = $release.assets | Where-Object { $_.name -like "*.msixbundle" }
+
+        $path = "$env:TEMP\winget.msixbundle"
+        Invoke-WebRequest -Uri $asset.browser_download_url -OutFile $path
+
+        Add-AppxPackage -Path $path
+
+    }
+
+    Write-Host
+
+    #-------------------------------------------------------
+    # Download scoop
+    if (Get-Command scoop -ErrorAction SilentlyContinue) {
+        Done "scoop is installed"
+        scoop --version
+        scoop update
+    }
+    else {
+        Info "Download scoop..."
+        Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+        iex "& {$(irm https://get.scoop.sh)} -RunAsAdmin"
+    }
+
+    Write-Host
+
+    #-------------------------------------------------------
+    # Download chocolatey
+    if (Get-Command choco -ErrorAction SilentlyContinue) {
+        Done "Chocolatey already installed"
+        choco --version
+        choco upgrade chocolatey -y
+    }
+    else {
+        Info "Download chocolatey..."
+        Set-ExecutionPolicy Bypass -Scope Process -Force
+        [System.Net.ServicePointManager]::SecurityProtocol = 3072
+        iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+    }
+
+    Write-Host
+
+}
+
+function Install-withMM2F {
+    & (Join-Path $PSScriptRoot 'mm2f.ps1') (Join-Path $PSScriptRoot 'packages.yml')
+}
+
+function Install-Manually {
+    Install-WingetPackage `
+        -PackageId "Microsoft.VisualStudio.BuildTools" `
+        -AdditionalArgs @(
+            "--override"
+            "--passive --config $parentDir\.config\.vsconfig"
+        )
+    Install-WithInstaller `
+        -Name "WezTerm Nightly" `
+        -Url "https://github.com/wezterm/wezterm/releases/download/nightly/WezTerm-nightly-setup.exe" `
+        -InstallDir "C:\Program files\WezTerm"
+
+    Install-Zip `
+        -Name "sshhub" `
+        -Url "https://github.com/T-b-t-nchos/sshhub/releases/latest/download/sshhub_win-x64.zip" `
+        -InstallDir "$HOME\.bin\sshhub"
+
+    Install-Zip `
+        -Name "rapture" `
+        -Url "https://www.knystudio.net/rapture-2.4.1.zip" `
+        -InstallDir "$HOME\.bin\rapture"
+
+
+    Info "Installing texlive..."
+    Invoke-WebRequest `
+        -Uri "https://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip" `
+        -OutFile "install-tl.zip"
+    Expand-Archive install-tl.zip
+    Set-Location (Get-ChildItem .\install-tl\install-tl-* -Directory | Sort-Object Name | Select-Object -Last 1)
+    .\install-tl-windows.bat --no-gui --profile="..\..\.config\TeX-Live\win.texlive.profile"
+    Set-Location ..\..
+    Remove-Item .\install-tl.zip
+    Remove-Item .\install-tl -Force -Recurse
+
+
+    Run-command "wsl --install"
+
+
+    Reload-Env
+
+    Write-Host
+}
+
+function Make-Symlinks {
+    param(
+        [switch]$Force
+    )
+
+    $DocumentsPath = [Environment]::GetFolderPath("MyDocuments")
+
+    New-RelativeSymlink `
+        -RelativeSource ".config\Google Japanese Input\config1.db" `
+        -Destination (Join-Path $HOME "\AppData\LocalLow\Google\Google Japanese Input\config1.db") `
+        -Force:$Force
+
+    New-RelativeSymlink `
+        -RelativeSource ".config\dotfiles_PowerShell_profile.ps1" `
+        -Destination (Join-Path -Path $DocumentsPath -ChildPath "PowerShell\dotfiles_PowerShell_profile.ps1") `
+        -Force:$Force
+
+
+    New-RelativeSymlink `
+        -RelativeSource ".config\nvim" `
+        -Destination (Join-Path $env:LOCALAPPDATA "nvim") `
+        -Force:$Force
+
+    New-RelativeSymlink `
+        -RelativeSource ".config\wezterm" `
+        -Destination ("~\.config\wezterm") `
+        -Force:$Force
+
+    New-RelativeSymlink `
+        -RelativeSource ".config\ohmyposh" `
+        -Destination ("~\.config\ohmyposh") `
+        -Force:$Force
+
+    New-RelativeSymlink `
+        -RelativeSource ".config\lazygit" `
+        -Destination (Join-Path $env:APPDATA "jesseduffield\lazygit") `
+        -Force:$Force
+
+    New-RelativeSymlink `
+        -RelativeSource ".config\yazi" `
+        -Destination (Join-Path $env:APPDATA "yazi\config") `
+        -Force:$Force
+
+    New-RelativeSymlink `
+        -RelativeSource ".config\AutoHotkey" `
+        -Destination ("~\.config\AutoHotkey") `
+        -Force:$Force
+
+    New-RelativeSymlink `
+        -RelativeSource ".config\Rapture" `
+        -Destination ("~\.config\Rapture") `
+        -Force:$Force
+
+    New-RelativeSymlink `
+        -RelativeSource ".config\.latexmkrc" `
+        -Destination ("~\.latexmkrc") `
+        -Force:$Force
+
+
+    Reload-Env
+
+    Write-Host
+}
+
+function Add-PATH {
+    param(
+        [switch]$Force
+    )
+
+    Add-ToPath "C:\Program Files (x86)\GnuWin32\bin" -Scope Machine
+    Add-ToPath "$HOME\.bin\sshhub" -Scope User
+    Add-ToPath "$HOME\.bin\rapture" -Scope User
+
+    Reload-Env
+
+    Write-Host
+}
+
+function Run-OtherCommands {
+    Run-command("gh extension install yusukebe/gh-markdown-preview")
+    Run-command("nvm install latest")
+    Run-command("npm install -g @antfu/ni mdpv tree-sitter-cli @mermaid-js/mermaid-cli")
+
+
+    Info "Create AutoHotkey startup shortcut"
+    $WshShell = New-Object -ComObject WScript.Shell
+    $Shortcut = $WshShell.CreateShortcut(
+        "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\dotfiles_AHK.lnk"
+    )
+    $Shortcut.TargetPath = "$env:ProgramFiles\AutoHotkey\v2\AutoHotkey64.exe"
+    $Shortcut.Arguments  = "`"$HOME\.config\AutoHotkey\main.ahk`""
+    $Shortcut.WorkingDirectory = "$HOME\.config\AutoHotkey"
+    $Shortcut.IconLocation = "$env:ProgramFiles\AutoHotkey\v2\AutoHotkey64.exe"
+    $Shortcut.Save()
+
+
+    Info "Setup TeX Live..."
+    tlmgr update --self --all
+    tlmgr install lualatex-math
+    tlmgr path add
+
+    Reload-Env
+
+    Write-Host
+}
+
+
+#-----------------------------------------------------------------------------------------------#
+
+
+function Ensure-Administrator {
+
+    $currentUser = [Security.Principal.WindowsIdentity]::GetCurrent()
+    $principal   = New-Object Security.Principal.WindowsPrincipal($currentUser)
+    $isAdmin     = $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+
+    if ($isAdmin) {
+        # Done "Running with administrator privileges."
+        return $true
+    }
+
+    Warn "This script is not running with administrator privileges."
+    $choice = Read-Host "Restart as administrator? (Y/N)"
+
+    if ($choice -notmatch '^[Yy]$') {
+        Info "Continuing without elevation."
+        return $false
+    }
+
+    $scriptPath = $PSCommandPath
+
+    if (-not $scriptPath -or -not (Test-Path $scriptPath)) {
+        Error "Script path could not be resolved. Run this as a .ps1 file."
+        return $false
+    }
+
+    $paramList = @()
+
+    foreach ($key in $PSBoundParameters.Keys) {
+        if ($PSBoundParameters[$key] -is [switch]) {
+            if ($PSBoundParameters[$key].IsPresent) {
+                $paramList += "-$key"
+            }
+        }
+        else {
+            $paramList += "-$key `"$($PSBoundParameters[$key])`""
+        }
+    }
+
+    $argString = $paramList -join ' '
+
+    Info "Restarting with administrator privileges..."
+
+    Start-Process `
+        -FilePath (Get-Process -Id $PID).Path `
+        -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`" $argString" `
+        -Verb RunAs
+
+    exit
 }
 
 
