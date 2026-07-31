@@ -5,6 +5,10 @@ return {
 
         init = function ()
             vim.g.tex_flavor = "lualatex"
+
+            vim.g.vimtex_quickfix_ignore_all_warnings = 1
+            vim.g.vimtex_quickfix_mode = 2
+
             vim.g.vimtex_compiler_latexmk = {
                 background = 1,
                 build_dir = "",
