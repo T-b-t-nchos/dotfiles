@@ -145,6 +145,7 @@ Main-Function() {
     New-RelativeSymlink ".config/lazygit" "$USER_HOME/.config/lazygit"
     New-RelativeSymlink ".config/yazi" "$USER_HOME/.config/yazi"
     New-RelativeSymlink ".config/.dotfiles_bashrc" "$USER_HOME/.dotfiles_bashrc"
+    New-RelativeSymlink ".config/.latexmkrc" "$USER_HOME/.latexmkrc"
 
     # Windows only paths
 

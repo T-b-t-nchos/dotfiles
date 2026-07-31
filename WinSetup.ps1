@@ -209,6 +209,11 @@ function Main-Function {
         -Destination ("~\.config\Rapture") `
         -Force:$Force
 
+    New-RelativeSymlink `
+        -RelativeSource ".config\.latexmkrc" `
+        -Destination ("~\.latexmkrc") `
+        -Force:$Force
+
 
     Reload-Env
 
