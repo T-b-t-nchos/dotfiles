@@ -142,12 +142,12 @@ end, { desc = "Setup usual environment" })
 
 
 -- Trouble keymaps
-vks("n", "<leader>xx", "<cmd>diagnostics toggle<CR>", { desc = "Diagnostics (Trouble)" })
-vks("n", "<leader>xX", "<cmd>diagnostics toggle filter.buf=0<CR>", { desc = "Buffer Diagnostics (Trouble)" })
-vks("n", "<leader>xs", "<cmd>symbols toggle focus=false<CR>", { desc = "Symbols (Trouble)" })
-vks("n", "<leader>xl", "<cmd>lsp toggle focus=false win.position=right<CR>", { desc = "LSP Definitions / references / ... (Trouble)" })
-vks("n", "<leader>xL", "<cmd>loclist toggle<CR>", { desc = "Location List (Trouble)" })
-vks("n", "<leader>xQ", "<cmd>qflist toggle<CR>", { desc = "Quickfix List (Trouble)" })
+vks("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", { desc = "Diagnostics (Trouble)" })
+vks("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", { desc = "Buffer Diagnostics (Trouble)" })
+vks("n", "<leader>xs", "<cmd>Trouble symbols toggle focus=false<CR>", { desc = "Symbols (Trouble)" })
+vks("n", "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>", { desc = "LSP Definitions / references / ... (Trouble)" })
+vks("n", "<leader>xL", "<cmd>Trouble loclist toggle<CR>", { desc = "Location List (Trouble)" })
+vks("n", "<leader>xQ", "<cmd>Trouble qflist toggle<CR>", { desc = "Quickfix List (Trouble)" })
 
 
 -- Oil
