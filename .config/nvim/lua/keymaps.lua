@@ -101,12 +101,6 @@ vks("n", "<leader>e", function()
 end, { desc = "Neo-tree toggle & reveal current file" })
 
 
--- Outline (aerial.nvim)
-vks("n", "<leader>l", "<cmd>AerialToggle<CR>", { desc = "Outline Window" })
-vks("n", "<C-{>", "<cmd>AerialPrev<CR>")
-vks("n", "<C-}>", "<cmd>AerialNext<CR>")
-
-
 -- vks("n", "<leader>wa",  "<C-w>h", { desc = "Window left" })
 -- vks("n", "<leader>wd", "<C-w>l", { desc = "Window right" })
 -- vks("n", "<leader>ww",    "<C-w>k", { desc = "Window up" })
@@ -148,6 +142,12 @@ vks("n", "<leader>xs", "<cmd>Trouble symbols toggle focus=false<CR>", { desc = "
 vks("n", "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>", { desc = "LSP Definitions / references / ... (Trouble)" })
 vks("n", "<leader>xL", "<cmd>Trouble loclist toggle<CR>", { desc = "Location List (Trouble)" })
 vks("n", "<leader>xQ", "<cmd>Trouble qflist toggle<CR>", { desc = "Quickfix List (Trouble)" })
+
+
+-- Outline (aerial.nvim)
+vks("n", "<leader>xa", "<cmd>AerialToggle<CR>", { desc = "Outline Window" })
+vks("n", "<C-{>", "<cmd>AerialPrev<CR>")
+vks("n", "<C-}>", "<cmd>AerialNext<CR>")
 
 
 -- Oil
