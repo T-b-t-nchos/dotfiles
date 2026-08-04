@@ -1,40 +1,8 @@
 return{
-  "nvimdev/dashboard-nvim",
+    "nvimdev/dashboard-nvim",
     event = "VimEnter",
     config = function()
         vim.cmd("hi DashboardHeader gui=bold cterm=bold")
-
-        -- local function make_header()
-        --     local v = vim.version()
-        --
-        --     local header_width = vim.fn.strdisplaywidth(
-        --         "--------------------------------------- Neo - Vi IMproved"
-        --     )
-        --
-        --     local version = string.format("NVIM v%d.%d.%d", v.major, v.minor, v.patch)
-        --     local version_width = vim.fn.strdisplaywidth(version)
-        --
-        --     local padding = header_width - version_width
-        --     if padding < 0 then
-        --         padding = 0
-        --     end
-        --
-        --     local right_aligned_version = string.rep(" ", padding) .. version
-        --
-        --     return {
-        --         "",
-        --         -- "---------------------------------------------------------",
-        --         "_____   __                      _____            ",
-        --         "___  | / /__________     ___   ____(_)______ ___ ",
-        --         "__   |/ /_  _ \\  __ \\    __ | / /_  /__  __ `__ \\",
-        --         "_  /|  / /  __/ /_/ /    __ |/ /_  / _  / / / / /",
-        --         "/_/ |_/  \\___/\\____/     _____/ /_/  /_/ /_/ /_/ ",
-        --         "",
-        --         "--------------------------------------- Neo - Vi IMproved",
-        --         right_aligned_version,
-        --         "",
-        --     }
-        -- end
 
         local function make_header()
             local v = vim.version()
@@ -61,7 +29,7 @@ return{
             local left_w  = vim.fn.strdisplaywidth(left)
             local right_w = vim.fn.strdisplaywidth(right)
 
-            local dash_len = max_width - left_w - right_w - 2 + 6
+            local dash_len = max_width - left_w - right_w - 2 + 20
             if dash_len < 1 then
                 dash_len = 1
             end
@@ -80,37 +48,101 @@ return{
         end
 
         require("dashboard").setup({
-            theme = "hyper",
+            theme = "doom",
             config = {
                 header = make_header(),
                 header_hl = "DashboardHeader",
 
                 --packages = { enable = false },
 
-                shortcut = {
-                    { desc = ' New File', group = 'String', action = 'enew', key = 'n'},
-                    { desc = ' Recent Files', group = 'Keyword', action = 'Telescope oldfiles', key = 'r' },
+                center = {
                     {
-                        desc = ' Dotfiles',
-                        group = 'Character',
+                        icon = '  ',
+                        icon_hl = 'String',
+                        desc = 'Find Files                                          ',
+                        desc_hl = 'String',
+
+                        action = 'Telescope find_files',
+                        key = 'f',
+                        key_hl = 'String',
+                    },
+                    {
+                        icon = '  ',
+                        icon_hl = 'Keyword',
+                        desc = 'New File                                            ',
+                        desc_hl = 'Keyword',
+
+                        action = 'enew',
+                        key = 'n',
+                        key_hl = 'Keyword',
+                    },
+                    {
+                        icon = '  ',
+                        icon_hl = 'Character',
+                        desc = 'Recent Files                                        ',
+                        desc_hl = 'Character',
+
+                        action = 'Telescope oldfiles',
+                        key = 'r',
+                        key_hl = 'Character',
+                    },
+                    {
+                        icon = '  ',
+                        icon_hl = 'Float',
+                        desc = 'Projects                                            ',
+                        desc_hl = 'Float',
+
+                        -- action = 'Telescope projects',
+                        key = 'p',
+                        key_hl = 'Float',
+                    },
+                    {
+                        icon = '  ',
+                        icon_hl = 'Boolean',
+                        desc = 'Find Text                                           ',
+                        desc_hl = 'Boolean',
+
+                        action = 'Telescope oldfiles',
+                        key = 'g',
+                        key_hl = 'Boolean',
+                    },
+                    {
+                        icon = '  ',
+                        icon_hl = 'Statement',
+                        desc = 'Dotfiles                                            ',
+                        desc_hl = 'Statement',
+
                         action = function()
                             require("telescope.builtin").find_files({
                                 cwd = "~/dotfiles/",
                             })
                         end,
                         key = 'd',
+                        key_hl = 'Statement',
                     },
-                    { desc = '󰊳 Lazy-nvim Update', group = 'Number', action = 'Lazy update', key = 'u' },
-                    { desc = '󰈆 Quit', group = 'Boolean', action = 'q', key = 'q' },
+                    {
+                        icon = '󰊳  ',
+                        icon_hl = 'Operator',
+                        desc = 'Lazy-nvim Update                                 ',
+                        desc_hl = 'Operator',
+
+                        action = 'Lazy update',
+                        key = 'u',
+                        key_hl = 'Operator',
+                    },
+                    {
+                        icon = '󰈆  ',
+                        icon_hl = 'Function',
+                        desc = 'Quit                                             ',
+                        desc_hl = 'Function',
+
+                        action = 'q',
+                        key = 'q',
+                        key_hl = 'Function',
+                    },
                 },
 
-                mru = { enable = false },
-
-                footer = function ()
-                    return {
-                        ""
-                    }
-                end,
+                vertical_center = true,
             },
         })
     end,
