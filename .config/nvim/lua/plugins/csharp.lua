@@ -3,6 +3,29 @@ return {
         "iabdelkareem/csharp.nvim",
         module = "csharp",
         ft = { "cs" },
+        keys = {
+            {
+                "<leader>#d",
+                function()
+                    require("csharp").debug_project()
+                end,
+                desc = "Debug Project",
+            },
+            {
+                "<leader>#r",
+                function()
+                    require("csharp").run_project()
+                end,
+                desc = "Run Project",
+            },
+            {
+                "<leader>#u",
+                function()
+                    require("csharp").fix_usings()
+                end,
+                desc = "Fix Usings",
+            },
+        },
         dependencies = {
             "williamboman/mason.nvim", -- Required, automatically installs omnisharp
             "mfussenegger/nvim-dap",
@@ -20,6 +43,9 @@ return {
         "MonsieurTib/neonuget",
         cmd = "Nuget",
         ft = { "cs", "fs", "fsi", "fsscript", "fsx", "nupkg", ".csproj", ".fsproj", ".vbproj", ".sln", ".slnx" },
+        keys = {
+            { "<leader>#n", "<cmd>Nuget<cr>", desc = "NeoNuGet" },
+        },
         dependencies = {
             "nvim-lua/plenary.nvim",
         },

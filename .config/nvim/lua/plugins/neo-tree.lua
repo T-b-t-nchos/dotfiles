@@ -9,6 +9,22 @@ return{
 
     module = "neo-tree",
     cmd = "Neotree",
+    keys = {
+        { "<leader>nf", "<cmd>Neotree toggle<CR>", desc = "Toggle" },
+        { "<leader>ne", "<cmd>Neotree filesystem toggle<CR>", desc = "Filesystem" },
+        { "<leader>nb", "<cmd>Neotree buffers toggle<CR>", desc = "Buffers" },
+        { "<leader>ng", "<cmd>Neotree git_status toggle<CR>", desc = "Git Status" },
+
+        {
+            "<leader>e",
+            function()
+                vim.cmd("cd %:p:h")
+                vim.cmd("Neotree filesystem reveal toggle left")
+                -- vim.cmd("wincmd l")
+            end,
+            desc = "Reveal current file",
+        },
+    },
 
     config = function()
         require("neo-tree").setup({

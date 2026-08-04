@@ -1,6 +1,10 @@
 return {
     'skardyy/neo-img',
     cmd = "NeoImg",
+    keys = {
+        { "<leader>ip", "<cmd>NeoImg DisplayImage<cr>", desc = "Preview Image" },
+    },
+
     build = ":NeoImg Install",
     config = function()
         require('neo-img').setup({

@@ -6,6 +6,9 @@ return {
     {
         "sindrets/diffview.nvim",
         cmd = { "DiffviewOpen", "DiffviewToggleFiles" },
+        keys = {
+            { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Open Diffview" },
+        },
         dependencies = { },
         config = function()
 
@@ -15,6 +18,9 @@ return {
         'isakbm/gitgraph.nvim',
         module = "gitgraph",
         cmd = "GitGraph",
+        keys = {
+            { "<leader>gl", function() require("gitgraph").draw({}, { all = true, max_count = 5000 }) end, desc = "Open GitGraph" },
+        },
         opts = {
             git_cmd = "git",
             symbols = {
@@ -42,6 +48,9 @@ return {
     {
         "kdheepak/lazygit.nvim",
         cmd = "LazyGit",
+        keys = {
+            { "<leader>gg", "<cmd>LazyGit<CR>", desc = "Open LazyGit" },
+        },
         dependencies = { "nvim-lua/plenary.nvim" },
         init = function()
 
@@ -50,6 +59,26 @@ return {
     {
         "pwntester/octo.nvim",
         cmd = "Octo",
+        keys = {
+            { "<leader>oil", "<cmd>Octo issue list<CR>", desc = "Issue List" },
+            { "<leader>oie", "<cmd>Octo issue edit<CR>", desc = "Issue Edit" },
+            { "<leader>oic", "<cmd>Octo issue close<CR>", desc = "Issue Close" },
+            { "<leader>oib", "<cmd>Octo issue browser<CR>", desc = "Issue Browser" },
+            { "<leader>oin", "<cmd>Octo issue create<CR>", desc = "Issue Create" },
+
+            { "<leader>opl", "<cmd>Octo pr list<CR>", desc = "PR List" },
+            { "<leader>ope", "<cmd>Octo pr edit<CR>", desc = "PR Edit" },
+            { "<leader>opc", "<cmd>Octo pr close<CR>", desc = "PR Close" },
+            { "<leader>opb", "<cmd>Octo pr browser<CR>", desc = "PR Browser" },
+            {
+                "<leader>opn",
+                function ()
+                    vim.cmd("Octo pr create")
+                    vim.cmd("Octo pr draft")
+                end, desc = "PR Draft"
+            },
+        },
+
         opts = {
             -- or "fzf-lua" or "snacks" or "default"
             picker = "telescope",

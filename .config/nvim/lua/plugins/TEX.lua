@@ -2,6 +2,11 @@ return {
     {
         "lervag/vimtex",
         ft = {"tex"},
+        keys = {
+            { "<leader>Ll", "<cmd>VimtexCompile<CR>", desc = "VimTeX Compile" },
+            { "<leader>Ls", "<cmd>VimtexCompileSS<CR>", desc = "VimTeX Compile One Shot" },
+            { "<leader>pt", "<cmd>VimtexCompile<CR>", desc = "Preview (La)TeX" },
+        },
 
         init = function ()
             vim.g.tex_flavor = "lualatex"

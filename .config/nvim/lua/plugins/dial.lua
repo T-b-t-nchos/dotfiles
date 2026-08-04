@@ -1,6 +1,71 @@
 return {
     "monaqa/dial.nvim",
-    lazy = true,
+    keys = {
+        {
+            "<C-a>",
+            function()
+                require("dial.map").manipulate("increment", "normal")
+            end,
+            mode = "n",
+            desc = "Increment",
+        },
+        {
+            "<C-x>",
+            function()
+                require("dial.map").manipulate("decrement", "normal")
+            end,
+            mode = "n",
+            desc = "Decrement",
+        },
+        {
+            "g<C-a>",
+            function()
+                require("dial.map").manipulate("increment", "gnormal")
+            end,
+            mode = "n",
+            desc = "Increment (Global)",
+        },
+        {
+            "g<C-x>",
+            function()
+                require("dial.map").manipulate("decrement", "gnormal")
+            end,
+            mode = "n",
+            desc = "Decrement (Global)",
+        },
+        {
+            "<C-a>",
+            function()
+                require("dial.map").manipulate("increment", "visual")
+            end,
+            mode = "x",
+            desc = "Increment",
+        },
+        {
+            "<C-x>",
+            function()
+                require("dial.map").manipulate("decrement", "visual")
+            end,
+            mode = "x",
+            desc = "Decrement",
+        },
+        {
+            "g<C-a>",
+            function()
+                require("dial.map").manipulate("increment", "gvisual")
+            end,
+            mode = "x",
+            desc = "Increment (Global)",
+        },
+        {
+            "g<C-x>",
+            function()
+                require("dial.map").manipulate("decrement", "gvisual")
+            end,
+            mode = "x",
+            desc = "Decrement (Global)",
+        },
+    },
     config = function()
         local augend = require("dial.augend")
         require("dial.config").augends:register_group{

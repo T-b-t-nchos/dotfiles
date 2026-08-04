@@ -2,6 +2,19 @@ return {
     {
         'nvim-telescope/telescope.nvim', version = '*',
         cmd = "Telescope",
+        keys = {
+            { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File" },
+            { "<leader>fb", "<cmd>Telescope file_browser<cr>", desc = "File Browser" },
+            { "<leader>fd", "<cmd>Telescope find_files cwd_only=true<cr>", desc = "Find File in cwd" },
+            { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
+            { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+            { "<leader>fn", "<cmd>Telescope nerdy<cr>", desc = "Nerdy" },
+            { "<leader>fc", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme" },
+            { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help" },
+            { "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
+            { "<leader>fv", "<cmd>Telescope vim_options<cr>", desc = "Vim Options" },
+            { "<leader>fr", "<cmd>Telescope registers<cr>", desc = "Registers" },
+        },
         dependencies = {
             'nvim-lua/plenary.nvim',
         },
