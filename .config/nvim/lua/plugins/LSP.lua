@@ -9,16 +9,6 @@ return {
         },
         event = { "BufReadPre", "BufNewFile" },
         cmd = { "Mason" },
-        keys = {
-            keys = {
-                { "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", desc = "Diagnostics" },
-                { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer Diagnostics" },
-                { "<leader>xs", "<cmd>Trouble symbols toggle focus=false<CR>", desc = "Symbols" },
-                { "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>", desc = "LSP" },
-                { "<leader>xL", "<cmd>Trouble loclist toggle<CR>", desc = "Location List" },
-                { "<leader>xQ", "<cmd>Trouble qflist toggle<CR>", desc = "Quickfix List" },
-            },
-        },
         config = function()
             local capabilities = require("blink.cmp").get_lsp_capabilities()
 
@@ -157,5 +147,14 @@ return {
             "folke/trouble.nvim",
             opts = {},
             cmd = "Trouble",
+            keys = {
+                { "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", desc = "Diagnostics" },
+                { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer Diagnostics" },
+                { "<leader>xs", "<cmd>Trouble symbols toggle focus=false<CR>", desc = "Symbols" },
+                { "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>", desc = "LSP" },
+                { "<leader>xL", "<cmd>Trouble loclist toggle<CR>", desc = "Location List" },
+                { "<leader>xQ", "<cmd>Trouble qflist toggle<CR>", desc = "Quickfix List" },
+            },
+
         },
     }
