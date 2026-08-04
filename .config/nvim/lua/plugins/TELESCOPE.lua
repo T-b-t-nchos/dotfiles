@@ -15,9 +15,12 @@ return {
             { "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
             { "<leader>fv", "<cmd>Telescope vim_options<cr>", desc = "Vim Options" },
             { "<leader>fr", "<cmd>Telescope registers<cr>", desc = "Registers" },
+            { "<leader>fp", "<cmd>Telescope project<cr>", desc = "Projects" },
         },
         dependencies = {
             'nvim-lua/plenary.nvim',
+
+            'ahmedkhalf/project.nvim',
         },
         config = function ()
             require('telescope').setup({
@@ -75,6 +78,7 @@ return {
             require("telescope").load_extension("file_browser")
             require('telescope').load_extension('gh')
             require('telescope').load_extension('nerdy')
+            require('telescope').load_extension('project')
         end
     },
     {
@@ -107,5 +111,12 @@ return {
             'nvim-telescope/telescope.nvim',
             'nvim-lua/plenary.nvim',
         }
+    },
+    {
+        'nvim-telescope/telescope-project.nvim',
+        lazy = true,
+        dependencies = {
+            'nvim-telescope/telescope.nvim',
+        },
     },
 }

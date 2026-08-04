@@ -92,7 +92,7 @@ return{
                         desc = 'Projects                                            ',
                         desc_hl = 'Float',
 
-                        -- action = 'Telescope projects',
+                        action = "Telescope project",
                         key = 'p',
                         key_hl = 'Float',
                     },
