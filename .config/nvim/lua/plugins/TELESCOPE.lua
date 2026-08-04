@@ -1,7 +1,8 @@
 return {
     {
         'nvim-telescope/telescope.nvim', version = '*',
-        cmd = "Telescope",
+        -- cmd = "Telescope",
+        event = "VeryLazy",
         keys = {
             { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File" },
             { "<leader>fb", "<cmd>Telescope file_browser<cr>", desc = "File Browser" },
