@@ -28,134 +28,134 @@ return {
 
                     if client
                         and client.server_capabilities.semanticTokensProvider
-                    then
-                        vim.lsp.semantic_tokens.enable(true, {
-                            bufnr = args.buf,
-                        })
-                    end
-                end,
-            })
+                        then
+                            vim.lsp.semantic_tokens.enable(true, {
+                                bufnr = args.buf,
+                            })
+                        end
+                    end,
+                })
 
-            require("mason").setup()
+                require("mason").setup()
 
-            require("mason-lspconfig").setup({
-                ensure_installed = {
-                    "lua_ls",
-                    "pyright",
-                    "clangd",
-                    "jsonls",
-                    "marksman",
-                    "omnisharp",
-                    "tailwindcss",
-                    "cssls",
-                    "html",
-                    "jdtls",
-                    "ts_ls",
-                    "phpactor",
-                    "yamlls",
-                    "bashls",
-                    "powershell_es",
-                    "gh_actions_ls",
-                },
-            })
+                require("mason-lspconfig").setup({
+                    ensure_installed = {
+                        "lua_ls",
+                        "pyright",
+                        "clangd",
+                        "jsonls",
+                        "marksman",
+                        "omnisharp",
+                        "tailwindcss",
+                        "cssls",
+                        "html",
+                        "jdtls",
+                        "ts_ls",
+                        "phpactor",
+                        "yamlls",
+                        "bashls",
+                        "powershell_es",
+                        "gh_actions_ls",
+                    },
+                })
 
-            local servers = {
-                lua_ls = {
-                    settings = {
-                        Lua = {
-                            diagnostics = {
-                                globals = { "vim" },
+                local servers = {
+                    lua_ls = {
+                        settings = {
+                            Lua = {
+                                diagnostics = {
+                                    globals = { "vim" },
+                                },
                             },
                         },
                     },
-                },
 
-                pyright = {},
-                clangd = {},
-                jsonls = {},
-                marksman = {},
+                    pyright = {},
+                    clangd = {},
+                    jsonls = {},
+                    marksman = {},
 
-                omnisharp = {
                     omnisharp = {
-                        cmd = {
-                            "omnisharp",
-                            "--languageserver",
-                            "--stdio",
-                            "--hostPID",
-                            tostring(vim.fn.getpid()),
+                        omnisharp = {
+                            cmd = {
+                                "omnisharp",
+                                "--languageserver",
+                                "--stdio",
+                                "--hostPID",
+                                tostring(vim.fn.getpid()),
+                            },
                         },
-                    },
 
-                    handlers = {
-                        ["textDocument/definition"] =
+                        handlers = {
+                            ["textDocument/definition"] =
                             require("omnisharp_extended").handler,
+                        },
+
+                        enable_import_completion = true,
+                        enable_roslyn_analyzers = true,
+                        organize_imports_on_format = true,
+                        enable_editorconfig_support = true,
+
+                        settings = {
+                            FormattingOptions = {
+                                EnableEditorConfigSupport = true,
+                                OrganizeImports = true,
+                            },
+
+                            MsBuild = {
+                                LoadProjectsOnDemand = true,
+                            },
+
+                            RoslynExtensionsOptions = {
+                                EnableAnalyzersSupport = true,
+                                EnableImportCompletion = true,
+                                AnalyzeOpenDocumentsOnly = true,
+                            },
+
+                            Sdk = {
+                                IncludePrereleases = true,
+                            },
+                        },
                     },
 
-                    enable_import_completion = true,
-                    enable_roslyn_analyzers = true,
-                    organize_imports_on_format = true,
-                    enable_editorconfig_support = true,
+                    tailwindcss = {},
+                    cssls = {},
+                    html = {},
+                    jdtls = {},
+                    ts_ls = {},
+                    phpactor = {},
+                    yamlls = {},
+                    bashls = {},
+                    powershell_es = {},
+                }
 
-                    settings = {
-                        FormattingOptions = {
-                            EnableEditorConfigSupport = true,
-                            OrganizeImports = true,
+                for name, config in pairs(servers) do
+                    vim.lsp.config(name, vim.tbl_extend(
+                        "force",
+                        {
+                            capabilities = capabilities,
                         },
+                        config
+                    ))
 
-                        MsBuild = {
-                            LoadProjectsOnDemand = true,
-                        },
-
-                        RoslynExtensionsOptions = {
-                            EnableAnalyzersSupport = true,
-                            EnableImportCompletion = true,
-                            AnalyzeOpenDocumentsOnly = true,
-                        },
-
-                        Sdk = {
-                            IncludePrereleases = true,
-                        },
-                    },
-                },
-
-                tailwindcss = {},
-                cssls = {},
-                html = {},
-                jdtls = {},
-                ts_ls = {},
-                phpactor = {},
-                yamlls = {},
-                bashls = {},
-                powershell_es = {},
-            }
-
-            for name, config in pairs(servers) do
-                vim.lsp.config(name, vim.tbl_extend(
-                    "force",
-                    {
-                        capabilities = capabilities,
-                    },
-                    config
-                ))
-
-                vim.lsp.enable(name)
-            end
-        end,
-    },
-
-    {
-        "ray-x/lsp_signature.nvim",
-        event = "LspAttach",
-        opts = {
-            bind = true,
-            floating_window = true,
-            hint_enable = false,
+                    vim.lsp.enable(name)
+                end
+            end,
         },
-    },
 
-    {
-        "folke/trouble.nvim",
-        opts = {},
-        cmd = "Trouble",
-    },
-}
+        {
+            "ray-x/lsp_signature.nvim",
+            event = "LspAttach",
+            opts = {
+                bind = true,
+                floating_window = true,
+                hint_enable = false,
+            },
+        },
+
+        {
+            "folke/trouble.nvim",
+            opts = {},
+            cmd = "Trouble",
+        },
+    }
