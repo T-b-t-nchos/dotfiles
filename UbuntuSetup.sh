@@ -103,7 +103,7 @@ Main-Function() {
 
     #-------------------------------------------------------
     # Download Font
-    if [ -z "$SkipFont" ]; then
+    if [ "$SkipFont" != true ]; then
         Download-font
     else
         echo "Skipped: Font"
@@ -111,7 +111,7 @@ Main-Function() {
 
     #-------------------------------------------------------
     # Install package managers
-    if [ -z "$SkipPackMgr" ]; then
+    if [ "$SkipPackMgr" != true ]; then
         # Install-PackMgr
         echo "Skipped: Install PackMgr"
     else
@@ -122,13 +122,13 @@ Main-Function() {
     #-------------------------------------------------------
     # Install...
 
-    if [ -z "$SkipMM2F" ]; then
+    if [ "$SkipMM2F" != true ]; then
         Install-withMM2F
     else
         echo "Skipped: Install with MM2F"
     fi
 
-    if [ -z "$SkipManualInstall" ]; then
+    if [ "$SkipManualInstall" != true ]; then
         Install-Manually
     else
         echo "Skipped: Install Manually"
@@ -137,7 +137,7 @@ Main-Function() {
 
     #-------------------------------------------------------
     # Symlinks
-    if [ -z "$SkipSymlinks" ]; then
+    if [ "$SkipSymlinks" != true ]; then
         local args=()
         if [ -n "$Force" ]; then
             args+=("-Force")
@@ -149,7 +149,7 @@ Main-Function() {
 
     #-------------------------------------------------------
     # Add to PATH
-    if [ -z "$SkipPATH" ]; then
+    if [ "$SkipPATH" != true ]; then
         # Add-PATH
         echo "Skipped: Add to PATH"
     else
@@ -158,7 +158,7 @@ Main-Function() {
 
     #-------------------------------------------------------
     # Other commands
-    if [ -z "$SkipOtherCommands" ]; then
+    if [ "$SkipOtherCommands" != true ]; then
         Run-OtherCommands
     else
         echo "Skipped: Other commands"
