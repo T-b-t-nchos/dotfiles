@@ -113,6 +113,7 @@ Main-Function() {
     # Install package managers
     if [ -z "$SkipPackMgr" ]; then
         # Install-PackMgr
+        echo "Skipped: Install PackMgr"
     else
         echo "Skipped: Install PackMgr"
     fi
@@ -150,6 +151,7 @@ Main-Function() {
     # Add to PATH
     if [ -z "$SkipPATH" ]; then
         # Add-PATH
+        echo "Skipped: Add to PATH"
     else
         echo "Skipped: Add to PATH"
     fi
