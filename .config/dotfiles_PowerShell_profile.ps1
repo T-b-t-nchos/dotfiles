@@ -26,5 +26,5 @@ function gitinit {
 }
 
 Remove-Item Alias:cd -Force -ErrorAction SilentlyContinue
-function cd { z $args }
-function cdd { cd $args }
+function cd { z @args }
+function cdd { cd @args }
