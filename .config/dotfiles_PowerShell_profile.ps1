@@ -25,5 +25,6 @@ function gitinit {
     git commit --allow-empty -m "Initial commit"
 }
 
+Remove-Item Alias:cd -Force -ErrorAction SilentlyContinue
 function cd { z $args }
 function cdd { cd $args }
