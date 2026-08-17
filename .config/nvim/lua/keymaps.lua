@@ -69,6 +69,9 @@ vks("n", "<C-Right>", "<cmd>vertical resize +1<CR>", { silent = true })
 
 -- Escape and Clear hlsearch
 vks({ "i", "n", "s" }, "<esc>", function()
+    if vim.fn.executable("zenhan") == 1 then
+        vim.system({ "zenhan", "0" }, { detach = true })
+    end
     vim.cmd("noh")
     return "<esc>"
 end, { expr = true, desc = "Escape and Clear hlsearch" })
