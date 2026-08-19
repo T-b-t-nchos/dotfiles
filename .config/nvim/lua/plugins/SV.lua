@@ -3,8 +3,9 @@ return {
     -- dir = "~/source/repos/SetsuVim/sv-rubi.nvim",
     cmd = { "RubiInsert", "RubiInsertAC" },
     keys = {
-        { "<leader>Srr", "<cmd>RubiInsert<CR>", mode = { "n", "v" }, desc = "RubiInsert" },
-        { "<leader>Sra", "<cmd>RubiInsertAC<CR>", mode = "v", desc = "RubiInsertAC" },
+        { "<leader>Srr", "<cmd>RubiInsert<CR>", mode = "n", desc = "RubiInsert" },
+        { "<leader>Srr", ":'<,'>RubiInsert<CR>", mode = "v", desc = "RubiInsert" },
+        { "<leader>Sra", ":'<,'>RubiInsertAC<CR>", mode = "v", desc = "RubiInsertAC" },
     },
 
     opts = {
