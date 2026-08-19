@@ -1,12 +1,13 @@
 -- +--------------------------------------------- --- -- - -  -
--- | WezTerm config File 
+-- | WezTerm config File
 -- +--------------------------------------------- -- - - --  -  -
 --
 -- USER-CONFIG LIST
 -- |
 -- | - "$env:WEZTERM_OPENGL" ... Use OpenGL
 -- | - "$env:WEZTERM_WEBGPU_PWR_PREF" ... WebGPU Power Preference (H/L)
--- | 
+-- | - "$env:WEZTERM_FONTID" ... Font ID (Number, default is 0)
+-- |
 -- +----
 
 local wezterm = require 'wezterm'
@@ -86,21 +87,26 @@ else
     config.enable_wayland = false
 end
 
-config.font_size = 11.0
-config.font = wezterm.font('Moralerspace Radon HW')
 
--- config.font_size = 12.0
--- config.font = wezterm.font('PC98NXbs')
--- config.font_rules = {
---     {
---         intensity = "Bold",
---         font = wezterm.font("PC98NXbs", { weight = "Bold" }),
---     },
---     {
---         italic = true,
---         font = wezterm.font("PC98NXbs"),
---     },
--- }
+local fontid = os.getenv("WEZTERM_FONTID")
+
+if fontid == "0" or fontid == nil then
+    config.font_size = 11.0
+    config.font = wezterm.font('Moralerspace Radon HW')
+elseif fontid == "1" then
+    config.font_size = 12.0
+    config.font = wezterm.font('PC98NXbs')
+    config.font_rules = {
+        {
+            intensity = "Bold",
+            font = wezterm.font("PC98NXbs", { weight = "Bold" }),
+        },
+        {
+            italic = true,
+            font = wezterm.font("PC98NXbs"),
+        },
+    }
+end
 
 config.use_ime = true
 
@@ -133,7 +139,7 @@ else
 end
 
 config.window_background_gradient =
-    {colors = {'#000e1e'}}
+{colors = {'#000e1e'}}
 
 config.window_frame = {
     inactive_titlebar_bg = 'none',
