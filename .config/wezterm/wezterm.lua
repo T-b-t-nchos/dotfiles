@@ -153,6 +153,13 @@ config.color_scheme_dirs = {
 config.show_new_tab_button_in_tab_bar = false
 config.show_close_tab_button_in_tabs = false
 config.colors = {tab_bar = {inactive_tab_edge = 'none'}}
+config.window_frame = {
+    -- font = config.font,
+    font_size = 9,
+    -- font_rules = config.font_rules,
+    active_titlebar_bg = 'none',
+    inactive_titlebar_bg = 'none',
+}
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
 local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
 wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
