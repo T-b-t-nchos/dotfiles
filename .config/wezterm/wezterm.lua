@@ -91,7 +91,7 @@ end
 local fontid = os.getenv("WEZTERM_FONTID")
 
 if fontid == "0" or fontid == nil then
-    config.font_size = 11.0
+    config.font_size = 10.0
     config.font = wezterm.font('Moralerspace Radon HW')
 elseif fontid == "1" then
     config.font_size = 12.0
