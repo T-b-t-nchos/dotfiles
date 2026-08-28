@@ -79,6 +79,12 @@ return {
             completion = {
                 documentation = {
                     auto_show = true,
+
+                    window = {
+                        border = "single",
+                        max_width = 80,
+                        max_height = 20,
+                    },
                 },
 
                 menu = {
