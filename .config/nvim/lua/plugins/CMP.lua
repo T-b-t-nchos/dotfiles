@@ -143,6 +143,14 @@ return {
             },
 
             sources = {
+                min_keyword_length = function(ctx)
+                    if ctx.trigger.initial_kind == "manual" then
+                        return 0
+                    end
+
+                    return 1
+                end,
+
                 default = {
                     "lsp",
                     "path",
