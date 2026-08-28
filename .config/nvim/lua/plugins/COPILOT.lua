@@ -48,7 +48,7 @@ return {
             local defaultPrompts = require("CopilotChat.config.prompts")
 
             require("CopilotChat").setup({
-                model = "gpt-5-mini",
+                model = "auto",
 
                 window = {
                     layout = "vertical",
