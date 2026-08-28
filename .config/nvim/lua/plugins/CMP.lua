@@ -61,7 +61,7 @@ return {
                     "fallback",
                 },
 
-                ["<C-Space>"] = {
+                ["<C-@>"] = {
                     "show",
                 },
 

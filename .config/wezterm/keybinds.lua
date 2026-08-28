@@ -95,12 +95,12 @@ return {
         { key = 'f', mods = 'SUPER', action = act.Search 'CurrentSelectionOrEmptyString' },
         { key = 'k', mods = 'SHIFT|CTRL', action = act.ClearScrollback 'ScrollbackOnly' },
         { key = 'k', mods = 'SUPER', action = act.ClearScrollback 'ScrollbackOnly' },
-        -- { key = 'l', mods = 'CTRL', action = act.ShowLauncher }, 
+        -- { key = 'l', mods = 'CTRL', action = act.ShowLauncher },
         {
             key = 'l',
             mods = 'SHIFT|CTRL',
             action = wezterm.action.ShowLauncherArgs {
-                flags = 'LAUNCH_MENU_ITEMS' 
+                flags = 'LAUNCH_MENU_ITEMS'
             },
         },
         { key = 'm', mods = 'SHIFT|CTRL', action = act.Hide },
@@ -125,6 +125,7 @@ return {
         { key = '}', mods = 'SUPER', action = act.ActivateTabRelative(1) },
         { key = '}', mods = 'SHIFT|SUPER', action = act.ActivateTabRelative(1) },
         { key = 'phys:Space', mods = 'SHIFT|CTRL', action = act.QuickSelect },
+        { key = 'phys:Space', mods = 'CTRL', action = wezterm.action.SendKey({ key = "@", mods = "CTRL", })},
         { key = 'PageUp', mods = 'SHIFT', action = act.ScrollByPage(-1) },
         { key = 'PageUp', mods = 'CTRL', action = act.ActivateTabRelative(-1) },
         { key = 'PageUp', mods = 'SHIFT|CTRL', action = act.MoveTabRelative(-1) },
