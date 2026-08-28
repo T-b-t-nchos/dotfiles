@@ -47,3 +47,5 @@ end
 
 
 vim.opt.winborder = "rounded"
+
+vim.opt.splitright = true
