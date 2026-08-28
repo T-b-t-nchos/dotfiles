@@ -332,6 +332,6 @@ return {
     },
     {
         "giuxtaposition/blink-cmp-copilot",
-        depandencies = { "copilot.lua" },
+        dependencies = { "copilot.lua" },
     }
 }
