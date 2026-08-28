@@ -13,6 +13,7 @@ return {
             "moyiz/blink-emoji.nvim",
             'Kaiser-Yang/blink-cmp-git',
             "erooke/blink-cmp-latex",
+            "giuxtaposition/blink-cmp-copilot",
 
             "L3MON4D3/LuaSnip",
         },
@@ -60,7 +61,7 @@ return {
                     "fallback",
                 },
 
-                ["<C-Space>"] = {
+                ["<C-@>"] = {
                     "show",
                 },
 
@@ -78,6 +79,12 @@ return {
             completion = {
                 documentation = {
                     auto_show = true,
+
+                    window = {
+                        border = "single",
+                        max_width = 80,
+                        max_height = 20,
+                    },
                 },
 
                 menu = {
@@ -136,6 +143,14 @@ return {
             },
 
             sources = {
+                min_keyword_length = function(ctx)
+                    if ctx.trigger.initial_kind == "manual" then
+                        return 0
+                    end
+
+                    return 1
+                end,
+
                 default = {
                     "lsp",
                     "path",
@@ -145,6 +160,7 @@ return {
                     "treesitter",
                     "git",
                     "latex",
+                    "copilot",
                 },
 
                 providers = {
@@ -201,6 +217,12 @@ return {
                         opts = {
                             insert_command = false
                         },
+                    },
+                    copilot = {
+                        name = "copilot",
+                        module = "blink-cmp-copilot",
+                        score_offset = 100,
+                        async = true,
                     },
                 },
             },
@@ -315,5 +337,9 @@ return {
                 max_width = 60,
             })
         end,
+    },
+    {
+        "giuxtaposition/blink-cmp-copilot",
+        dependencies = { "copilot.lua" },
     }
 }
