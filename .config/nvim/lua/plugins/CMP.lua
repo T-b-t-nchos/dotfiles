@@ -108,6 +108,16 @@ return {
                                     return require("colorful-menu").blink_components_highlight(ctx)
                                 end,
                             },
+                            kind_icon = {
+                                highlight = function(ctx)
+                                    return ctx.kind
+                                end,
+                            },
+                            kind = {
+                                highlight = function(ctx)
+                                    return ctx.kind
+                                end,
+                            },
                         },
                     },
                 },
