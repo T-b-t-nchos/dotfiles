@@ -13,6 +13,7 @@ return {
             "moyiz/blink-emoji.nvim",
             'Kaiser-Yang/blink-cmp-git',
             "erooke/blink-cmp-latex",
+            "giuxtaposition/blink-cmp-copilot",
 
             "L3MON4D3/LuaSnip",
         },
@@ -145,6 +146,7 @@ return {
                     "treesitter",
                     "git",
                     "latex",
+                    "copilot",
                 },
 
                 providers = {
@@ -201,6 +203,12 @@ return {
                         opts = {
                             insert_command = false
                         },
+                    },
+                    copilot = {
+                        name = "copilot",
+                        module = "blink-cmp-copilot",
+                        score_offset = 100,
+                        async = true,
                     },
                 },
             },
@@ -315,5 +323,9 @@ return {
                 max_width = 60,
             })
         end,
+    },
+    {
+        "giuxtaposition/blink-cmp-copilot",
+        depandencies = { "copilot.lua" },
     }
 }
