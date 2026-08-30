@@ -11,8 +11,8 @@
 -- +----
 
 local wezterm = require 'wezterm'
-
 local config = wezterm.config_builder()
+local mux = wezterm.mux
 
 local IS_WINDOWS = wezterm.target_triple:find('windows', 1, true) ~= nil
 
@@ -57,8 +57,8 @@ end
 
 config.automatically_reload_config = true
 
-config.initial_cols = 120
-config.initial_rows = 28
+config.initial_cols = 144
+config.initial_rows = 32
 
 local front_end = "WebGpu"
 
